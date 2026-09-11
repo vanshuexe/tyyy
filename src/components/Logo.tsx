@@ -14,9 +14,9 @@ export const Logo: React.FC<LogoProps> = ({
   className = '',
 }) => {
   const sizeClasses = {
-    sm: 'h-14 sm:h-14 md:h-16 lg:h-16',
-    md: 'h-16 sm:h-16 md:h-20 lg:h-20',
-    lg: 'h-24 sm:h-24 md:h-28 lg:h-32',
+    sm: 'h-16 sm:h-20 md:h-20 lg:h-24',
+    md: 'h-20 sm:h-24 md:h-28 lg:h-32',
+    lg: 'h-32 sm:h-36 md:h-40 lg:h-48',
   }[size];
 
   return (
@@ -25,7 +25,7 @@ export const Logo: React.FC<LogoProps> = ({
         src={OFFICIAL_LOGO_URL}
         alt="RKPT Logo"
         referrerPolicy="no-referrer"
-        className={`${sizeClasses} w-auto object-contain transition-transform duration-300 group-hover:scale-105`}
+        className={`${sizeClasses} w-auto object-contain transition-transform duration-300 transform scale-125 sm:scale-150 origin-left group-hover:scale-[1.35] sm:group-hover:scale-[1.6]`}
       />
     </div>
   );

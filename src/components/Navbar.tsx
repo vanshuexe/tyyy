@@ -38,7 +38,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   return (
     <>
       {/* Top Advisory Bar */}
-      <div className="bg-[#0b1b36] text-gray-300 text-xs py-2.5 px-3 sm:px-6 border-b border-[#1e4a87]/50 w-full overflow-hidden">
+      <div className="bg-[#0b1b36] text-gray-300 text-xs py-2.5 px-3 sm:px-6 border-b border-[#1e4a87]/50 w-full">
         <div className="max-w-7xl mx-auto flex items-center justify-between gap-2 w-full">
           <div className="flex items-center gap-3 sm:gap-5 text-[11px] sm:text-xs min-w-0">
             <span className="flex items-center gap-1.5 text-[#3273a8] font-bold uppercase tracking-widest shrink-0">
@@ -83,7 +83,7 @@ export const Navbar: React.FC<NavbarProps> = ({
 
       {/* Main Navigation Header */}
       <header
-        className={`sticky top-0 z-40 transition-all duration-300 w-full overflow-hidden ${
+        className={`sticky top-0 z-40 transition-all duration-300 w-full ${
           isScrolled
             ? 'bg-white/95 backdrop-blur-md shadow-sm border-b border-gray-100 py-2.5 sm:py-3'
             : 'bg-white border-b border-gray-200 py-3 sm:py-4'
