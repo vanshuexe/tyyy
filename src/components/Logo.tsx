@@ -13,10 +13,11 @@ export const Logo: React.FC<LogoProps> = ({
   size = 'md',
   className = '',
 }) => {
+  // Maximized sizes to make the logo highly visible and prominent
   const sizeClasses = {
-    sm: 'h-16 sm:h-20 md:h-20 lg:h-24',
-    md: 'h-20 sm:h-24 md:h-28 lg:h-32',
-    lg: 'h-32 sm:h-36 md:h-40 lg:h-48',
+    sm: 'h-16 sm:h-20 md:h-20 lg:h-20', // For mobile drawer
+    md: 'h-24 sm:h-28 md:h-32 lg:h-32', // Extremely large for the main navbar header
+    lg: 'h-32 sm:h-40 md:h-48 lg:h-56',
   }[size];
 
   return (
@@ -25,7 +26,8 @@ export const Logo: React.FC<LogoProps> = ({
         src={OFFICIAL_LOGO_URL}
         alt="RKPT Logo"
         referrerPolicy="no-referrer"
-        className={`${sizeClasses} w-auto object-contain transition-transform duration-300 transform scale-125 sm:scale-150 origin-left group-hover:scale-[1.35] sm:group-hover:scale-[1.6]`}
+        // mix-blend-multiply hides the white background of the JPG logo!
+        className={`${sizeClasses} w-auto object-contain transition-transform duration-300 group-hover:scale-105 mix-blend-multiply`}
       />
     </div>
   );
