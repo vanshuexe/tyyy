@@ -1,0 +1,59 @@
+@import "tailwindcss";
+
+@layer utilities {
+  .font-sans {
+    font-family: 'Manrope', system-ui, sans-serif;
+  }
+  .font-display {
+    font-family: 'Outfit', system-ui, sans-serif;
+  }
+  .shadow-premium {
+    box-shadow: 0 4px 24px -6px rgba(21, 50, 91, 0.05), 0 0 1px rgba(21, 50, 91, 0.1);
+  }
+  .shadow-premium-hover {
+    box-shadow: 0 12px 32px -8px rgba(21, 50, 91, 0.12), 0 0 1px rgba(21, 50, 91, 0.15);
+  }
+  .btn-premium {
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 2px 8px -2px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.08);
+  }
+  .btn-premium:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px -4px rgba(0, 0, 0, 0.15), 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  .btn-premium:active {
+    transform: translateY(1px);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  }
+}
+
+@layer base {
+  :root {
+    --kcid-navy: #15325b;
+    --kcid-blue: #3273a8;
+    --kcid-red: #c91c1c;
+    --kcid-red-hover: #a01616;
+    --kcid-ocean: #024d87;
+    --kcid-midnavy: #1e4a87;
+    --kcid-midnight: #0b1b36;
+  }
+
+  html {
+    overflow-x: hidden;
+    max-width: 100%;
+    width: 100%;
+  }
+
+  body {
+    overflow-x: hidden;
+    max-width: 100%;
+    width: 100%;
+    position: relative;
+    font-family: 'Manrope', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+  
+  h1, h2, h3, .font-display {
+    font-family: 'Outfit', system-ui, sans-serif;
+  }
+}
+
