@@ -31,11 +31,11 @@ export const TestimonialCarousel: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row items-center justify-between mb-12 gap-6">
           <div className="text-center md:text-left">
-            <span className="text-[#3273a8] uppercase tracking-[0.2em] text-xs sm:text-sm font-bold mb-2 block">
-              Executive Client Success
+            <span className="text-[#c91c1c] uppercase tracking-[0.15em] text-xs sm:text-sm font-bold mb-2 block">
+              EXECUTIVE CLIENT SUCCESS
             </span>
-            <h2 className="text-3xl sm:text-4xl font-display font-medium text-[#0b1b36] tracking-tight">
-              Trusted by European Leaders
+            <h2 className="text-3xl sm:text-4xl font-display font-black text-[#15325b] tracking-tight">
+              Trusted by international founders and operators
             </h2>
           </div>
           

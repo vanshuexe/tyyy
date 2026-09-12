@@ -45,10 +45,10 @@ export interface IndustryItem {
 export interface ProcessStep {
   step: number;
   title: string;
-  subtitle: string;
+  subtitle?: string;
   description: string;
-  duration: string;
-  deliverables: string[];
+  duration?: string;
+  deliverables?: string[];
 }
 
 export interface CoreValue {

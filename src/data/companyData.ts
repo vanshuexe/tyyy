@@ -518,69 +518,53 @@ export const SERVICES_DATA: ServicePillar[] = [
 export const PROCESS_STEPS: ProcessStep[] = [
   {
     step: 1,
-    title: 'Initial Consultation',
-    subtitle: 'Understanding business goals',
-    description:
-      'We begin with an in-depth discovery session to analyze your business model, target European markets, shareholder structure, and expansion timeline.',
-    duration: 'Day 1 - 2',
-    deliverables: [
-      'Comprehensive expansion brief',
-      'Jurisdiction feasibility assessment (PT vs CH vs IE)',
-      'Initial compliance requirements checklist',
-    ],
+    title: 'Discover',
+    description: 'Understand your goals, business model and target market.',
   },
   {
     step: 2,
-    title: 'Strategic Planning',
-    subtitle: 'Country, structure, and compliance roadmap',
-    description:
-      'Our legal and tax specialists craft a custom roadmap identifying the optimal legal entity (LDA, GmbH, LTD), tax optimization strategy, and banking architecture.',
-    duration: 'Day 3 - 5',
-    deliverables: [
-      'Tailored corporate structuring blueprint',
-      'Tax & VAT roadmap with treaty alignments',
-      'Pre-approved company name reservation & documentation checklist',
-    ],
+    title: 'Assess',
+    description: 'Review country, structure, operational, compliance and technology requirements.',
   },
   {
     step: 3,
-    title: 'Execution',
-    subtitle: 'Setup, registration, banking, immigration',
-    description:
-      'We execute all administrative, notary, and government filings: commercial registry entry, tax identification, corporate bank opening, and residency visas.',
-    duration: 'Week 2 - 4',
-    deliverables: [
-      'Official Certificate of Incorporation & NIF/TIN',
-      'Corporate bank account credentials & IBAN',
-      'Residency/Visa submissions and notary apostilles',
-    ],
+    title: 'Plan',
+    description: 'Create a practical business and implementation roadmap.',
   },
   {
     step: 4,
-    title: 'Technology Enablement',
-    subtitle: 'Digital and IT solutions',
-    description:
-      'We build or adapt your digital presence—from GDPR-compliant multilingual corporate websites and e-commerce platforms to custom ERP and payroll integrations.',
-    duration: 'Week 3 - 6',
-    deliverables: [
-      'Production-ready corporate website / digital platform',
-      'GDPR compliance framework & cookie infrastructure',
-      'Invoicing, accounting, & CRM software integration',
-    ],
+    title: 'Establish',
+    description: 'Support company setup, registration, banking, immigration and related requirements.',
   },
   {
     step: 5,
-    title: 'Ongoing Support',
-    subtitle: 'Accounting, compliance, growth advisory',
-    description:
-      'Our partnership continues with full-cycle accounting, monthly payroll, VAT filings, statutory secretarial compliance, and strategic expansion advisory.',
-    duration: 'Continuous Partnership',
-    deliverables: [
-      'Dedicated European account manager',
-      'Monthly bookkeeping & management reporting',
-      'Quarterly VAT submissions & annual filings',
-      'Continuous regulatory monitoring and legal protection',
-    ],
+    title: 'Connect',
+    description: 'Coordinate accounting, tax, compliance and operational services.',
+  },
+  {
+    step: 6,
+    title: 'Digitise',
+    description: 'Build websites, software, cloud systems and business technology.',
+  },
+  {
+    step: 7,
+    title: 'Integrate AI',
+    description: 'Identify and implement practical AI and automation opportunities.',
+  },
+  {
+    step: 8,
+    title: 'Protect',
+    description: 'Strengthen cybersecurity, access, backup and operational resilience.',
+  },
+  {
+    step: 9,
+    title: 'Support',
+    description: 'Provide ongoing technology, compliance and business support.',
+  },
+  {
+    step: 10,
+    title: 'Expand',
+    description: 'Support international growth and entry into additional markets.',
   },
 ];
 

@@ -20,6 +20,9 @@ import {
   Globe
 } from 'lucide-react';
 import { COMPANY_INFO, COUNTRIES_DATA } from '../data/companyData';
+import { TechnologySection } from './TechnologySection';
+import { WhyChooseUsSection } from './WhyChooseUsSection';
+import { WhoWeServeSection } from './WhoWeServeSection';
 
 interface HomeViewProps {
   onNavigate: (pageId: string) => void;
@@ -221,6 +224,9 @@ export const HomeView: React.FC<HomeViewProps> = ({ onNavigate, onOpenConsultati
             </ScrollReveal>
 </section>
 
+      {/* Technology Capabilities Section */}
+      <TechnologySection onOpenConsultation={() => onNavigate('contact')} />
+
       {/* 4. Interactive Scope Planner Feature Callout */}
       <section className="py-16 sm:py-20 bg-gray-50 border-b border-gray-200">
       <ScrollReveal>
@@ -302,7 +308,7 @@ export const HomeView: React.FC<HomeViewProps> = ({ onNavigate, onOpenConsultati
                 3 Desks
               </div>
               <div className="text-xs uppercase font-bold text-gray-500 tracking-wider mt-1">
-                Lisbon • Zurich • Dublin
+                Lisbon • Zurich • Dublin • London • New York • Dubai
               </div>
             </div>
             <div className="p-4 rounded-xl bg-gray-50 border border-gray-100">
@@ -318,6 +324,12 @@ export const HomeView: React.FC<HomeViewProps> = ({ onNavigate, onOpenConsultati
             </ScrollReveal>
 </section>
 
+      {/* Why Choose RKPT */}
+      <WhyChooseUsSection />
+
+      {/* Who We Serve */}
+      <WhoWeServeSection />
+
       <TestimonialCarousel />
 
       {/* 6. Quick Executive Callout */}
@@ -332,7 +344,7 @@ export const HomeView: React.FC<HomeViewProps> = ({ onNavigate, onOpenConsultati
               Connect With Our Jurisdiction Directors
             </h3>
             <p className="text-sm sm:text-base text-gray-300 max-w-xl">
-              Direct legal liaison in Lisbon, Zurich, and Dublin for confidential business structuring.
+              Direct legal liaison in Lisbon, Zurich, Dublin, London, New York, and Dubai for confidential business structuring.
             </p>
           </div>
           <div className="flex flex-col sm:flex-row gap-4 w-full md:w-auto">

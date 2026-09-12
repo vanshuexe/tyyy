@@ -192,7 +192,7 @@ export default function App() {
           <div>
             <PageHeader
               title="European Advisory Desks &amp; Contact Channels"
-              subtitle="Direct legal liaison and physical advisory offices in Lisbon, Zurich, and Dublin."
+              subtitle="Direct legal liaison and physical advisory offices in Lisbon, Zurich, Dublin, London, New York, and Dubai."
               category="Advisory Desks"
               onNavigateHome={() => handleNavigate('home')}
             />

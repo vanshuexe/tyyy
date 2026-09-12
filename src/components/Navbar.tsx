@@ -52,11 +52,20 @@ export const Navbar: React.FC<NavbarProps> = ({
               <span className="flex items-center gap-1.5 hover:text-white transition-colors cursor-default"><img src="https://flagcdn.com/ch.svg" alt="CH" className="w-4 h-3 object-cover rounded-[2px]" /> Switzerland (AG)</span>
               <span className="text-[#1e4a87]">|</span>
               <span className="flex items-center gap-1.5 hover:text-white transition-colors cursor-default"><img src="https://flagcdn.com/ie.svg" alt="IE" className="w-4 h-3 object-cover rounded-[2px]" /> Ireland (LTD)</span>
+              <span className="text-[#1e4a87]">|</span>
+              <span className="flex items-center gap-1.5 hover:text-white transition-colors cursor-default"><img src="https://flagcdn.com/gb.svg" alt="UK" className="w-4 h-3 object-cover rounded-[2px]" /> UK (LTD)</span>
+              <span className="text-[#1e4a87]">|</span>
+              <span className="flex items-center gap-1.5 hover:text-white transition-colors cursor-default"><img src="https://flagcdn.com/us.svg" alt="USA" className="w-4 h-3 object-cover rounded-[2px]" /> USA (LLC/Corp)</span>
+              <span className="text-[#1e4a87]">|</span>
+              <span className="flex items-center gap-1.5 hover:text-white transition-colors cursor-default"><img src="https://flagcdn.com/ae.svg" alt="UAE" className="w-4 h-3 object-cover rounded-[2px]" /> Dubai (Free Zone/Mainland)</span>
             </span>
             <span className="text-gray-300 sm:hidden flex items-center gap-1.5 font-medium truncate">
               <span className="flex items-center gap-1"><img src="https://flagcdn.com/pt.svg" alt="PT" className="w-3.5 h-2.5 object-cover rounded-[1px]" /> PT</span><span className="text-[#1e4a87]">|</span>
               <span className="flex items-center gap-1"><img src="https://flagcdn.com/ch.svg" alt="CH" className="w-3.5 h-2.5 object-cover rounded-[1px]" /> CH</span><span className="text-[#1e4a87]">|</span>
-              <span className="flex items-center gap-1"><img src="https://flagcdn.com/ie.svg" alt="IE" className="w-3.5 h-2.5 object-cover rounded-[1px]" /> IE</span>
+              <span className="flex items-center gap-1"><img src="https://flagcdn.com/ie.svg" alt="IE" className="w-3.5 h-2.5 object-cover rounded-[1px]" /> IE</span><span className="text-[#1e4a87]">|</span>
+              <span className="flex items-center gap-1"><img src="https://flagcdn.com/gb.svg" alt="UK" className="w-3.5 h-2.5 object-cover rounded-[1px]" /> UK</span><span className="text-[#1e4a87]">|</span>
+              <span className="flex items-center gap-1"><img src="https://flagcdn.com/us.svg" alt="US" className="w-3.5 h-2.5 object-cover rounded-[1px]" /> US</span><span className="text-[#1e4a87]">|</span>
+              <span className="flex items-center gap-1"><img src="https://flagcdn.com/ae.svg" alt="AE" className="w-3.5 h-2.5 object-cover rounded-[1px]" /> AE</span>
             </span>
           </div>
           <div className="flex items-center gap-3 sm:gap-4 text-[11px] sm:text-xs font-semibold shrink-0">

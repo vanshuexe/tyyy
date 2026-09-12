@@ -214,7 +214,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenConsultation }
               Ready to start your European expansion?
             </h4>
             <p className="text-xs sm:text-sm text-gray-600">
-              Speak with our senior jurisdiction directors in Lisbon, Zurich, or Dublin today.
+              Speak with our senior jurisdiction directors in Lisbon, Zurich, Dublin, London, New York, or Dubai today.
             </p>
           </div>
           <button

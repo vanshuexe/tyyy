@@ -81,6 +81,30 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               </li>
               <li>
                 <button
+                  onClick={() => handleNav('jurisdictions')}
+                  className="hover:text-[#c91c1c] text-gray-600 transition-colors text-left cursor-pointer"
+                >
+                  🇬🇧 United Kingdom (LTD, LLP)
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => handleNav('jurisdictions')}
+                  className="hover:text-[#c91c1c] text-gray-600 transition-colors text-left cursor-pointer"
+                >
+                  🇺🇸 United States (LLC, C-Corp)
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => handleNav('jurisdictions')}
+                  className="hover:text-[#c91c1c] text-gray-600 transition-colors text-left cursor-pointer"
+                >
+                  🇦🇪 Dubai (Free Zone, Mainland)
+                </button>
+              </li>
+              <li>
+                <button
                   onClick={() => handleNav('estimator')}
                   className="text-[#3273a8] hover:text-[#c91c1c] transition-colors font-bold uppercase tracking-wider text-[11px] block mt-1 text-left cursor-pointer"
                 >
@@ -173,6 +197,27 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               >
                 <MapPin className="w-3.5 h-3.5 text-[#c91c1c] shrink-0 mt-0.5" />
                 <span>Dublin, Ireland</span>
+              </button>
+              <button
+                onClick={() => handleNav('contact')}
+                className="flex items-start gap-2 hover:text-[#c91c1c] text-left cursor-pointer"
+              >
+                <MapPin className="w-3.5 h-3.5 text-[#c91c1c] shrink-0 mt-0.5" />
+                <span>London, UK</span>
+              </button>
+              <button
+                onClick={() => handleNav('contact')}
+                className="flex items-start gap-2 hover:text-[#c91c1c] text-left cursor-pointer"
+              >
+                <MapPin className="w-3.5 h-3.5 text-[#c91c1c] shrink-0 mt-0.5" />
+                <span>New York, USA</span>
+              </button>
+              <button
+                onClick={() => handleNav('contact')}
+                className="flex items-start gap-2 hover:text-[#c91c1c] text-left cursor-pointer"
+              >
+                <MapPin className="w-3.5 h-3.5 text-[#c91c1c] shrink-0 mt-0.5" />
+                <span>Dubai, UAE</span>
               </button>
               <div className="pt-2">
                 <a
