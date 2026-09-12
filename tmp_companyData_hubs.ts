@@ -2,24 +2,24 @@ import { CountryProfile, ServicePillar, IndustryItem, ProcessStep, CoreValue, Wh
 
 export const COMPANY_INFO = {
   name: 'RKPT TECH LTD',
-  tagline: 'BUSINESS. TECHNOLOGY. COMPLIANCE. GROWTH.',
-  headline: 'Global Business Consulting & Technology Solutions',
+  tagline: 'Your Gateway to Europe',
+  headline: 'Global Business Consulting & Technology Solutions Firm',
   profileSummary:
-    'RKPT TECH LTD helps businesses build, operate, protect and grow across international markets. From company formation, accounting, tax, banking, compliance, immigration and relocation support to IT, AI, software, cloud, automation and cybersecurity, RKPT brings complementary business and technology capabilities together under one operating partner.',
+    'RKPT TECH LTD is a global business consulting and technology solutions firm specializing in helping entrepreneurs, startups, and established companies successfully establish, expand, and operate businesses across the European Union.',
   valueProposition:
-    'Our objective is simple: reduce complexity, create a structured path from setup to operation, and provide the business infrastructure required for sustainable international growth.',
+    'With deep expertise in Portugal, Switzerland, and Ireland, we provide end-to-end business support services—from company incorporation and regulatory compliance to banking, taxation, immigration, and digital transformation.',
   integratedApproach:
-    'RKPT TECH LTD is a global business consulting and technology solutions firm specializing in helping individuals, entrepreneurs, startups, established companies and international businesses establish, operate and expand across international markets.',
+    'Our integrated approach combines legal, financial, administrative, and IT solutions, ensuring that our clients can focus on growth while we manage complexity, compliance, and operational efficiency.',
   vision:
-    'To become a trusted global partner for businesses entering and expanding into international markets by delivering transparent, compliant and technology-driven solutions that enable sustainable growth.',
+    'To become a trusted global partner for businesses entering and expanding in Europe by delivering transparent, compliant, and technology-driven solutions that enable sustainable growth.',
   mission: [
-    'Simplify cross-border business setup and operations.',
-    'Deliver accurate, compliant and customized consulting services.',
-    'Empower businesses through practical IT and digital solutions.',
-    'Build long-term partnerships based on trust, performance and results.',
+    'To simplify cross-border business setup and operations within the EU',
+    'To deliver accurate, compliant, and customized consulting services',
+    'To empower businesses through innovative IT and digital solutions',
+    'To build long-term partnerships based on trust, performance, and results',
   ],
   commitment:
-    'We do not simply help clients register a company. We help build the business infrastructure required to operate, protect and grow it.',
+    'At RKPT TECH LTD, we don’t just set up companies—we build foundations for long-term success in Europe. Our clients benefit from clarity, confidence, and complete operational support.',
   contact: {
     email: 'contact@rkpttech.com',
     secondaryEmail: 'advisory@rkpttech.com',
@@ -52,176 +52,130 @@ export const COMPANY_INFO = {
 
 export const COUNTRIES_DATA: CountryProfile[] = [
   {
-    id: "portugal",
-    name: "Portugal",
-    code: "PT",
-    flag: "https://flagcdn.com/pt.svg",
-    capital: "Lisbon",
-    currency: "EUR (€)",
-    corporateTaxRate: "17% - 21%",
-    formationTime: "3 - 7 Business Days",
-    structures: ["LDA formation", "business setup", "accounting/tax coordination", "banking", "immigration", "digital transformation"],
+    id: 'portugal',
+    name: 'Portugal',
+    code: 'PT',
+    flag: 'https://flagcdn.com/pt.svg',
+    capital: 'Lisbon',
+    currency: 'EUR (€)',
+    corporateTaxRate: '17% - 21%',
+    formationTime: '3 - 7 Business Days',
+    structures: ['LDA (Limitada)', 'SA (Sociedade Anónima)', 'Branch / Sucursal', 'Unipessoal LDA'],
     keyAdvantages: [
-      "EU Business & Company Formation Hub"
+      'Empresa na Hora express incorporation regime',
+      'Strategic Atlantic bridge between EU, Americas, and Africa',
+      'Booming technology and startup ecosystem (Lisbon & Porto)',
+      'Highly competitive operational and skilled engineering costs',
+      'Attractive tax regimens & non-habitual resident / IFICI schemes',
     ],
     visaAlignment: [
-      "LDA", "NHR", "Golden Visa"
+      'Startup Visa program for tech entrepreneurs',
+      'Golden Visa (Fund investment & research routes)',
+      'D8 Digital Nomad Visa & D2 Entrepreneur Visa',
+      'D7 Passive Income / Residency alignment',
     ],
-    bankingHighlights: [],
-    summary: "Focus: LDA formation, business setup, accounting/tax coordination, banking, immigration and digital transformation.",
-    regionalFocus: "EU Business & Company Formation Hub"
+    bankingHighlights: [
+      'Fast-track accounts with Millennium bcp, Novo Banco, and Santander',
+      'Integrated IBAN setup with European EMI partners',
+      'Multicurrency merchant accounts for cross-border commerce',
+    ],
+    summary:
+      'Portugal represents Europe’s most dynamic startup ecosystem and premier lifestyle-friendly corporate gateway, combining rapid setup with attractive tax incentives.',
+    regionalFocus: 'LDA formation, NHR guidance, Startup & Golden Visa alignment',
   },
   {
-    id: "uk",
-    name: "United Kingdom",
-    code: "UK",
-    flag: "https://flagcdn.com/gb.svg",
-    capital: "London",
-    currency: "GBP (£)",
-    corporateTaxRate: "19% - 25%",
-    formationTime: "1 - 3 Business Days",
-    structures: ["UK company setup", "operational support", "banking", "compliance", "technology"],
+    id: 'switzerland',
+    name: 'Switzerland',
+    code: 'CH',
+    flag: 'https://flagcdn.com/ch.svg',
+    capital: 'Bern / Zurich / Geneva',
+    currency: 'CHF',
+    corporateTaxRate: '11.9% - 21.6% (Cantonal)',
+    formationTime: '7 - 14 Business Days',
+    structures: ['GmbH (LLC / SARL)', 'AG (Corporation / SA)', 'Branch Office', 'Holding Company'],
     keyAdvantages: [
-      "UK Business & Technology Hub"
+      'World’s premier jurisdiction for financial stability & asset security',
+      'Crypto Valley Zug: world leader in Web3, FinTech & blockchain regulation',
+      'Double taxation treaties with over 100 sovereign jurisdictions',
+      'Cantonal tax competitiveness (e.g. Zug, Schwyz, Nidwalden)',
+      'Unsurpassed sovereign credit rating, privacy, and institutional trust',
     ],
     visaAlignment: [
-      "UK LTD", "Operations", "Tech"
+      'Swiss B / C Work and Residence Permits for directors',
+      'Key personnel transfers for multinational corporations',
+      'Cantonal economic interest residency applications',
     ],
-    bankingHighlights: [],
-    summary: "Focus: UK company setup, operational support, banking, compliance and technology.",
-    regionalFocus: "UK Business & Technology Hub"
+    bankingHighlights: [
+      'Tier-1 Swiss private and commercial banking relationships (UBS, Julius Baer, cantonal banks)',
+      'FinTech friendly accounts for blockchain and high-volume trading',
+      'Multi-fiat Swiss Franc (CHF) capital deposit management',
+    ],
+    summary:
+      'Switzerland provides peerless corporate prestige, rock-solid legal certainty, and strategic cantonal tax efficiencies for high-value enterprises and international holdings.',
+    regionalFocus: 'GmbH/AG setup, cantonal compliance, Swiss private banking',
   },
   {
-    id: "ireland",
-    name: "Ireland",
-    code: "IE",
-    flag: "https://flagcdn.com/ie.svg",
-    capital: "Dublin",
-    currency: "EUR (€)",
-    corporateTaxRate: "12.5%",
-    formationTime: "2 - 5 Business Days",
-    structures: ["Irish LTD setup", "CRO-related support", "EU market access", "operations", "technology"],
+    id: 'ireland',
+    name: 'Ireland',
+    code: 'IE',
+    flag: 'https://flagcdn.com/ie.svg',
+    capital: 'Dublin',
+    currency: 'EUR (€)',
+    corporateTaxRate: '12.5% (Trading Income)',
+    formationTime: '3 - 5 Business Days',
+    structures: ['Private Company Limited by Shares (LTD)', 'Designated Activity Company (DAC)', 'Branch of Foreign Entity'],
     keyAdvantages: [
-      "EU Business & Technology Hub"
+      'Standard 12.5% corporate tax rate on active trading income',
+      'Only English-speaking common law jurisdiction inside the EU Eurozone',
+      'European headquarters choice of Google, Apple, Meta, Stripe, Pfizer',
+      'Knowledge Development Box (KDB) 6.25% effective rate for qualified IP',
+      'Unrestricted barrier-free access to 450+ million European consumers',
     ],
     visaAlignment: [
-      "LTD", "CRO", "EU Market Access"
+      'Critical Skills Employment Permit (CSEP) for key technical staff',
+      'Start-up Entrepreneur Programme (STEP)',
+      'General Employment Permit & Intra-Company Transfer',
     ],
-    bankingHighlights: [],
-    summary: "Focus: Irish LTD setup, CRO-related support, EU market access, operations and technology.",
-    regionalFocus: "EU Business & Technology Hub"
+    bankingHighlights: [
+      'Direct clearing with Bank of Ireland, AIB, and leading European digital EMIs',
+      'Instant SEPA Instant & BACS cross-border transaction capabilities',
+      'Stripe & PayPal frictionless merchant acquirer onboarding',
+    ],
+    summary:
+      'Ireland remains the definitive European corporate hub for tech firms, SaaS exporters, and international trading businesses seeking low corporate tax and seamless EU single market access.',
+    regionalFocus: 'LTD formation, CRO filings, EU market access, 12.5% corporate tax',
   },
-  {
-    id: "switzerland",
-    name: "Switzerland",
-    code: "CH",
-    flag: "https://flagcdn.com/ch.svg",
-    capital: "Zurich / Geneva",
-    currency: "CHF",
-    corporateTaxRate: "11.9% - 21.6%",
-    formationTime: "2 - 4 Weeks",
-    structures: ["GmbH/AG setup", "cantonal compliance", "banking", "business support"],
-    keyAdvantages: [
-      "Swiss Business Hub"
-    ],
-    visaAlignment: [
-      "GmbH", "AG", "Cantons"
-    ],
-    bankingHighlights: [],
-    summary: "Focus: GmbH/AG setup, cantonal compliance, banking and business support.",
-    regionalFocus: "Swiss Business Hub"
-  },
-  {
-    id: "usa",
-    name: "USA",
-    code: "US",
-    flag: "https://flagcdn.com/us.svg",
-    capital: "Remote-First",
-    currency: "USD ($)",
-    corporateTaxRate: "21%",
-    formationTime: "2 - 5 Business Days",
-    structures: ["US company formation support", "business operations", "banking/payment coordination", "technology"],
-    keyAdvantages: [
-      "North American Business Hub"
-    ],
-    visaAlignment: [
-      "Formation", "Banking", "Tech"
-    ],
-    bankingHighlights: [],
-    summary: "Focus: US company formation support, business operations, banking/payment coordination and technology.",
-    regionalFocus: "North American Business Hub"
-  },
-  {
-    id: "dubai",
-    name: "Dubai / UAE",
-    code: "AE",
-    flag: "https://flagcdn.com/ae.svg",
-    capital: "Dubai",
-    currency: "AED",
-    corporateTaxRate: "9%",
-    formationTime: "1 - 3 Weeks",
-    structures: ["business setup", "licensing coordination", "banking", "international operations", "technology"],
-    keyAdvantages: [
-      "Middle East Business Hub"
-    ],
-    visaAlignment: [
-      "Licensing", "Banking", "Ops"
-    ],
-    bankingHighlights: [],
-    summary: "Focus: business setup, licensing coordination, banking, international operations and technology.",
-    regionalFocus: "Middle East Business Hub"
-  },
-  {
-    id: "india",
-    name: "India",
-    code: "IN",
-    flag: "https://flagcdn.com/in.svg",
-    capital: "Delivery Hub",
-    currency: "INR",
-    corporateTaxRate: "15% - 25%",
-    formationTime: "2 - 4 Weeks",
-    structures: ["technology delivery", "software development", "IT support", "AI", "cybersecurity", "business technology operations"],
-    keyAdvantages: [
-      "Technology & Delivery Hub"
-    ],
-    visaAlignment: [
-      "Technology & Delivery Hub"
-    ],
-    bankingHighlights: [],
-    summary: "Focus: technology delivery, software development, IT support, AI, cybersecurity and business technology operations.",
-    regionalFocus: "Technology & Delivery Hub"
-  }
 ];
 
 export const CORE_VALUES: CoreValue[] = [
   {
     title: 'Integrity & Compliance',
     tag: 'Strict Adherence',
-    description: 'We operate within applicable local and EU requirements.',
+    description: 'We operate strictly within local and EU regulations, safeguarding your company with bulletproof legal governance.',
     icon: 'ShieldCheck',
   },
   {
     title: 'Client-Centric Approach',
     tag: 'Tailored Solutions',
-    description: 'Solutions are tailored to the client\'s business needs.',
+    description: 'Every business is unique. We configure custom corporate architectures mapped precisely to your commercial goals.',
     icon: 'Users',
   },
   {
     title: 'Expertise & Precision',
     tag: 'Senior Specialists',
-    description: 'Work is structured around experienced professional capabilities.',
+    description: 'Delivered by experienced corporate lawyers, chartered tax accountants, and senior enterprise software engineers.',
     icon: 'Award',
   },
   {
     title: 'Innovation',
     tag: 'Technology-Driven',
-    description: 'We use technology to improve business operations.',
+    description: 'We replace outdated bureaucracy with automated document workflows, modern banking EMIs, and custom ERP digital solutions.',
     icon: 'Zap',
   },
   {
     title: 'Transparency',
     tag: 'Zero Surprises',
-    description: 'Clear processes, communication and service scope.',
+    description: 'Clear milestone schedules, transparent pricing structures, and proactive compliance tracking from day one.',
     icon: 'Eye',
   },
 ];

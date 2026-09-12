@@ -20,34 +20,40 @@ export const Hero: React.FC<HeroProps> = ({ onOpenConsultation, onExploreEstimat
             {/* Subtle Top Badge */}
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white shadow-sm border border-gray-200 text-gray-600 text-xs font-semibold tracking-widest uppercase mb-8 transition-transform hover:-translate-y-0.5 duration-300">
               <ShieldCheck className="w-4 h-4 text-[#c91c1c]" />
-              <span>Official Hub Setup</span>
+              <span>GLOBAL BUSINESS & TECHNOLOGY SOLUTIONS</span>
             </div>
 
             {/* Main Headline - Clean & Impactful */}
-            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-display font-medium tracking-tight text-[#0b1b36] leading-[1.05] mb-6">
-              European Expansion <br/><span className="text-[#3273a8] font-light">Architected For Scale</span>
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-medium tracking-tight text-[#0b1b36] leading-[1.1] mb-6">
+              Build Your Business. <br/>
+              <span className="text-[#3273a8] font-light">Transform Your Operations.</span> <br/>
+              <span className="text-[#c91c1c] font-bold">Protect Your Future.</span>
             </h1>
 
             {/* Refined Subtext */}
-            <p className="text-lg sm:text-xl text-gray-500 leading-relaxed max-w-xl font-light mb-10">
-              Turnkey legal, financial, and technology solutions for expanding your business into Portugal, Switzerland, and Ireland.
+            <p className="text-base sm:text-lg text-gray-500 leading-relaxed max-w-xl font-light mb-6">
+              RKPT TECH LTD helps individuals, entrepreneurs, startups and established companies establish, operate and expand across international markets. We combine business setup, compliance, financial and immigration support with IT, AI, software and cybersecurity solutions.
             </p>
+
+            <div className="flex items-center gap-2 text-[#0b1b36] font-medium text-sm mb-10">
+              <Star className="w-4 h-4 text-amber-500 fill-amber-500" />
+              One Global Partner. Seven Business Hubs.
+            </div>
 
             {/* Clean Premium Action Buttons */}
             <div className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
               <button
                 onClick={onOpenConsultation}
-                className="btn-premium w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-xl bg-[#c91c1c] hover:bg-[#a01616] text-white font-medium text-sm tracking-wide"
+                className="btn-premium w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-xl bg-[#c91c1c] hover:bg-[#a01616] text-white font-medium text-sm tracking-wide uppercase"
               >
-                <span>Start Expansion</span>
+                <span>Book A Consultation</span>
                 <ArrowRight className="w-4 h-4" />
               </button>
               <button
                 onClick={onExploreEstimator}
-                className="btn-premium w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-xl bg-white hover:bg-gray-50 text-[#15325b] border border-gray-200 font-medium text-sm tracking-wide"
+                className="btn-premium w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-xl bg-white hover:bg-gray-50 text-[#15325b] border border-gray-200 font-medium text-sm tracking-wide uppercase"
               >
-                <Building2 className="w-4 h-4 text-[#3273a8]" />
-                <span>Cost Estimator</span>
+                <span>Explore Our Services</span>
               </button>
             </div>
           </motion.div>

@@ -34,25 +34,21 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             >
               <Logo variant="light" size="md" />
             </button>
-            <p className="text-gray-600 text-xs sm:text-sm leading-relaxed max-w-sm pt-2">
-              {COMPANY_INFO.profileSummary}
-            </p>
-            <div className="flex items-center gap-3 pt-2 text-gray-600">
-              <span className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#c91c1c]">
-                <ShieldCheck className="w-4 h-4 text-[#c91c1c]" />
-                100% EU Regulatory Compliant
-              </span>
-              <span className="text-gray-300">•</span>
-              <span className="text-xs font-bold uppercase tracking-wider text-[#3273a8]">
-                GDPR &amp; AML Aligned
-              </span>
+            <div className="text-gray-600 text-xs sm:text-sm leading-relaxed max-w-sm pt-2">
+              <span className="font-bold">BUSINESS. TECHNOLOGY. COMPLIANCE. GROWTH.</span>
             </div>
+            <p className="text-gray-500 text-[11px] leading-relaxed max-w-sm">
+              Information on this website is provided for general information and business-support purposes. Company-formation requirements, tax rules, immigration requirements, licensing conditions, banking requirements and regulatory obligations vary by jurisdiction, business activity and individual circumstances. Government authorities, banks and regulated institutions make their own decisions and may request additional documentation. Processing times are indicative and are not guarantees.
+            </p>
+            <p className="text-gray-500 text-[11px] leading-relaxed max-w-sm">
+              RKPT TECH LTD does not guarantee company registration, bank-account approval, tax registration, visa approval, immigration approval or any other third-party decision. Where regulated legal, tax, accounting, immigration or other professional advice is required, RKPT TECH LTD may coordinate with appropriately qualified professionals.
+            </p>
           </div>
 
           {/* Col 3: Focus Hubs */}
           <div className="space-y-3">
             <h4 className="text-[#15325b] font-bold text-xs uppercase tracking-wider border-b border-gray-200 pb-2">
-              Jurisdictions
+              Global Hubs
             </h4>
             <ul className="space-y-2">
               <li>
@@ -60,7 +56,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                   onClick={() => handleNav('jurisdictions')}
                   className="hover:text-[#c91c1c] text-gray-600 transition-colors text-left cursor-pointer"
                 >
-                  🇵🇹 Portugal (LDA, NHR, Startup/Golden Visa)
+                  Portugal
                 </button>
               </li>
               <li>
@@ -68,7 +64,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                   onClick={() => handleNav('jurisdictions')}
                   className="hover:text-[#c91c1c] text-gray-600 transition-colors text-left cursor-pointer"
                 >
-                  🇨🇭 Switzerland (GmbH, AG, Cantonal)
+                  UK
                 </button>
               </li>
               <li>
@@ -76,7 +72,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                   onClick={() => handleNav('jurisdictions')}
                   className="hover:text-[#c91c1c] text-gray-600 transition-colors text-left cursor-pointer"
                 >
-                  🇮🇪 Ireland (LTD, CRO, 12.5% CIT)
+                  Ireland
                 </button>
               </li>
               <li>
@@ -84,7 +80,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                   onClick={() => handleNav('jurisdictions')}
                   className="hover:text-[#c91c1c] text-gray-600 transition-colors text-left cursor-pointer"
                 >
-                  🇬🇧 United Kingdom (LTD, LLP)
+                  Switzerland
                 </button>
               </li>
               <li>
@@ -92,7 +88,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                   onClick={() => handleNav('jurisdictions')}
                   className="hover:text-[#c91c1c] text-gray-600 transition-colors text-left cursor-pointer"
                 >
-                  🇺🇸 United States (LLC, C-Corp)
+                  USA
                 </button>
               </li>
               <li>
@@ -100,7 +96,15 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                   onClick={() => handleNav('jurisdictions')}
                   className="hover:text-[#c91c1c] text-gray-600 transition-colors text-left cursor-pointer"
                 >
-                  🇦🇪 Dubai (Free Zone, Mainland)
+                  Dubai/UAE
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => handleNav('jurisdictions')}
+                  className="hover:text-[#c91c1c] text-gray-600 transition-colors text-left cursor-pointer"
+                >
+                  India
                 </button>
               </li>
               <li>
@@ -117,7 +121,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
           {/* Col 4: Services */}
           <div className="space-y-3">
             <h4 className="text-[#15325b] font-bold text-xs uppercase tracking-wider border-b border-gray-200 pb-2">
-              Core Verticals
+              Business Services
             </h4>
             <ul className="space-y-2 text-gray-600">
               <li>
@@ -125,7 +129,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                   onClick={() => handleNav('services')}
                   className="hover:text-[#c91c1c] transition-colors text-left cursor-pointer"
                 >
-                  Company Setup &amp; Formation
+                  Company Formation
                 </button>
               </li>
               <li>
@@ -133,7 +137,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                   onClick={() => handleNav('services')}
                   className="hover:text-[#c91c1c] transition-colors text-left cursor-pointer"
                 >
-                  Accounting, Tax &amp; Audit
+                  Legal &amp; Compliance
                 </button>
               </li>
               <li>
@@ -141,7 +145,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                   onClick={() => handleNav('services')}
                   className="hover:text-[#c91c1c] transition-colors text-left cursor-pointer"
                 >
-                  European Banking &amp; Merchant EMIs
+                  Accounting &amp; Tax
                 </button>
               </li>
               <li>
@@ -149,7 +153,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                   onClick={() => handleNav('services')}
                   className="hover:text-[#c91c1c] transition-colors text-left cursor-pointer"
                 >
-                  Visa, Immigration &amp; Relocation
+                  Banking &amp; Payments
                 </button>
               </li>
               <li>
@@ -157,7 +161,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                   onClick={() => handleNav('services')}
                   className="hover:text-[#c91c1c] transition-colors text-left cursor-pointer"
                 >
-                  IT &amp; Digital Solutions (GDPR)
+                  Immigration &amp; Relocation
                 </button>
               </li>
               <li>
@@ -165,69 +169,83 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                   onClick={() => handleNav('services')}
                   className="hover:text-[#c91c1c] transition-colors text-left cursor-pointer"
                 >
-                  Business Support &amp; Advisory
+                  Business Advisory
                 </button>
               </li>
             </ul>
           </div>
 
-          {/* Col 5: Head Offices */}
+          {/* Col 5: Technology */}
           <div className="space-y-3">
             <h4 className="text-[#15325b] font-bold text-xs uppercase tracking-wider border-b border-gray-200 pb-2">
-              Advisory Desks
+              Technology
             </h4>
-            <div className="space-y-2 text-gray-600">
-              <button
-                onClick={() => handleNav('contact')}
-                className="flex items-start gap-2 hover:text-[#c91c1c] text-left cursor-pointer"
-              >
-                <MapPin className="w-3.5 h-3.5 text-[#c91c1c] shrink-0 mt-0.5" />
-                <span>Lisbon, Portugal</span>
-              </button>
-              <button
-                onClick={() => handleNav('contact')}
-                className="flex items-start gap-2 hover:text-[#c91c1c] text-left cursor-pointer"
-              >
-                <MapPin className="w-3.5 h-3.5 text-[#c91c1c] shrink-0 mt-0.5" />
-                <span>Zurich, Switzerland</span>
-              </button>
-              <button
-                onClick={() => handleNav('contact')}
-                className="flex items-start gap-2 hover:text-[#c91c1c] text-left cursor-pointer"
-              >
-                <MapPin className="w-3.5 h-3.5 text-[#c91c1c] shrink-0 mt-0.5" />
-                <span>Dublin, Ireland</span>
-              </button>
-              <button
-                onClick={() => handleNav('contact')}
-                className="flex items-start gap-2 hover:text-[#c91c1c] text-left cursor-pointer"
-              >
-                <MapPin className="w-3.5 h-3.5 text-[#c91c1c] shrink-0 mt-0.5" />
-                <span>London, UK</span>
-              </button>
-              <button
-                onClick={() => handleNav('contact')}
-                className="flex items-start gap-2 hover:text-[#c91c1c] text-left cursor-pointer"
-              >
-                <MapPin className="w-3.5 h-3.5 text-[#c91c1c] shrink-0 mt-0.5" />
-                <span>New York, USA</span>
-              </button>
-              <button
-                onClick={() => handleNav('contact')}
-                className="flex items-start gap-2 hover:text-[#c91c1c] text-left cursor-pointer"
-              >
-                <MapPin className="w-3.5 h-3.5 text-[#c91c1c] shrink-0 mt-0.5" />
-                <span>Dubai, UAE</span>
-              </button>
-              <div className="pt-2">
-                <a
-                  href={`mailto:${COMPANY_INFO.contact.email}`}
-                  className="text-[#3273a8] hover:text-[#c91c1c] font-mono text-[11px] font-bold"
+            <ul className="space-y-2 text-gray-600">
+              <li>
+                <button
+                  onClick={() => handleNav('services')}
+                  className="hover:text-[#c91c1c] transition-colors text-left cursor-pointer"
                 >
-                  {COMPANY_INFO.contact.email}
-                </a>
-              </div>
-            </div>
+                  IT Support
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => handleNav('services')}
+                  className="hover:text-[#c91c1c] transition-colors text-left cursor-pointer"
+                >
+                  AI Integration
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => handleNav('services')}
+                  className="hover:text-[#c91c1c] transition-colors text-left cursor-pointer"
+                >
+                  Software Development
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => handleNav('services')}
+                  className="hover:text-[#c91c1c] transition-colors text-left cursor-pointer"
+                >
+                  Website &amp; Digital Solutions
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => handleNav('services')}
+                  className="hover:text-[#c91c1c] transition-colors text-left cursor-pointer"
+                >
+                  ERP &amp; CRM
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => handleNav('services')}
+                  className="hover:text-[#c91c1c] transition-colors text-left cursor-pointer"
+                >
+                  Cloud Solutions
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => handleNav('services')}
+                  className="hover:text-[#c91c1c] transition-colors text-left cursor-pointer"
+                >
+                  Business Automation
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => handleNav('services')}
+                  className="hover:text-[#c91c1c] transition-colors text-left cursor-pointer"
+                >
+                  Cybersecurity
+                </button>
+              </li>
+            </ul>
           </div>
         </div>
       </div>

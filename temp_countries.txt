@@ -1,0 +1,101 @@
+export const COUNTRIES_DATA: CountryProfile[] = [
+  {
+    id: 'portugal',
+    name: 'Portugal',
+    code: 'PT',
+    flag: 'https://flagcdn.com/pt.svg',
+    capital: 'Lisbon',
+    currency: 'EUR (€)',
+    corporateTaxRate: '17% - 21%',
+    formationTime: '3 - 7 Business Days',
+    structures: ['LDA (Limitada)', 'SA (Sociedade Anónima)', 'Branch / Sucursal', 'Unipessoal LDA'],
+    keyAdvantages: [
+      'Empresa na Hora express incorporation regime',
+      'Strategic Atlantic bridge between EU, Americas, and Africa',
+      'Booming technology and startup ecosystem (Lisbon & Porto)',
+      'Highly competitive operational and skilled engineering costs',
+      'Attractive tax regimens & non-habitual resident / IFICI schemes',
+    ],
+    visaAlignment: [
+      'Startup Visa program for tech entrepreneurs',
+      'Golden Visa (Fund investment & research routes)',
+      'D8 Digital Nomad Visa & D2 Entrepreneur Visa',
+      'D7 Passive Income / Residency alignment',
+    ],
+    bankingHighlights: [
+      'Fast-track accounts with Millennium bcp, Novo Banco, and Santander',
+      'Integrated IBAN setup with European EMI partners',
+      'Multicurrency merchant accounts for cross-border commerce',
+    ],
+    summary:
+      'Portugal represents Europe’s most dynamic startup ecosystem and premier lifestyle-friendly corporate gateway, combining rapid setup with attractive tax incentives.',
+    regionalFocus: 'LDA formation, NHR guidance, Startup & Golden Visa alignment',
+  },
+  {
+    id: 'switzerland',
+    name: 'Switzerland',
+    code: 'CH',
+    flag: 'https://flagcdn.com/ch.svg',
+    capital: 'Bern / Zurich / Geneva',
+    currency: 'CHF',
+    corporateTaxRate: '11.9% - 21.6% (Cantonal)',
+    formationTime: '7 - 14 Business Days',
+    structures: ['GmbH (LLC / SARL)', 'AG (Corporation / SA)', 'Branch Office', 'Holding Company'],
+    keyAdvantages: [
+      'World’s premier jurisdiction for financial stability & asset security',
+      'Crypto Valley Zug: world leader in Web3, FinTech & blockchain regulation',
+      'Double taxation treaties with over 100 sovereign jurisdictions',
+      'Cantonal tax competitiveness (e.g. Zug, Schwyz, Nidwalden)',
+      'Unsurpassed sovereign credit rating, privacy, and institutional trust',
+    ],
+    visaAlignment: [
+      'Swiss B / C Work and Residence Permits for directors',
+      'Key personnel transfers for multinational corporations',
+      'Cantonal economic interest residency applications',
+    ],
+    bankingHighlights: [
+      'Tier-1 Swiss private and commercial banking relationships (UBS, Julius Baer, cantonal banks)',
+      'FinTech friendly accounts for blockchain and high-volume trading',
+      'Multi-fiat Swiss Franc (CHF) capital deposit management',
+    ],
+    summary:
+      'Switzerland provides peerless corporate prestige, rock-solid legal certainty, and strategic cantonal tax efficiencies for high-value enterprises and international holdings.',
+    regionalFocus: 'GmbH/AG setup, cantonal compliance, Swiss private banking',
+  },
+  {
+    id: 'ireland',
+    name: 'Ireland',
+    code: 'IE',
+    flag: 'https://flagcdn.com/ie.svg',
+    capital: 'Dublin',
+    currency: 'EUR (€)',
+    corporateTaxRate: '12.5% (Trading Income)',
+    formationTime: '3 - 5 Business Days',
+    structures: ['Private Company Limited by Shares (LTD)', 'Designated Activity Company (DAC)', 'Branch of Foreign Entity'],
+    keyAdvantages: [
+      'Standard 12.5% corporate tax rate on active trading income',
+      'Only English-speaking common law jurisdiction inside the EU Eurozone',
+      'European headquarters choice of Google, Apple, Meta, Stripe, Pfizer',
+      'Knowledge Development Box (KDB) 6.25% effective rate for qualified IP',
+      'Unrestricted barrier-free access to 450+ million European consumers',
+    ],
+    visaAlignment: [
+      'Critical Skills Employment Permit (CSEP) for key technical staff',
+      'Start-up Entrepreneur Programme (STEP)',
+      'General Employment Permit & Intra-Company Transfer',
+    ],
+    bankingHighlights: [
+      'Direct clearing with Bank of Ireland, AIB, and leading European digital EMIs',
+      'Instant SEPA Instant & BACS cross-border transaction capabilities',
+      'Stripe & PayPal frictionless merchant acquirer onboarding',
+    ],
+    summary:
+      'Ireland remains the definitive European corporate hub for tech firms, SaaS exporters, and international trading businesses seeking low corporate tax and seamless EU single market access.',
+    regionalFocus: 'LTD formation, CRO filings, EU market access, 12.5% corporate tax',
+  },
+];
+
+export const CORE_VALUES: CoreValue[] = [
+  {
+    title: 'Integrity & Compliance',
+    tag: 'Strict Adherence',
