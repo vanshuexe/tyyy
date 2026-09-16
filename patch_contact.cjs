@@ -1,25 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { ScrollReveal } from './ScrollReveal';
-import { COMPANY_INFO, COUNTRIES_DATA } from '../data/companyData';
-import {
-  MapPin,
-  Phone,
-  Mail,
-  CheckCircle2,
-  Clock,
-  ShieldCheck,
-  Send,
-  Building,
-  Globe,
-  FileCheck,
-} from 'lucide-react';
+const fs = require('fs');
+let content = fs.readFileSync('src/components/ContactSection.tsx', 'utf8');
 
-interface ContactSectionProps {
-  prefilledService?: string;
-}
-
-export const ContactSection: React.FC<ContactSectionProps> = ({ prefilledService }) => {
-  const [formData, setFormData] = useState({
+content = content.replace(/const \[formData, setFormData\] = useState\(\{[\s\S]*?\}\);/, `const [formData, setFormData] = useState({
     fullName: '',
     companyName: '',
     email: '',
@@ -33,170 +15,9 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ prefilledService
     contactMethod: 'Email',
     consultationDate: '',
     agreed: false
-  });
+  });`);
 
-  const [submittedRef, setSubmittedRef] = useState<string | null>(null);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-
-  useEffect(() => {
-    if (prefilledService) {
-      setFormData((prev) => ({ ...prev, serviceRequired: prefilledService }));
-    }
-  }, [prefilledService]);
-
-  const availableServices = [
-    'Company Formation & Setup',
-    'Accounting, VAT & Payroll',
-    'Corporate Bank Account Opening',
-    'Visa, Residency & Relocation',
-    'IT, Web & Digital Software',
-    'Business Plan & Market Entry',
-  ];
-
-  const handleToggleService = (svc: string) => {
-    setFormData((prev) => {
-      const exists = prev.services.includes(svc);
-      return {
-        ...prev,
-        services: exists ? prev.services.filter((s) => s !== svc) : [...prev.services, svc],
-      };
-    });
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-
-    setTimeout(() => {
-      const refId = `RKPT-EU-${Math.floor(100000 + Math.random() * 900000)}`;
-      setSubmittedRef(refId);
-      setIsSubmitting(false);
-    }, 600);
-  };
-
-  return (
-    <section id="contact" className="py-20 bg-white text-gray-900 border-b border-gray-200">
-      <ScrollReveal>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="text-[#3273a8] uppercase tracking-[0.2em] text-xs sm:text-sm font-bold mb-2 block">
-            READY TO EXPAND?
-          </span>
-          <h2 className="text-3xl sm:text-4xl font-display font-medium text-[#0b1b36] tracking-tight mb-6">
-            Let's build your business infrastructure
-          </h2>
-          <p className="text-base text-gray-500 font-light leading-relaxed">
-            Whether you are starting a company, expanding into a new market, improving your operations or strengthening your technology and cybersecurity, RKPT TECH LTD can help you plan the next step.
-          </p>
-        </div>
-
-        {/* 3 Regional European Offices in KCID Card Style with Crimson Accent */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
-          {COMPANY_INFO.contact.offices.map((office, idx) => (
-            <div
-              key={idx}
-              className="p-6 rounded-xl bg-gray-50 border border-gray-200 border-t-4 border-t-[#c91c1c] text-left space-y-3 relative overflow-hidden shadow-xs hover:shadow-md transition-shadow"
-            >
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                  <MapPin className="w-5 h-5 text-[#c91c1c] shrink-0" />
-                  <h4 className="font-bold text-lg font-display uppercase tracking-tight text-[#15325b]">
-                    {office.city}, {office.country}
-                  </h4>
-                </div>
-                <span className="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded bg-[#024d87] text-white">
-                  HQ Node
-                </span>
-              </div>
-
-              <p className="text-xs text-gray-600 leading-relaxed">
-                {office.address}
-              </p>
-
-              <div className="pt-2 border-t border-gray-200 text-xs text-[#3273a8] font-bold uppercase tracking-wider">
-                Focus: {office.focus}
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Form and Direct Coordinates Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
-          {/* Left Column: Direct Contact */}
-          <div className="lg:col-span-5 space-y-6 mt-12 lg:mt-0 lg:pl-10 lg:border-l border-gray-100">
-            <div className="space-y-6">
-              <h4 className="font-display font-extrabold tracking-tight text-xl text-[#0b1b36]">
-                Direct contact
-              </h4>
-              
-              <div className="divide-y divide-gray-200 border-b border-gray-200">
-                <a href={`mailto:${COMPANY_INFO.contact.email}`} className="flex items-center justify-between py-4 group hover:bg-gray-50 transition-colors">
-                  <span className="font-bold text-[#0b1b36] text-sm">Email</span>
-                  <ArrowRight className="w-4 h-4 text-gray-400 group-hover:text-[#0b1b36] transition-colors" />
-                </a>
-                <a href={`tel:${COMPANY_INFO.contact.phoneEu}`} className="flex items-center justify-between py-4 group hover:bg-gray-50 transition-colors">
-                  <span className="font-bold text-[#0b1b36] text-sm">Phone</span>
-                  <ArrowRight className="w-4 h-4 text-gray-400 group-hover:text-[#0b1b36] transition-colors" />
-                </a>
-                <a href="#" className="flex items-center justify-between py-4 group hover:bg-gray-50 transition-colors">
-                  <span className="font-bold text-[#0b1b36] text-sm">WhatsApp</span>
-                  <ArrowRight className="w-4 h-4 text-gray-400 group-hover:text-[#0b1b36] transition-colors" />
-                </a>
-                <a href="#" className="flex items-center justify-between py-4 group hover:bg-gray-50 transition-colors">
-                  <span className="font-bold text-[#0b1b36] text-sm">Book Online</span>
-                  <ArrowRight className="w-4 h-4 text-gray-400 group-hover:text-[#0b1b36] transition-colors" />
-                </a>
-              </div>
-            </div>
-          </div>
-
-          {/* Right Column: Inquiry Submission Form in KCID Style */}
-          <div className="lg:col-span-7 bg-white rounded-xl border border-gray-200 border-t-4 border-t-[#c91c1c] p-6 sm:p-8 shadow-xl">
-            {submittedRef ? (
-              <div className="py-8 text-center space-y-4">
-                <div className="w-14 h-14 rounded-full bg-[#c91c1c] text-white flex items-center justify-center mx-auto shadow-md">
-                  <CheckCircle2 className="w-8 h-8" />
-                </div>
-                <h3 className="text-2xl font-bold font-display uppercase tracking-tight text-[#15325b]">
-                  Consultation Request Received
-                </h3>
-                <p className="text-sm text-gray-600 max-w-md mx-auto">
-                  Thank you, <span className="font-bold text-[#15325b] uppercase">{formData.fullName}</span>. Your brief has been dispatched directly to the RKPT senior partner desk.
-                </p>
-                <div className="p-4 bg-gray-50 rounded-lg border border-gray-200 max-w-xs mx-auto text-xs">
-                  <div className="text-gray-500 uppercase font-bold tracking-wider">Inquiry Reference Number:</div>
-                  <div className="text-base font-mono font-bold text-[#c91c1c] mt-0.5">
-                    {submittedRef}
-                  </div>
-                </div>
-                <button
-                  type="button"
-                  onClick={() => {
-                    setSubmittedRef(null);
-                    setFormData({
-                      fullName: '',
-                      companyName: '',
-                      email: '',
-                      phone: '',
-                      currentCountry: '',
-                      targetCountry: 'Portugal',
-                      individualOrBusiness: 'Individual',
-                      serviceRequired: 'Company Formation',
-                      businessType: '',
-                      message: '',
-                      contactMethod: 'Email',
-                      consultationDate: '',
-                      agreed: false
-                    });
-                  }}
-                  className="px-5 py-2.5 rounded-md bg-[#c91c1c] hover:bg-[#a01616] text-xs font-bold uppercase tracking-wider text-white shadow-md"
-                >
-                  Submit Another Inquiry
-                </button>
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit} className="space-y-5 text-left">
+content = content.replace(/<form onSubmit={handleSubmit} className="space-y-5 text-left">[\s\S]*?<\/form>/, `<form onSubmit={handleSubmit} className="space-y-5 text-left">
                 <div className="border-b border-gray-100 pb-3">
                   <h4 className="font-extrabold font-display uppercase tracking-tight text-lg text-[#15325b]">
                     Tell us about your business
@@ -387,12 +208,6 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ prefilledService
                 >
                   {isSubmitting ? 'SUBMITTING...' : 'SUBMIT ENQUIRY'}
                 </button>
-              </form>
-            )}
-          </div>
-        </div>
-      </div>
-          </ScrollReveal>
-</section>
-  );
-};
+              </form>`);
+
+fs.writeFileSync('src/components/ContactSection.tsx', content);

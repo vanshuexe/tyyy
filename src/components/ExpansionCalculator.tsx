@@ -4,6 +4,7 @@ import { COUNTRIES_DATA } from '../data/companyData';
 import { EstimatorState } from '../types';
 import {
   Check,
+  ChevronDown,
   Building2,
   Landmark,
   FileSpreadsheet,
@@ -17,7 +18,7 @@ import {
 } from 'lucide-react';
 
 interface ExpansionCalculatorProps {
-  initialCountry?: 'portugal' | 'switzerland' | 'ireland';
+  initialCountry?: string;
   onProceedWithScope: (summary: string) => void;
 }
 
@@ -37,14 +38,17 @@ export const ExpansionCalculator: React.FC<ExpansionCalculatorProps> = ({
     businessSize: 'startup',
   });
 
+  const [isCountryDropdownOpen, setIsCountryDropdownOpen] = useState(false);
+
   // Keep structure synced when country changes
-  const handleCountryChange = (c: 'portugal' | 'switzerland' | 'ireland') => {
+  const handleCountryChange = (c: string) => {
     const countryData = COUNTRIES_DATA.find((x) => x.id === c);
     setState((prev) => ({
       ...prev,
       country: c,
       structure: countryData?.structures[0] || 'Standard Limited',
     }));
+    setIsCountryDropdownOpen(false);
   };
 
   const currentCountry = COUNTRIES_DATA.find((c) => c.id === state.country) || COUNTRIES_DATA[0];
@@ -177,14 +181,14 @@ export const ExpansionCalculator: React.FC<ExpansionCalculatorProps> = ({
               <label className="block text-xs font-bold uppercase tracking-wider text-gray-700 mb-3">
                 1. Select Destination Jurisdiction:
               </label>
-              <div className="grid grid-cols-3 gap-3">
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                 {COUNTRIES_DATA.map((c) => {
                   const isSelected = state.country === c.id;
                   return (
                     <button
                       key={c.id}
                       type="button"
-                      onClick={() => handleCountryChange(c.id as any)}
+                      onClick={() => handleCountryChange(c.id)}
                       className={`p-3.5 rounded-lg border text-left transition-all flex flex-col justify-between ${
                         isSelected
                           ? 'bg-white border-2 border-[#3273a8] text-[#15325b] shadow-md ring-2 ring-[#3273a8]/20'

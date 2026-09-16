@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Logo } from './Logo';
-import { Phone, Mail, Menu, X, ArrowRight, Globe } from 'lucide-react';
-import { COMPANY_INFO } from '../data/companyData';
+import { Phone, Mail, Menu, X, ArrowRight, Globe, ChevronDown } from 'lucide-react';
+import { COMPANY_INFO, COUNTRIES_DATA } from '../data/companyData';
 
 interface NavbarProps {
   currentPage: string;
@@ -46,27 +46,27 @@ export const Navbar: React.FC<NavbarProps> = ({
               <span className="hidden xs:inline">European Gateway:</span>
               <span className="xs:hidden">Hubs:</span>
             </span>
-            <span className="text-gray-300 hidden sm:flex items-center gap-2 font-medium truncate tracking-wide">
-              <span className="flex items-center gap-1.5 hover:text-white transition-colors cursor-default"><img src="https://flagcdn.com/pt.svg" alt="PT" className="w-4 h-3 object-cover rounded-[2px]" /> Portugal (LDA)</span>
-              <span className="text-[#1e4a87]">|</span>
-              <span className="flex items-center gap-1.5 hover:text-white transition-colors cursor-default"><img src="https://flagcdn.com/ch.svg" alt="CH" className="w-4 h-3 object-cover rounded-[2px]" /> Switzerland (AG)</span>
-              <span className="text-[#1e4a87]">|</span>
-              <span className="flex items-center gap-1.5 hover:text-white transition-colors cursor-default"><img src="https://flagcdn.com/ie.svg" alt="IE" className="w-4 h-3 object-cover rounded-[2px]" /> Ireland (LTD)</span>
-              <span className="text-[#1e4a87]">|</span>
-              <span className="flex items-center gap-1.5 hover:text-white transition-colors cursor-default"><img src="https://flagcdn.com/gb.svg" alt="UK" className="w-4 h-3 object-cover rounded-[2px]" /> UK (LTD)</span>
-              <span className="text-[#1e4a87]">|</span>
-              <span className="flex items-center gap-1.5 hover:text-white transition-colors cursor-default"><img src="https://flagcdn.com/us.svg" alt="USA" className="w-4 h-3 object-cover rounded-[2px]" /> USA (LLC/Corp)</span>
-              <span className="text-[#1e4a87]">|</span>
-              <span className="flex items-center gap-1.5 hover:text-white transition-colors cursor-default"><img src="https://flagcdn.com/ae.svg" alt="UAE" className="w-4 h-3 object-cover rounded-[2px]" /> Dubai (Free Zone/Mainland)</span>
-            </span>
-            <span className="text-gray-300 sm:hidden flex items-center gap-1.5 font-medium truncate">
-              <span className="flex items-center gap-1"><img src="https://flagcdn.com/pt.svg" alt="PT" className="w-3.5 h-2.5 object-cover rounded-[1px]" /> PT</span><span className="text-[#1e4a87]">|</span>
-              <span className="flex items-center gap-1"><img src="https://flagcdn.com/ch.svg" alt="CH" className="w-3.5 h-2.5 object-cover rounded-[1px]" /> CH</span><span className="text-[#1e4a87]">|</span>
-              <span className="flex items-center gap-1"><img src="https://flagcdn.com/ie.svg" alt="IE" className="w-3.5 h-2.5 object-cover rounded-[1px]" /> IE</span><span className="text-[#1e4a87]">|</span>
-              <span className="flex items-center gap-1"><img src="https://flagcdn.com/gb.svg" alt="UK" className="w-3.5 h-2.5 object-cover rounded-[1px]" /> UK</span><span className="text-[#1e4a87]">|</span>
-              <span className="flex items-center gap-1"><img src="https://flagcdn.com/us.svg" alt="US" className="w-3.5 h-2.5 object-cover rounded-[1px]" /> US</span><span className="text-[#1e4a87]">|</span>
-              <span className="flex items-center gap-1"><img src="https://flagcdn.com/ae.svg" alt="AE" className="w-3.5 h-2.5 object-cover rounded-[1px]" /> AE</span>
-            </span>
+            <div className="relative group cursor-pointer z-50">
+              <div className="flex items-center gap-2 bg-[#0e2347] hover:bg-[#15325b] border border-[#1e4a87] px-2.5 py-1 rounded transition-colors text-gray-300 hover:text-white">
+                <span className="flex items-center gap-1.5 font-medium tracking-wide">
+                  <span className="hidden sm:inline">Select Hub</span>
+                  <span className="sm:hidden">Select</span>
+                </span>
+                <ChevronDown className="w-3 h-3 text-gray-400 group-hover:text-white transition-colors" />
+              </div>
+              <div className="absolute top-full left-0 mt-1 w-56 bg-white border border-gray-100 rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-[100] flex flex-col py-1.5">
+                {COUNTRIES_DATA.map((c) => (
+                  <button 
+                    key={c.id} 
+                    onClick={() => onNavigate('jurisdictions')}
+                    className="flex items-center gap-3 px-3.5 py-2 hover:bg-gray-50 hover:text-[#3273a8] text-left transition-colors w-full"
+                  >
+                    <img src={c.flag} alt={c.name} className="w-4 h-3 object-cover rounded-[2px] shadow-sm border border-gray-200 shrink-0" />
+                    <span className="text-[#15325b] text-xs font-semibold whitespace-nowrap">{c.name}</span>
+                  </button>
+                ))}
+              </div>
+            </div>
           </div>
           <div className="flex items-center gap-3 sm:gap-4 text-[11px] sm:text-xs font-semibold shrink-0">
             <a
@@ -129,17 +129,6 @@ export const Navbar: React.FC<NavbarProps> = ({
 
           {/* Right Action */}
           <div className="hidden sm:flex items-center gap-3 shrink-0">
-            <button
-              onClick={() => onNavigate('jurisdictions')}
-              className="hidden 2xl:inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider px-3 py-1.5 rounded bg-gray-100 text-[#15325b] hover:bg-[#15325b] hover:text-white transition-colors cursor-pointer whitespace-nowrap"
-            >
-              <span>🇵🇹 Lisbon</span>
-              <span className="text-gray-300">•</span>
-              <span>🇨🇭 Zurich</span>
-              <span className="text-gray-300">•</span>
-              <span>🇮🇪 Dublin</span>
-            </button>
-
             <button
               onClick={() => onOpenConsultation()}
               className="btn-premium inline-flex items-center gap-2 px-5 xl:px-6 py-2.5 rounded-lg bg-[#c91c1c] hover:bg-[#a01616] text-white text-xs xl:text-sm font-bold uppercase tracking-wider group cursor-pointer whitespace-nowrap shrink-0"

@@ -1,7 +1,6 @@
 import React from 'react';
 import { Hero } from './Hero';
 import { InteractiveMap } from './InteractiveMap';
-import React from 'react';
 import { ScrollReveal } from './ScrollReveal';
 import { TestimonialCarousel } from './TestimonialCarousel';
 import { 

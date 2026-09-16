@@ -67,13 +67,16 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenConsultation }
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
             <div className="text-left">
               <span className="text-[#3273a8] uppercase tracking-[0.2em] text-xs sm:text-sm font-bold mb-3 block">
-                Institutional Profile
+                ABOUT RKPT TECH LTD
               </span>
               <h2 className="text-3xl sm:text-4xl font-display font-medium text-[#0b1b36] tracking-tight mb-6">
-                About RKPT TECH LTD
+                One partner for business and technology
               </h2>
+              <p className="text-base text-gray-500 leading-relaxed font-light mb-4">
+                RKPT TECH LTD is a global business consulting and technology solutions firm specializing in helping entrepreneurs, startups and established companies establish, expand and operate businesses across international markets.
+              </p>
               <p className="text-base text-gray-500 leading-relaxed font-light">
-                {COMPANY_INFO.integratedApproach}
+                Our integrated approach combines business, financial, administrative, compliance and IT solutions so clients can focus on growth while we help manage complexity, compliance and operational efficiency.
               </p>
             </div>
             
@@ -91,12 +94,9 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenConsultation }
             <div className="p-8 rounded-xl bg-white border border-gray-200 border-t border-gray-100 shadow-sm text-gray-900 shadow-md flex flex-col justify-between">
               <div>
                 <span className="text-xs font-bold uppercase tracking-wider text-[#3273a8]">
-                  Our Vision
+                  Vision
                 </span>
-                <h3 className="text-2xl font-medium font-display uppercase tracking-tight mt-2 mb-4 text-[#15325b]">
-                  Trusted Global Partner for European Expansion
-                </h3>
-                <p className="text-gray-600 text-sm sm:text-base leading-relaxed">
+                <p className="text-gray-600 text-sm sm:text-base leading-relaxed mt-4">
                   {COMPANY_INFO.vision}
                 </p>
               </div>

@@ -1,5 +1,5 @@
 export interface CountryProfile {
-  id: 'portugal' | 'switzerland' | 'ireland';
+  id: string;
   name: string;
   code: string;
   flag: string;
@@ -28,6 +28,7 @@ export interface ServicePillar {
   description: string;
   icon: string;
   badge: string;
+  category: 'business' | 'technology';
   subCategories: ServiceSubCategory[];
   keyHighlights: string[];
   deliverables: string[];
@@ -66,7 +67,7 @@ export interface WhyChooseUsItem {
 }
 
 export interface EstimatorState {
-  country: 'portugal' | 'switzerland' | 'ireland';
+  country: string;
   structure: string;
   bankingSupport: boolean;
   registeredOffice: boolean;
