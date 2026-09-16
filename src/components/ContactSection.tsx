@@ -21,18 +21,13 @@ interface ContactSectionProps {
 export const ContactSection: React.FC<ContactSectionProps> = ({ prefilledService }) => {
   const [formData, setFormData] = useState({
     fullName: '',
-    companyName: '',
     email: '',
     phone: '',
-    currentCountry: '',
+    companyName: '',
     targetCountry: 'Portugal',
-    individualOrBusiness: 'Individual',
-    serviceRequired: 'Company Formation',
-    businessType: '',
+    services: [] as string[],
+    timeline: 'Immediate (< 1 Month)',
     message: '',
-    contactMethod: 'Email',
-    consultationDate: '',
-    agreed: false
   });
 
   const [submittedRef, setSubmittedRef] = useState<string | null>(null);
@@ -40,7 +35,12 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ prefilledService
 
   useEffect(() => {
     if (prefilledService) {
-      setFormData((prev) => ({ ...prev, serviceRequired: prefilledService }));
+      setFormData((prev) => {
+        if (!prev.services.includes(prefilledService)) {
+          return { ...prev, services: [...prev.services, prefilledService] };
+        }
+        return prev;
+      });
     }
   }, [prefilledService]);
 
@@ -80,7 +80,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ prefilledService
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="text-[#3273a8] uppercase tracking-[0.2em] text-xs sm:text-sm font-bold mb-2 block">
+          <span className="text-[#c91c1c] uppercase tracking-[0.2em] text-xs sm:text-sm font-bold mb-2 block">
             READY TO EXPAND?
           </span>
           <h2 className="text-3xl sm:text-4xl font-display font-medium text-[#0b1b36] tracking-tight mb-6">
@@ -123,30 +123,72 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ prefilledService
 
         {/* Form and Direct Coordinates Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
-          {/* Left Column: Direct Contact */}
-          <div className="lg:col-span-5 space-y-6 mt-12 lg:mt-0 lg:pl-10 lg:border-l border-gray-100">
-            <div className="space-y-6">
-              <h4 className="font-display font-extrabold tracking-tight text-xl text-[#0b1b36]">
-                Direct contact
+          {/* Left Column: Direct Coordinates & Assurance in KCID Style */}
+          <div className="lg:col-span-5 space-y-6">
+            <div className="rounded-xl bg-gray-50 border border-gray-200 border-t-4 border-t-[#3273a8] p-6 sm:p-8 space-y-6 shadow-sm">
+              <h4 className="font-display font-extrabold uppercase tracking-tight text-xl text-[#15325b]">
+                Direct Contact Channels
               </h4>
-              
-              <div className="divide-y divide-gray-200 border-b border-gray-200">
-                <a href={`mailto:${COMPANY_INFO.contact.email}`} className="flex items-center justify-between py-4 group hover:bg-gray-50 transition-colors">
-                  <span className="font-bold text-[#0b1b36] text-sm">Email</span>
-                  <ArrowRight className="w-4 h-4 text-gray-400 group-hover:text-[#0b1b36] transition-colors" />
-                </a>
-                <a href={`tel:${COMPANY_INFO.contact.phoneEu}`} className="flex items-center justify-between py-4 group hover:bg-gray-50 transition-colors">
-                  <span className="font-bold text-[#0b1b36] text-sm">Phone</span>
-                  <ArrowRight className="w-4 h-4 text-gray-400 group-hover:text-[#0b1b36] transition-colors" />
-                </a>
-                <a href="#" className="flex items-center justify-between py-4 group hover:bg-gray-50 transition-colors">
-                  <span className="font-bold text-[#0b1b36] text-sm">WhatsApp</span>
-                  <ArrowRight className="w-4 h-4 text-gray-400 group-hover:text-[#0b1b36] transition-colors" />
-                </a>
-                <a href="#" className="flex items-center justify-between py-4 group hover:bg-gray-50 transition-colors">
-                  <span className="font-bold text-[#0b1b36] text-sm">Book Online</span>
-                  <ArrowRight className="w-4 h-4 text-gray-400 group-hover:text-[#0b1b36] transition-colors" />
-                </a>
+
+              <div className="space-y-4 text-sm">
+                <div className="flex items-start gap-3">
+                  <div className="w-9 h-9 rounded-md bg-[#024d87] text-white flex items-center justify-center shrink-0 mt-0.5">
+                    <Mail className="w-4 h-4" />
+                  </div>
+                  <div>
+                    <div className="text-xs text-gray-500 font-bold uppercase tracking-wider">General &amp; Advisory Email</div>
+                    <a
+                      href={`mailto:${COMPANY_INFO.contact.email}`}
+                      className="text-[#15325b] hover:text-[#c91c1c] font-bold"
+                    >
+                      {COMPANY_INFO.contact.email}
+                    </a>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-3">
+                  <div className="w-9 h-9 rounded-md bg-[#c91c1c] text-white flex items-center justify-center shrink-0 mt-0.5">
+                    <Phone className="w-4 h-4" />
+                  </div>
+                  <div className="space-y-1">
+                    <div className="text-xs text-gray-500 font-bold uppercase tracking-wider">Regional Telephone Lines</div>
+                    <div className="text-xs text-gray-700">
+                      <span className="text-gray-500">Portugal: </span>
+                      <span className="font-mono font-bold text-[#15325b]">{COMPANY_INFO.contact.phoneEu}</span>
+                    </div>
+                    <div className="text-xs text-gray-700">
+                      <span className="text-gray-500">Switzerland: </span>
+                      <span className="font-mono font-bold text-[#15325b]">{COMPANY_INFO.contact.phoneCh}</span>
+                    </div>
+                    <div className="text-xs text-gray-700">
+                      <span className="text-gray-500">Ireland: </span>
+                      <span className="font-mono font-bold text-[#15325b]">{COMPANY_INFO.contact.phoneIe}</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-3">
+                  <div className="w-9 h-9 rounded-md bg-[#024d87] text-white flex items-center justify-center shrink-0 mt-0.5">
+                    <Clock className="w-4 h-4" />
+                  </div>
+                  <div>
+                    <div className="text-xs text-gray-500 font-bold uppercase tracking-wider">Advisory Response Protocol</div>
+                    <div className="text-xs text-gray-600">
+                      All formal inquiries receive senior legal assessment within 24 business hours.
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* NDA Guarantee */}
+              <div className="p-4 rounded-lg bg-white border border-gray-200 text-xs text-gray-600 space-y-1 border-l-4 border-l-[#c91c1c]">
+                <div className="flex items-center gap-1.5 font-bold uppercase tracking-wider text-[#15325b]">
+                  <ShieldCheck className="w-4 h-4 text-[#c91c1c]" />
+                  <span>Confidentiality &amp; GDPR Guarantee</span>
+                </div>
+                <p className="text-[11px] text-gray-500 leading-normal">
+                  All shared shareholder details, business models, and financial forecasts are protected under strict EU attorney-client confidentiality and GDPR standards.
+                </p>
               </div>
             </div>
           </div>
@@ -176,18 +218,13 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ prefilledService
                     setSubmittedRef(null);
                     setFormData({
                       fullName: '',
-                      companyName: '',
                       email: '',
                       phone: '',
-                      currentCountry: '',
+                      companyName: '',
                       targetCountry: 'Portugal',
-                      individualOrBusiness: 'Individual',
-                      serviceRequired: 'Company Formation',
-                      businessType: '',
+                      services: [],
+                      timeline: 'Immediate (< 1 Month)',
                       message: '',
-                      contactMethod: 'Email',
-                      consultationDate: '',
-                      agreed: false
                     });
                   }}
                   className="px-5 py-2.5 rounded-md bg-[#c91c1c] hover:bg-[#a01616] text-xs font-bold uppercase tracking-wider text-white shadow-md"
@@ -203,189 +240,150 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ prefilledService
                   </h4>
                 </div>
 
+                {/* Name & Email */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-[10px] font-bold uppercase tracking-widest text-gray-700 mb-1">
-                      FULL NAME
+                    <label className="block text-xs font-bold uppercase tracking-wider text-gray-700 mb-1">
+                      Full Name *
                     </label>
                     <input
                       required
                       type="text"
+                      placeholder="e.g. Marcus Vance"
                       value={formData.fullName}
                       onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
-                      className="w-full px-3.5 py-2.5 rounded-md bg-gray-50 border border-gray-300 text-gray-900 text-xs focus:outline-none focus:bg-white focus:border-[#c91c1c]"
+                      className="w-full px-3.5 py-2.5 rounded-md bg-gray-50 border border-gray-300 text-gray-900 text-xs sm:text-sm focus:outline-none focus:bg-white focus:border-[#c91c1c]"
                     />
                   </div>
-                  <div>
-                    <label className="block text-[10px] font-bold uppercase tracking-widest text-gray-700 mb-1">
-                      COMPANY NAME
-                    </label>
-                    <input
-                      type="text"
-                      value={formData.companyName}
-                      onChange={(e) => setFormData({ ...formData, companyName: e.target.value })}
-                      className="w-full px-3.5 py-2.5 rounded-md bg-gray-50 border border-gray-300 text-gray-900 text-xs focus:outline-none focus:bg-white focus:border-[#c91c1c]"
-                    />
-                  </div>
-                </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-[10px] font-bold uppercase tracking-widest text-gray-700 mb-1">
-                      EMAIL
+                    <label className="block text-xs font-bold uppercase tracking-wider text-gray-700 mb-1">
+                      Corporate Email *
                     </label>
                     <input
                       required
                       type="email"
+                      placeholder="m.vance@company.com"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="w-full px-3.5 py-2.5 rounded-md bg-gray-50 border border-gray-300 text-gray-900 text-xs focus:outline-none focus:bg-white focus:border-[#c91c1c]"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-[10px] font-bold uppercase tracking-widest text-gray-700 mb-1">
-                      PHONE / WHATSAPP
-                    </label>
-                    <input
-                      type="tel"
-                      value={formData.phone}
-                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      className="w-full px-3.5 py-2.5 rounded-md bg-gray-50 border border-gray-300 text-gray-900 text-xs focus:outline-none focus:bg-white focus:border-[#c91c1c]"
+                      className="w-full px-3.5 py-2.5 rounded-md bg-gray-50 border border-gray-300 text-gray-900 text-xs sm:text-sm focus:outline-none focus:bg-white focus:border-[#c91c1c]"
                     />
                   </div>
                 </div>
 
+                {/* Company Name & Phone */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-[10px] font-bold uppercase tracking-widest text-gray-700 mb-1">
-                      CURRENT COUNTRY
+                    <label className="block text-xs font-bold uppercase tracking-wider text-gray-700 mb-1">
+                      Company / Venture Name
                     </label>
                     <input
                       type="text"
-                      value={formData.currentCountry}
-                      onChange={(e) => setFormData({ ...formData, currentCountry: e.target.value })}
-                      className="w-full px-3.5 py-2.5 rounded-md bg-gray-50 border border-gray-300 text-gray-900 text-xs focus:outline-none focus:bg-white focus:border-[#c91c1c]"
+                      placeholder="e.g. Apex Global Ltd"
+                      value={formData.companyName}
+                      onChange={(e) => setFormData({ ...formData, companyName: e.target.value })}
+                      className="w-full px-3.5 py-2.5 rounded-md bg-gray-50 border border-gray-300 text-gray-900 text-xs sm:text-sm focus:outline-none focus:bg-white focus:border-[#c91c1c]"
                     />
                   </div>
+
                   <div>
-                    <label className="block text-[10px] font-bold uppercase tracking-widest text-gray-700 mb-1">
-                      TARGET COUNTRY / HUB
+                    <label className="block text-xs font-bold uppercase tracking-wider text-gray-700 mb-1">
+                      Telephone / WhatsApp *
+                    </label>
+                    <input
+                      required
+                      type="tel"
+                      placeholder="+44 20 7946 0912"
+                      value={formData.phone}
+                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                      className="w-full px-3.5 py-2.5 rounded-md bg-gray-50 border border-gray-300 text-gray-900 text-xs sm:text-sm focus:outline-none focus:bg-white focus:border-[#c91c1c]"
+                    />
+                  </div>
+                </div>
+
+                {/* Country & Timeline */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-xs font-bold uppercase tracking-wider text-gray-700 mb-1">
+                      Target Jurisdiction
                     </label>
                     <select
                       value={formData.targetCountry}
                       onChange={(e) => setFormData({ ...formData, targetCountry: e.target.value })}
-                      className="w-full px-3.5 py-2.5 rounded-md bg-gray-50 border border-gray-300 text-gray-900 text-xs focus:outline-none focus:bg-white focus:border-[#c91c1c]"
+                      className="w-full px-3.5 py-2.5 rounded-md bg-gray-50 border border-gray-300 text-gray-900 text-xs sm:text-sm focus:outline-none focus:bg-white focus:border-[#c91c1c]"
                     >
-                      {COUNTRIES_DATA.map(c => <option key={c.id} value={c.name}>{c.name}</option>)}
+                      <option value="Portugal">🇵🇹 Portugal (LDA, NHR, Startup/Golden Visa)</option>
+                      <option value="Switzerland">🇨🇭 Switzerland (GmbH/AG, Cantonal)</option>
+                      <option value="Ireland">🇮🇪 Ireland (LTD, CRO, 12.5% CIT)</option>
+                      <option value="Multi-Country / Need Guidance">Multi-Country / Need Comparative Guidance</option>
+                    </select>
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-bold uppercase tracking-wider text-gray-700 mb-1">
+                      Target Timeline
+                    </label>
+                    <select
+                      value={formData.timeline}
+                      onChange={(e) => setFormData({ ...formData, timeline: e.target.value })}
+                      className="w-full px-3.5 py-2.5 rounded-md bg-gray-50 border border-gray-300 text-gray-900 text-xs sm:text-sm focus:outline-none focus:bg-white focus:border-[#c91c1c]"
+                    >
+                      <option value="Immediate (< 1 Month)">Immediate (Next 1 - 3 Weeks)</option>
+                      <option value="1 - 3 Months">1 – 3 Months</option>
+                      <option value="3 - 6 Months">3 – 6 Months</option>
+                      <option value="Planning / Exploratory">Preliminary Feasibility Phase</option>
                     </select>
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-[10px] font-bold uppercase tracking-widest text-gray-700 mb-1">
-                      INDIVIDUAL OR BUSINESS
-                    </label>
-                    <select
-                      value={formData.individualOrBusiness}
-                      onChange={(e) => setFormData({ ...formData, individualOrBusiness: e.target.value })}
-                      className="w-full px-3.5 py-2.5 rounded-md bg-gray-50 border border-gray-300 text-gray-900 text-xs focus:outline-none focus:bg-white focus:border-[#c91c1c]"
-                    >
-                      <option value="Individual">Individual</option>
-                      <option value="Business">Business</option>
-                    </select>
-                  </div>
-                  <div>
-                    <label className="block text-[10px] font-bold uppercase tracking-widest text-gray-700 mb-1">
-                      SERVICE REQUIRED
-                    </label>
-                    <select
-                      value={formData.serviceRequired}
-                      onChange={(e) => setFormData({ ...formData, serviceRequired: e.target.value })}
-                      className="w-full px-3.5 py-2.5 rounded-md bg-gray-50 border border-gray-300 text-gray-900 text-xs focus:outline-none focus:bg-white focus:border-[#c91c1c]"
-                    >
-                      <option value="Company Formation">Company Formation</option>
-                      <option value="Legal & Compliance">Legal & Compliance</option>
-                      <option value="Accounting & Tax">Accounting & Tax</option>
-                      <option value="Banking & Payments">Banking & Payments</option>
-                      <option value="Immigration">Immigration</option>
-                      <option value="IT & Technology">IT & Technology</option>
-                    </select>
-                  </div>
-                </div>
-
+                {/* Services Checkbox Tags */}
                 <div>
-                  <label className="block text-[10px] font-bold uppercase tracking-widest text-gray-700 mb-1">
-                    BUSINESS TYPE / INDUSTRY
+                  <label className="block text-xs font-bold uppercase tracking-wider text-gray-700 mb-2">
+                    Services of Interest (Select all that apply):
                   </label>
-                  <input
-                    type="text"
-                    value={formData.businessType}
-                    onChange={(e) => setFormData({ ...formData, businessType: e.target.value })}
-                    className="w-full px-3.5 py-2.5 rounded-md bg-gray-50 border border-gray-300 text-gray-900 text-xs focus:outline-none focus:bg-white focus:border-[#c91c1c]"
-                  />
+                  <div className="flex flex-wrap gap-2">
+                    {availableServices.map((svc) => {
+                      const isSelected = formData.services.includes(svc);
+                      return (
+                        <button
+                          key={svc}
+                          type="button"
+                          onClick={() => handleToggleService(svc)}
+                          className={`px-3 py-1.5 rounded-md text-xs font-bold uppercase tracking-wider border transition-all ${
+                            isSelected
+                              ? 'bg-[#c91c1c] text-white border-[#c91c1c] shadow-xs'
+                              : 'bg-gray-50 text-gray-700 border-gray-200 hover:border-[#3273a8]'
+                          }`}
+                        >
+                          {svc}
+                        </button>
+                      );
+                    })}
+                  </div>
                 </div>
 
+                {/* Message */}
                 <div>
-                  <label className="block text-[10px] font-bold uppercase tracking-widest text-gray-700 mb-1">
-                    BRIEF DESCRIPTION OF REQUIREMENT
+                  <label className="block text-xs font-bold uppercase tracking-wider text-gray-700 mb-1">
+                    Project Brief / Operational Requirements
                   </label>
                   <textarea
-                    rows={4}
+                    rows={3}
+                    placeholder="Briefly describe your business model, shareholder nationalities, planned banking volumes, or specific licensing requirements..."
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    className="w-full px-3.5 py-2.5 rounded-md bg-gray-50 border border-gray-300 text-gray-900 text-xs focus:outline-none focus:bg-white focus:border-[#c91c1c]"
+                    className="w-full px-3.5 py-2.5 rounded-md bg-gray-50 border border-gray-300 text-gray-900 text-xs sm:text-sm focus:outline-none focus:bg-white focus:border-[#c91c1c]"
                   />
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-[10px] font-bold uppercase tracking-widest text-gray-700 mb-1">
-                      PREFERRED CONTACT METHOD
-                    </label>
-                    <select
-                      value={formData.contactMethod}
-                      onChange={(e) => setFormData({ ...formData, contactMethod: e.target.value })}
-                      className="w-full px-3.5 py-2.5 rounded-md bg-gray-50 border border-gray-300 text-gray-900 text-xs focus:outline-none focus:bg-white focus:border-[#c91c1c]"
-                    >
-                      <option value="Email">Email</option>
-                      <option value="Phone">Phone</option>
-                      <option value="WhatsApp">WhatsApp</option>
-                    </select>
-                  </div>
-                  <div>
-                    <label className="block text-[10px] font-bold uppercase tracking-widest text-gray-700 mb-1">
-                      PREFERRED CONSULTATION DATE/TIME
-                    </label>
-                    <input
-                      type="text"
-                      value={formData.consultationDate}
-                      onChange={(e) => setFormData({ ...formData, consultationDate: e.target.value })}
-                      className="w-full px-3.5 py-2.5 rounded-md bg-gray-50 border border-gray-300 text-gray-900 text-xs focus:outline-none focus:bg-white focus:border-[#c91c1c]"
-                    />
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-3 mt-4">
-                  <input
-                    type="checkbox"
-                    id="agreed"
-                    required
-                    checked={formData.agreed}
-                    onChange={(e) => setFormData({ ...formData, agreed: e.target.checked })}
-                    className="mt-0.5 w-4 h-4 text-[#c91c1c] border-gray-300 rounded focus:ring-[#c91c1c]"
-                  />
-                  <label htmlFor="agreed" className="text-xs text-gray-600 leading-relaxed">
-                    I agree to the Privacy Policy and consent to RKPT TECH LTD processing my information to respond to this enquiry.
-                  </label>
-                </div>
-
+                {/* Submit button */}
                 <button
                   type="submit"
-                  disabled={isSubmitting || !formData.agreed}
-                  className="mt-6 py-3 px-8 rounded-md bg-gray-200 hover:bg-gray-300 text-gray-500 hover:text-gray-700 font-bold uppercase tracking-widest text-[10px] transition-all disabled:opacity-50"
+                  disabled={isSubmitting}
+                  className="w-full py-3.5 px-6 rounded-md bg-[#c91c1c] hover:bg-[#a01616] text-white font-bold uppercase tracking-wider text-xs shadow-lg shadow-[#c91c1c]/20 flex items-center justify-center gap-2 transition-all"
                 >
-                  {isSubmitting ? 'SUBMITTING...' : 'SUBMIT ENQUIRY'}
+                  <Send className="w-4 h-4" />
+                  <span>{isSubmitting ? 'Transmitting Brief...' : 'Request Official Consultation'}</span>
                 </button>
               </form>
             )}

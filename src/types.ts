@@ -28,7 +28,6 @@ export interface ServicePillar {
   description: string;
   icon: string;
   badge: string;
-  category: 'business' | 'technology';
   subCategories: ServiceSubCategory[];
   keyHighlights: string[];
   deliverables: string[];

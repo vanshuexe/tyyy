@@ -10,13 +10,6 @@ import {
   Plane,
   Cpu,
   TrendingUp,
-  Code,
-  Globe,
-  Database,
-  Cloud,
-  Repeat,
-  ShieldAlert,
-  Scale,
   ArrowRight,
   CheckCircle,
   ExternalLink,
@@ -28,32 +21,34 @@ interface ServicesSectionProps {
 
 export const ServicesSection: React.FC<ServicesSectionProps> = ({ onOpenConsultation }) => {
   const [selectedService, setSelectedService] = useState<ServicePillar | null>(null);
-  const [filterCategory, setFilterCategory] = useState<'all' | 'business' | 'technology'>('all');
+  const [filterCategory, setFilterCategory] = useState<'all' | 'legal-tax' | 'finance-visa' | 'tech-advisory'>('all');
 
   // Icon mapping with KCID color accent
   const getIcon = (iconName: string) => {
     switch (iconName) {
-      case 'Building2': return <Building2 className="w-8 h-8 stroke-[1.5]" />;
-      case 'Scale': return <Scale className="w-8 h-8 stroke-[1.5]" />;
-      case 'Calculator': return <Calculator className="w-8 h-8 stroke-[1.5]" />;
-      case 'Landmark': return <Landmark className="w-8 h-8 stroke-[1.5]" />;
-      case 'Plane': return <Plane className="w-8 h-8 stroke-[1.5]" />;
-      case 'TrendingUp': return <TrendingUp className="w-8 h-8 stroke-[1.5]" />;
-      case 'Laptop': return <Cpu className="w-8 h-8 stroke-[1.5]" />;
-      case 'Cpu': return <Cpu className="w-8 h-8 stroke-[1.5]" />;
-      case 'Code': return <Code className="w-8 h-8 stroke-[1.5]" />;
-      case 'Globe': return <Globe className="w-8 h-8 stroke-[1.5]" />;
-      case 'Database': return <Database className="w-8 h-8 stroke-[1.5]" />;
-      case 'Cloud': return <Cloud className="w-8 h-8 stroke-[1.5]" />;
-      case 'Repeat': return <Repeat className="w-8 h-8 stroke-[1.5]" />;
-      case 'ShieldAlert': return <ShieldAlert className="w-8 h-8 stroke-[1.5]" />;
-      default: return <Building2 className="w-8 h-8 stroke-[1.5]" />;
+      case 'Building2':
+        return <Building2 className="w-8 h-8 stroke-[1.5]" />;
+      case 'Calculator':
+        return <Calculator className="w-8 h-8 stroke-[1.5]" />;
+      case 'Landmark':
+        return <Landmark className="w-8 h-8 stroke-[1.5]" />;
+      case 'Plane':
+        return <Plane className="w-8 h-8 stroke-[1.5]" />;
+      case 'Cpu':
+        return <Cpu className="w-8 h-8 stroke-[1.5]" />;
+      case 'TrendingUp':
+        return <TrendingUp className="w-8 h-8 stroke-[1.5]" />;
+      default:
+        return <Building2 className="w-8 h-8 stroke-[1.5]" />;
     }
   };
 
   const filteredServices = SERVICES_DATA.filter((srv) => {
     if (filterCategory === 'all') return true;
-    return srv.category === filterCategory;
+    if (filterCategory === 'legal-tax') return srv.id === 'business-setup' || srv.id === 'accounting-tax';
+    if (filterCategory === 'finance-visa') return srv.id === 'banking-finance' || srv.id === 'visa-immigration';
+    if (filterCategory === 'tech-advisory') return srv.id === 'it-digital' || srv.id === 'advisory-support';
+    return true;
   });
 
   return (
@@ -63,22 +58,23 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onOpenConsulta
 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-12">
-          <span className="text-[#3273a8] uppercase tracking-[0.2em] text-xs sm:text-sm font-bold mb-2 block">
+          <span className="text-[#c91c1c] uppercase tracking-[0.2em] text-xs sm:text-sm font-bold mb-2 block">
             INTEGRATED CAPABILITIES
           </span>
           <h2 className="text-3xl sm:text-4xl font-display font-medium text-[#0b1b36] tracking-tight mb-6">
-            Core business and technology areas
+            Core business practice areas
           </h2>
           <p className="text-base text-gray-500 font-light leading-relaxed">
-            From company formation to ongoing compliance and international expansion, we help clients establish and operate businesses with a clear, structured approach, and provide practical digital solutions around your business requirements.
+            From company formation to ongoing compliance and international expansion, we help clients establish and operate businesses with a clear, structured approach.
           </p>
 
           {/* Filter Pills in KCID Style */}
           <div className="mt-6 flex flex-wrap items-center justify-center gap-2">
             {[
-              { id: 'all', label: 'All Services' },
-              { id: 'business', label: 'Business Practice Areas' },
-              { id: 'technology', label: 'Technology Capabilities' },
+              { id: 'all', label: 'All 6 Verticals' },
+              { id: 'legal-tax', label: '1. Setup & Accounting' },
+              { id: 'finance-visa', label: '2. Banking & Relocation' },
+              { id: 'tech-advisory', label: '3. Digital IT & Advisory' },
             ].map((tab) => (
               <button
                 key={tab.id}
@@ -181,7 +177,6 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onOpenConsulta
         {/* Global Banner below services in KCID Style (#0b1b36 + red border) */}
         <div className="mt-14 rounded-2xl bg-[#0b1b36] p-10 text-white flex flex-col md:flex-row items-center justify-between gap-6 shadow-2xl">
           <div className="space-y-1 text-center md:text-left">
-            <h4 className="text-2xl font-display font-medium tracking-tight text-white">Need a cross-functional turnkey package?</h4>
             <p className="text-xs sm:text-sm text-gray-300">
               Combine Company Formation + Corporate Banking + Local Address + Tax Filings into one unified agreement.
             </p>

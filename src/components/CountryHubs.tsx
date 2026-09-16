@@ -5,7 +5,7 @@ import { CountryProfile } from '../types';
 import { Check, ArrowRight, Shield, Clock, Percent, Building, Landmark, Award, ChevronRight } from 'lucide-react';
 
 interface CountryHubsProps {
-  onSelectCountry: (countryId: 'portugal' | 'switzerland' | 'ireland') => void;
+  onSelectCountry: (countryId: string) => void;
   onOpenConsultation: (countryName: string) => void;
 }
 
@@ -19,19 +19,19 @@ export const CountryHubs: React.FC<CountryHubsProps> = ({ onSelectCountry, onOpe
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-14">
-          <span className="text-[#3273a8] uppercase tracking-[0.2em] text-xs sm:text-sm font-bold mb-2 block">
-            Core Jurisdictional Gateways
+          <span className="text-[#c91c1c] uppercase tracking-[0.2em] text-xs sm:text-sm font-bold mb-2 block">
+            STRATEGIC GEOGRAPHIES
           </span>
           <h2 className="text-3xl sm:text-4xl font-display font-medium text-[#0b1b36] tracking-tight mb-6">
-            Specialized Country Expertise
+            Global business hubs
           </h2>
           <p className="text-base text-gray-500 font-light leading-relaxed">
-            RKPT TECH LTD maintains direct legal, fiscal, and corporate infrastructure across Europe’s three most strategic business destinations.
+            RKPT maintains direct business, compliance and technology capabilities across seven strategic international gateways.
           </p>
         </div>
 
-        {/* 3 Country Selector Cards with KCID Top Border Styling */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+        {/* Country Selector Cards with KCID Top Border Styling */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
           {COUNTRIES_DATA.map((country) => {
             const isSelected = selectedCountry.id === country.id;
             // Distinctive top border color matching KCID palette
@@ -142,7 +142,7 @@ export const CountryHubs: React.FC<CountryHubsProps> = ({ onSelectCountry, onOpe
               <ul className="space-y-2">
                 {selectedCountry.structures.map((struct, idx) => (
                   <li key={idx} className="flex items-start gap-2 text-xs text-gray-700">
-                    <Check className="w-3.5 h-3.5 text-[#c91c1c] shrink-0 mt-0.5" />
+                     <Check className="w-3.5 h-3.5 text-[#c91c1c] shrink-0 mt-0.5" />
                     <span className="font-bold text-gray-900">{struct}</span>
                   </li>
                 ))}
@@ -204,84 +204,11 @@ export const CountryHubs: React.FC<CountryHubsProps> = ({ onSelectCountry, onOpe
               <span className="font-bold text-[#15325b] uppercase tracking-wide">RKPT Advisory Note: </span>
               {selectedCountry.summary}
             </div>
-            <button
-              onClick={() => setShowComparison(!showComparison)}
-              className="shrink-0 text-[#3273a8] hover:text-[#c91c1c] font-bold uppercase tracking-wider transition-colors"
-            >
-              {showComparison ? 'Hide Comparison Matrix' : 'Compare All 3 Countries →'}
-            </button>
           </div>
         </div>
 
-        {/* Expandable Comparison Matrix in KCID Style */}
-        {showComparison && (
-          <div className="mt-8 bg-white rounded-xl border border-gray-200 overflow-hidden shadow-xl border-gray-100 animate-fadeIn">
-            <div className="p-6 bg-[#15325b] text-white flex items-center justify-between">
-              <div>
-                <h4 className="font-display font-bold text-lg uppercase tracking-tight">Jurisdiction Comparison Matrix</h4>
-                <p className="text-xs text-[#3273a8] uppercase tracking-wider">Comparative framework for Portugal, Switzerland, and Ireland</p>
-              </div>
-              <button
-                onClick={() => setShowComparison(false)}
-                className="text-xs font-bold uppercase tracking-wider text-gray-300 hover:text-white bg-[#0b1b36] px-3 py-1.5 rounded"
-              >
-                Close
-              </button>
-            </div>
-            <div className="overflow-x-auto">
-              <table className="w-full text-left text-xs sm:text-sm">
-                <thead>
-                  <tr className="border-b border-gray-200 bg-[#f8fafd] text-[#15325b] font-bold uppercase tracking-wider text-xs">
-                    <th className="p-4">Criteria</th>
-                    <th className="p-4">🇵🇹 Portugal</th>
-                    <th className="p-4">🇨🇭 Switzerland</th>
-                    <th className="p-4">🇮🇪 Ireland</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-gray-100 text-gray-600">
-                  <tr>
-                    <td className="p-4 font-bold text-[#15325b]">Standard Corporate Tax (CIT)</td>
-                    <td className="p-4">17% (first €50k) - 21% standard</td>
-                    <td className="p-4">11.9% - 21.6% (depending on Canton)</td>
-                    <td className="p-4 font-bold text-[#c91c1c]">12.5% (Trading Income)</td>
-                  </tr>
-                  <tr>
-                    <td className="p-4 font-bold text-[#15325b]">Company Formation Timeline</td>
-                    <td className="p-4 font-medium">3 – 7 Business Days</td>
-                    <td className="p-4 font-medium">7 – 14 Business Days</td>
-                    <td className="p-4 font-bold text-[#3273a8]">3 – 5 Business Days (Fast CRO)</td>
-                  </tr>
-                  <tr>
-                    <td className="p-4 font-bold text-[#15325b]">Primary Entity Form</td>
-                    <td className="p-4">LDA (Limitada)</td>
-                    <td className="p-4">GmbH (LLC) or AG (Corp)</td>
-                    <td className="p-4">LTD (Limited by Shares)</td>
-                  </tr>
-                  <tr>
-                    <td className="p-4 font-bold text-[#15325b]">Minimum Share Capital</td>
-                    <td className="p-4">€1 per shareholder (flexible)</td>
-                    <td className="p-4">CHF 20,000 (GmbH) / CHF 100,000 (AG)</td>
-                    <td className="p-4">€1 (no statutory minimum paid-in)</td>
-                  </tr>
-                  <tr>
-                    <td className="p-4 font-bold text-[#15325b]">EU Single Market &amp; Currency</td>
-                    <td className="p-4">EU Member • Eurozone (EUR €)</td>
-                    <td className="p-4">Bilateral Treaties • Swiss Franc (CHF)</td>
-                    <td className="p-4">EU Member • Eurozone (EUR €)</td>
-                  </tr>
-                  <tr>
-                    <td className="p-4 font-bold text-[#15325b]">Primary Business Allure</td>
-                    <td className="p-4">Vibrant tech hub, startup incentives, lifestyle &amp; Golden/D8 visas</td>
-                    <td className="p-4">Global financial prestige, privacy, Zug Crypto Valley, Swiss banking</td>
-                    <td className="p-4">English speaking, 12.5% tax, headquarters of Fortune 500 tech giants</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        )}
       </div>
-          </ScrollReveal>
-</section>
+      </ScrollReveal>
+    </section>
   );
 };

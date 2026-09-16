@@ -2,48 +2,48 @@ import { CountryProfile, ServicePillar, IndustryItem, ProcessStep, CoreValue, Wh
 
 export const COMPANY_INFO = {
   name: 'RKPT TECH LTD',
-  tagline: 'OFFICIAL BUSINESS & TECHNOLOGY PARTNER',
-  headline: 'Global business hubs',
+  tagline: 'BUSINESS. TECHNOLOGY. COMPLIANCE. GROWTH.',
+  headline: 'Global Business Consulting & Technology Solutions',
   profileSummary:
-    'RKPT TECH LTD is a global business consulting and technology solutions firm specializing in helping entrepreneurs, startups and established companies establish, expand and operate businesses across international markets. Our integrated approach combines business, financial, administrative, compliance and IT solutions so clients can focus on growth while we help manage complexity, compliance and operational efficiency.',
+    'RKPT TECH LTD helps businesses build, operate, protect and grow across international markets. From company formation, accounting, tax, banking, compliance, immigration and relocation support to IT, AI, software, cloud, automation and cybersecurity, RKPT brings complementary business and technology capabilities together under one operating partner.',
   valueProposition:
-    'Technology should make your business easier to operate, more secure and more scalable. We design practical digital solutions around your business requirements.',
+    'Our objective is simple: reduce complexity, create a structured path from setup to operation, and provide the business infrastructure required for sustainable international growth.',
   integratedApproach:
-    'RKPT maintains direct business, compliance and technology capabilities across seven strategic international gateways.',
+    'RKPT TECH LTD is a global business consulting and technology solutions firm specializing in helping individuals, entrepreneurs, startups, established companies and international businesses establish, operate and expand across international markets.',
   vision:
     'To become a trusted global partner for businesses entering and expanding into international markets by delivering transparent, compliant and technology-driven solutions that enable sustainable growth.',
   mission: [
     'Simplify cross-border business setup and operations.',
     'Deliver accurate, compliant and customized consulting services.',
-    'Empower businesses through innovative IT and digital solutions.',
+    'Empower businesses through practical IT and digital solutions.',
     'Build long-term partnerships based on trust, performance and results.',
   ],
   commitment:
-    'We combine business setup, compliance, financial and immigration support with IT, AI, software and cybersecurity solutions.',
+    'We do not simply help clients register a company. We help build the business infrastructure required to operate, protect and grow it.',
   contact: {
-    email: 'info@rkpttech.com',
-    secondaryEmail: 'info@rkpttech.com',
-    phoneEu: '+44 (0) 20 0000 0000',
-    phoneCh: '+44 (0) 20 0000 0000',
-    phoneIe: '+44 (0) 20 0000 0000',
+    email: 'contact@rkpttech.com',
+    secondaryEmail: 'advisory@rkpttech.com',
+    phoneEu: '+351 21 000 8920',
+    phoneCh: '+41 44 220 5410',
+    phoneIe: '+353 1 485 3290',
     website: 'www.rkpttech.com',
     offices: [
       {
         city: 'Lisbon',
         country: 'Portugal',
-        address: 'Lisbon, Portugal',
+        address: 'Avenida da Liberdade 245, 1250-143 Lisboa',
         focus: 'LDA Formation, NHR & Golden Visa Hub',
       },
       {
         city: 'Zurich',
         country: 'Switzerland',
-        address: 'Zurich, Switzerland',
+        address: 'Bahnhofstrasse 69, 8001 Zürich',
         focus: 'GmbH / AG Structuring & Cantonal Compliance',
       },
       {
         city: 'Dublin',
         country: 'Ireland',
-        address: 'Dublin, Ireland',
+        address: 'Grand Canal Dock, Dublin 2, D02 X260',
         focus: 'LTD Incorporation, CRO Filings & Tech Gateway',
       },
     ],
@@ -229,52 +229,52 @@ export const CORE_VALUES: CoreValue[] = [
 export const WHY_CHOOSE_US: WhyChooseUsItem[] = [
   {
     title: 'Global',
-    highlight: 'Seven business hubs',
+    highlight: '7 Business Hubs',
     description: 'Seven business hubs across Europe, the UK, USA, UAE and India.',
     icon: 'MapPin',
   },
   {
     title: 'Integrated',
-    highlight: 'One ecosystem',
+    highlight: 'One Ecosystem',
     description: 'Business, financial, compliance, immigration and technology support in one ecosystem.',
     icon: 'Layers',
   },
   {
     title: 'End-to-end',
-    highlight: 'Start to finish',
+    highlight: 'Full Lifecycle',
     description: 'From initial consultation through setup, implementation and ongoing support.',
     icon: 'CheckCircle2',
   },
   {
     title: 'Technology-driven',
-    highlight: 'Digital solutions',
+    highlight: 'Digital Solutions',
     description: 'Practical IT, AI, software, cloud, automation and cybersecurity solutions.',
-    icon: 'Laptop',
+    icon: 'Cpu',
   },
   {
     title: 'Multi-disciplinary',
-    highlight: 'Working together',
+    highlight: 'Unified Teams',
     description: 'Business and technology capabilities designed to work together.',
-    icon: 'Network',
+    icon: 'Users',
   },
   {
     title: 'International',
-    highlight: 'Multiple jurisdictions',
+    highlight: 'Multi-jurisdiction',
     description: 'Support for clients operating across multiple jurisdictions.',
     icon: 'Globe',
   },
   {
     title: 'Compliance-focused',
-    highlight: 'Local and EU',
+    highlight: 'Regulatory Standards',
     description: 'Structured around applicable local and EU requirements.',
-    icon: 'Scale',
+    icon: 'ShieldCheck',
   },
   {
     title: 'Transparent',
-    highlight: 'Clear communication',
+    highlight: 'Clear Scope',
     description: 'Clear processes, clear communication and transparent service scope.',
     icon: 'Eye',
-  }
+  },
 ];
 
 export const SERVICES_DATA: ServicePillar[] = [
@@ -286,7 +286,6 @@ export const SERVICES_DATA: ServicePillar[] = [
     description: "Business structure consultation, registration and incorporation, registered office support, licences and permits, VAT and tax identification, statutory filings and local representation where required.",
     icon: "Building2",
     badge: "Core Service",
-    category: "business",
     subCategories: [
       {
         title: "Services Include:",
@@ -324,7 +323,6 @@ export const SERVICES_DATA: ServicePillar[] = [
     description: "Regulatory coordination, statutory filings, company secretarial support, regulatory monitoring and risk advisory, with coordination to qualified professionals where regulated legal advice is required.",
     icon: "Scale",
     badge: "Core Service",
-    category: "business",
     subCategories: [
       {
         title: "Services Include:",
@@ -348,7 +346,6 @@ export const SERVICES_DATA: ServicePillar[] = [
     description: "Bookkeeping, financial reporting, payroll, corporate tax compliance, VAT returns, tax planning, double-taxation treaty guidance and tax authority representation where applicable.",
     icon: "Calculator",
     badge: "Core Service",
-    category: "business",
     subCategories: [
       {
         title: "Services Include:",
@@ -377,7 +374,6 @@ export const SERVICES_DATA: ServicePillar[] = [
     description: "Bank selection, documentation preparation, liaison with traditional and digital banks, FinTech/EMI setup, payment gateway and merchant account support, and ongoing compliance support.",
     icon: "Landmark",
     badge: "Core Service",
-    category: "business",
     subCategories: [
       {
         title: "Services Include:",
@@ -403,7 +399,6 @@ export const SERVICES_DATA: ServicePillar[] = [
     description: "Business, entrepreneur and investor visa support, work and residence permits, family reunification, renewals, and relocation support including registration, social security and healthcare enrolment.",
     icon: "Plane",
     badge: "Core Service",
-    category: "business",
     subCategories: [
       {
         title: "Services Include:",
@@ -432,7 +427,6 @@ export const SERVICES_DATA: ServicePillar[] = [
     description: "Business plan development, market-entry strategy, feasibility studies, financial modelling, investor pitch decks, virtual office services, and EU market compliance consulting.",
     icon: "TrendingUp",
     badge: "Core Service",
-    category: "business",
     subCategories: [
       {
         title: "Services Include:",
@@ -450,205 +444,7 @@ export const SERVICES_DATA: ServicePillar[] = [
     ],
     keyHighlights: [],
     deliverables: []
-  },
-  {
-    id: "it-support",
-    number: "07",
-    title: "IT Support & Managed IT",
-    tagline: "Ongoing technical maintenance",
-    description: "Business IT support, user and device support, Microsoft/cloud environment support, systems support and ongoing technical maintenance.",
-    icon: "Laptop",
-    badge: "Core Service",
-    category: "technology",
-    subCategories: [
-      {
-        title: "Services Include:",
-        items: [
-          "Business IT support",
-          "User and device support",
-          "Microsoft/cloud environment support",
-          "Systems support",
-          "Ongoing technical maintenance"
-        ]
-      }
-    ],
-    keyHighlights: [],
-    deliverables: []
-  },
-  {
-    id: "ai-integration",
-    number: "08",
-    title: "AI Integration",
-    tagline: "Productivity solutions and automation",
-    description: "AI readiness assessment, workflow integration, productivity solutions, document and knowledge automation, and customer-service AI, monitored and improved on an ongoing basis.",
-    icon: "Cpu",
-    badge: "Core Service",
-    category: "technology",
-    subCategories: [
-      {
-        title: "Services Include:",
-        items: [
-          "AI readiness assessment",
-          "Workflow integration",
-          "Productivity solutions",
-          "Document and knowledge automation",
-          "Customer-service AI",
-          "Ongoing monitoring and improvement"
-        ]
-      }
-    ],
-    keyHighlights: [],
-    deliverables: []
-  },
-  {
-    id: "software-development",
-    number: "09",
-    title: "Software Development",
-    tagline: "Custom business software and apps",
-    description: "Custom business software, web and mobile applications, business platforms, secure authentication, API integrations, and cloud or on-premise deployment.",
-    icon: "Code",
-    badge: "Core Service",
-    category: "technology",
-    subCategories: [
-      {
-        title: "Services Include:",
-        items: [
-          "Custom business software",
-          "Web and mobile applications",
-          "Business platforms",
-          "Secure authentication",
-          "API integrations",
-          "Cloud or on-premise deployment"
-        ]
-      }
-    ],
-    keyHighlights: [],
-    deliverables: []
-  },
-  {
-    id: "website-digital",
-    number: "10",
-    title: "Website & Digital Solutions",
-    tagline: "Corporate websites and SEO",
-    description: "Corporate websites, business landing pages, multilingual and GDPR-aware design, SEO-ready architecture, and ongoing maintenance and support.",
-    icon: "Globe",
-    badge: "Core Service",
-    category: "technology",
-    subCategories: [
-      {
-        title: "Services Include:",
-        items: [
-          "Corporate websites",
-          "Business landing pages",
-          "Multilingual design",
-          "GDPR-aware design",
-          "SEO-ready architecture",
-          "Ongoing maintenance and support"
-        ]
-      }
-    ],
-    keyHighlights: [],
-    deliverables: []
-  },
-  {
-    id: "erp-crm",
-    number: "11",
-    title: "ERP & CRM Solutions",
-    tagline: "Business system integration",
-    description: "Custom ERP systems, CRM integration, accounting and finance integration, HR and payroll systems, and supply-chain and inventory systems.",
-    icon: "Database",
-    badge: "Core Service",
-    category: "technology",
-    subCategories: [
-      {
-        title: "Services Include:",
-        items: [
-          "Custom ERP systems",
-          "CRM integration",
-          "Accounting and finance integration",
-          "HR and payroll systems",
-          "Supply-chain and inventory systems"
-        ]
-      }
-    ],
-    keyHighlights: [],
-    deliverables: []
-  },
-  {
-    id: "cloud-solutions",
-    number: "12",
-    title: "Cloud Solutions",
-    tagline: "Cloud setup and infrastructure",
-    description: "Cloud setup and migration, business productivity environments, infrastructure support, backup and recovery, and access and identity management.",
-    icon: "Cloud",
-    badge: "Core Service",
-    category: "technology",
-    subCategories: [
-      {
-        title: "Services Include:",
-        items: [
-          "Cloud setup and migration",
-          "Business productivity environments",
-          "Infrastructure support",
-          "Backup and recovery",
-          "Access and identity management"
-        ]
-      }
-    ],
-    keyHighlights: [],
-    deliverables: []
-  },
-  {
-    id: "business-automation",
-    number: "13",
-    title: "Business Automation",
-    tagline: "Workflow and reporting automation",
-    description: "Workflow automation, approval processes, document automation, CRM/ERP workflows, reporting automation and integration between business systems.",
-    icon: "Repeat",
-    badge: "Core Service",
-    category: "technology",
-    subCategories: [
-      {
-        title: "Services Include:",
-        items: [
-          "Workflow automation",
-          "Approval processes",
-          "Document automation",
-          "CRM/ERP workflows",
-          "Reporting automation",
-          "Integration between business systems"
-        ]
-      }
-    ],
-    keyHighlights: [],
-    deliverables: []
-  },
-  {
-    id: "cybersecurity",
-    number: "14",
-    title: "Cybersecurity",
-    tagline: "Security assessment and protection",
-    description: "Security assessment, endpoint and network protection, identity and access controls, backup and recovery planning, monitoring and incident-response coordination.",
-    icon: "ShieldAlert",
-    badge: "Core Service",
-    category: "technology",
-    subCategories: [
-      {
-        title: "Services Include:",
-        items: [
-          "Security assessment",
-          "Endpoint and network protection",
-          "Identity and access controls",
-          "Backup and recovery planning",
-          "Monitoring",
-          "Incident-response coordination"
-        ]
-      }
-    ],
-    keyHighlights: [],
-    deliverables: []
   }
-
 ];
 
 export const PROCESS_STEPS: ProcessStep[] = [
@@ -674,133 +470,81 @@ export const PROCESS_STEPS: ProcessStep[] = [
   },
   {
     step: 5,
-    title: 'Connect',
-    description: 'Coordinate accounting, tax, compliance and operational services.',
+    title: 'Build',
+    description: 'Implement IT systems, websites, software and security to launch your operations.',
   },
   {
     step: 6,
-    title: 'Digitise',
-    description: 'Build websites, software, cloud systems and business technology.',
-  },
-  {
-    step: 7,
-    title: 'Integrate AI',
-    description: 'Identify and implement practical AI and automation opportunities.',
-  },
-  {
-    step: 8,
-    title: 'Protect',
-    description: 'Strengthen cybersecurity, access, backup and operational resilience.',
-  },
-  {
-    step: 9,
     title: 'Support',
-    description: 'Provide ongoing technology, compliance and business support.',
-  },
-  {
-    step: 10,
-    title: 'Expand',
-    description: 'Support international growth and entry into additional markets.',
-  },
+    description: 'Provide ongoing tax, accounting, compliance and technology support.',
+  }
 ];
 
 export const INDUSTRIES_SERVED: IndustryItem[] = [
   {
-    id: 'individuals-entrepreneurs',
-    name: 'Individuals and entrepreneurs',
-    icon: 'User',
-    summary: 'Personalized setup, visa assistance, and private wealth alignment.',
-    typicalNeeds: ['Business setup', 'Visas', 'Relocation', 'Personal tax planning'],
-    solutionApproach: 'Tailored roadmaps for individual founders and solo entrepreneurs.',
-  },
-  {
-    id: 'startups-founders',
-    name: 'Startups and founders',
+    id: 'startups',
+    name: 'Startups & Entrepreneurs',
     icon: 'Rocket',
-    summary: 'Fast-paced incorporation, startup visas, seed banking, and agile tech presence.',
-    typicalNeeds: ['Company registration', 'Founder visas', 'Bank accounts', 'Scalable website'],
-    solutionApproach: 'Turnkey startup packages with minimal bureaucratic overhead.',
-  },
-  {
-    id: 'sme',
-    name: 'Small and medium-sized businesses',
-    icon: 'Building',
-    summary: 'Scalable corporate structures and cross-border operational support.',
-    typicalNeeds: ['Operational expansion', 'Compliance management', 'IT infrastructure'],
-    solutionApproach: 'Streamlined growth solutions for mid-market scaling.',
-  },
-  {
-    id: 'established-companies',
-    name: 'Established companies',
-    icon: 'Building2',
-    summary: 'Robust governance, enterprise IT, and multi-jurisdiction compliance.',
-    typicalNeeds: ['Corporate governance', 'Enterprise systems', 'International tax planning'],
-    solutionApproach: 'Dedicated account management and integrated enterprise support.',
-  },
-  {
-    id: 'international-companies',
-    name: 'International companies',
-    icon: 'Globe',
-    summary: 'Foreign direct investment structures and regional headquarter setups.',
-    typicalNeeds: ['Subsidiary formation', 'Transfer pricing', 'Global mobility'],
-    solutionApproach: 'Strategic market entry and cross-border operational coordination.',
-  },
-  {
-    id: 'investors',
-    name: 'Investors',
-    icon: 'TrendingUp',
-    summary: 'Golden Visa programs, fund structuring, and investment vehicle setup.',
-    typicalNeeds: ['Golden Visas', 'SPV formation', 'Wealth management alignment'],
-    solutionApproach: 'Secure and compliant structures for global capital deployment.',
+    summary: 'Fast-paced incorporation, Startup Visa alignments, seed banking, and agile tech presence.',
+    typicalNeeds: ['Fast company registration', 'Founder visa permits', 'Seed stage bank accounts', 'Scalable website'],
+    solutionApproach: 'Turnkey startup packages in Lisbon and Dublin with minimal bureaucratic overhead.',
   },
   {
     id: 'it-saas',
-    name: 'IT and SaaS businesses',
+    name: 'IT & SaaS Companies',
     icon: 'Laptop',
-    summary: 'Optimized IP holding structures and GDPR software compliance.',
-    typicalNeeds: ['IP holding', 'Low corporate tax', 'Tech talent visas'],
-    solutionApproach: 'Structures optimized for cross-border software licensing.',
+    summary: 'Optimized IP holding structures, Knowledge Box tax rates (6.25% in IE), and GDPR software compliance.',
+    typicalNeeds: ['Intellectual property holding', 'Low corporate tax', 'Software developer work visas', 'EU server GDPR'],
+    solutionApproach: 'Irish LTD & Swiss AG structures optimized for cross-border software licensing.',
+  },
+  {
+    id: 'ecommerce',
+    name: 'E-Commerce & Retail',
+    icon: 'ShoppingBag',
+    summary: 'EU VAT One-Stop-Shop (OSS) registration, European logistics hubs, multi-currency payment gateways.',
+    typicalNeeds: ['Cross-border VAT compliance', 'Stripe / Adyen merchant accounts', 'Custom checkout portal', 'Customs clearance'],
+    solutionApproach: 'Portuguese or Irish entities with direct EU customs union and payment gateway integration.',
+  },
+  {
+    id: 'manufacturing',
+    name: 'Manufacturing & Trading',
+    icon: 'Factory',
+    summary: 'Import/export EORI registration, supply chain ERP systems, commercial warehouse licensing.',
+    typicalNeeds: ['EORI number registration', 'Double taxation treaties', 'Supply chain tracking ERP', 'Commercial premises'],
+    solutionApproach: 'Strategic trade setups taking advantage of European transport corridors and trade treaties.',
+  },
+  {
+    id: 'healthcare',
+    name: 'Healthcare & Life Sciences',
+    icon: 'HeartPulse',
+    summary: 'Regulatory compliance for medical devices, clinical data protection under GDPR, Swiss holding advantages.',
+    typicalNeeds: ['Strict data privacy & GDPR', 'Clinical trial licensing', 'Swiss holding stability', 'R&D tax credits'],
+    solutionApproach: 'Swiss cantonal structures and Irish life-science hubs for clinical and MedTech ventures.',
+  },
+  {
+    id: 'hospitality',
+    name: 'Hospitality & Tourism',
+    icon: 'Hotel',
+    summary: 'Golden Visa real estate investment alignment, local licensing, seasonal staff payroll management.',
+    typicalNeeds: ['Municipal tourism licensing', 'Portuguese Golden Visa', 'Payroll for seasonal workers', 'Booking portal'],
+    solutionApproach: 'Portuguese LDA formation coupled with real estate investment fund and tourism permits.',
   },
   {
     id: 'professional-services',
-    name: 'Professional services firms',
+    name: 'Professional Services',
     icon: 'Briefcase',
-    summary: 'Consultancies and agency setups with cross-border invoicing.',
-    typicalNeeds: ['Virtual offices', 'B2B invoicing', 'Professional indemnity'],
-    solutionApproach: 'Prestigious corporate addresses with digital administration.',
+    summary: 'Consultancies, legal practices, and agency setups with cross-border invoicing and professional indemnity.',
+    typicalNeeds: ['Virtual office address', 'Cross-border B2B invoicing', 'Dual-currency banking', 'Company secretarial'],
+    solutionApproach: 'Dublin or Zurich prestigious corporate addresses with remote digital administration.',
   },
   {
-    id: 'manufacturing-trading',
-    name: 'Manufacturing and trading businesses',
-    icon: 'Factory',
-    summary: 'Import/export registration and supply chain ERP systems.',
-    typicalNeeds: ['EORI registration', 'Supply chain ERP', 'Commercial premises'],
-    solutionApproach: 'Strategic trade setups leveraging European transport corridors.',
-  },
-  {
-    id: 'healthcare-life-sciences',
-    name: 'Healthcare and life sciences',
-    icon: 'HeartPulse',
-    summary: 'Regulatory compliance for medical devices and clinical data.',
-    typicalNeeds: ['Data privacy & GDPR', 'Clinical trial licensing', 'R&D tax credits'],
-    solutionApproach: 'Compliant structures for clinical and MedTech ventures.',
-  },
-  {
-    id: 'hospitality-tourism',
-    name: 'Hospitality and tourism',
-    icon: 'Hotel',
-    summary: 'Real estate investment alignment and local licensing.',
-    typicalNeeds: ['Tourism licensing', 'Payroll for seasonal workers', 'Booking portals'],
-    solutionApproach: 'Entity formation coupled with real estate and tourism permits.',
-  },
-  {
-    id: 'fintech-tech',
-    name: 'FinTech and technology businesses',
+    id: 'fintech-blockchain',
+    name: 'FinTech & Blockchain',
     icon: 'Coins',
-    summary: 'Regulatory preparation, EMI partnerships, and financial platforms.',
-    typicalNeeds: ['Compliance advisory', 'Friendly banking', 'Secure portals'],
-    solutionApproach: 'Entities with dedicated banking relationships and regulatory pre-audits.',
-  }
+    summary: 'Crypto Valley Zug licensing, VASP / MiCA regulatory preparation, EMI partnerships, and smart contracts.',
+    typicalNeeds: ['Swiss Crypto Valley setup', 'MiCA compliance advisory', 'Crypto-friendly banking', 'Secure token portals'],
+    solutionApproach: 'Zug GmbH/AG entities with dedicated Swiss banking relationships and regulatory pre-audits.',
+  },
 ];
 
 export const TESTIMONIALS = [
@@ -808,11 +552,11 @@ export const TESTIMONIALS = [
     id: 't1',
     author: 'CLIENT NAME',
     role: 'ROLE',
-    company: 'CLIENT COMPANY',
+    company: 'COMPANY',
     location: 'LOCATION (TO BE ADDED)',
     quote: "Client testimonials will appear here once available — replace this placeholder with a direct quote and attribution from a consenting client.",
     rating: 5,
     avatar: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=150&h=150',
-    industry: 'Industry Domain'
+    industry: 'Business'
   }
 ];

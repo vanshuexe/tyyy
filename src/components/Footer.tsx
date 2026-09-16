@@ -250,21 +250,40 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
         </div>
       </div>
 
+      {/* Disclaimer */}
+      <div className="border-t border-gray-200 bg-gray-50 py-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-left text-xs text-gray-500 leading-relaxed font-light">
+          Information on this website is provided for general information and business-support purposes. Company-formation requirements, tax rules, immigration requirements, licensing conditions, banking requirements and regulatory obligations vary by jurisdiction, business activity and individual circumstances. Government authorities, banks and regulated institutions make their own decisions and may request additional documentation. Processing times are indicative only. Outcomes such as company registration, bank-account approval, tax registration, visa and immigration approval, and other third-party decisions rest solely with the relevant authority or institution. Where regulated legal, tax, accounting, immigration or other professional advice is required, RKPT TECH LTD may coordinate with appropriately qualified professionals. Read the full Legal Disclaimer.
+        </div>
+      </div>
+
       {/* Bottom Compliance & Copyright */}
       <div className="border-t border-gray-200 bg-white py-6">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-gray-500">
-          <div>
-            © {new Date().getFullYear()} RKPT TECH LTD. All rights reserved. &bull; Your Gateway to Europe.
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center justify-center gap-4 text-[11px] text-gray-500">
+          <div className="flex flex-wrap justify-center gap-4 text-gray-600 font-medium">
+            <a href="#" className="hover:text-[#c91c1c] transition-colors">About</a>
+            <a href="#services" className="hover:text-[#c91c1c] transition-colors">Services</a>
+            <a href="#hubs" className="hover:text-[#c91c1c] transition-colors">Global Hubs</a>
+            <a href="#" className="hover:text-[#c91c1c] transition-colors">Privacy Policy</a>
+            <a href="#" className="hover:text-[#c91c1c] transition-colors">Cookie Policy</a>
+            <a href="#" className="hover:text-[#c91c1c] transition-colors">Terms</a>
+            <a href="#" className="hover:text-[#c91c1c] transition-colors">Legal Disclaimer</a>
+            <a href="#" className="hover:text-[#c91c1c] transition-colors">Contact</a>
           </div>
-          <div className="flex items-center gap-4">
-            <ComplianceBadge />
-            <button
-              onClick={scrollToTop}
-              className="p-1.5 rounded bg-gray-100 hover:bg-[#c91c1c] hover:text-white text-gray-700 transition-colors ml-2"
-              title="Back to top"
-            >
-              <ArrowUp className="w-3.5 h-3.5" />
-            </button>
+          <div className="flex flex-col sm:flex-row items-center justify-between w-full mt-2">
+            <div>
+              © RKPT TECH LTD. All rights reserved.
+            </div>
+            <div className="flex items-center gap-4 mt-4 sm:mt-0">
+              <ComplianceBadge />
+              <button
+                onClick={scrollToTop}
+                className="p-1.5 rounded bg-gray-100 hover:bg-[#c91c1c] hover:text-white text-gray-700 transition-colors ml-2"
+                title="Back to top"
+              >
+                <ArrowUp className="w-3.5 h-3.5" />
+              </button>
+            </div>
           </div>
         </div>
       </div>
