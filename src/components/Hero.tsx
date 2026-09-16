@@ -57,14 +57,99 @@ export const Hero: React.FC<HeroProps> = ({ onOpenConsultation, onExploreEstimat
             </div>
           </motion.div>
 
-          {/* Right: High-End Corporate Asset */}
-          <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }} className="relative w-full h-[400px] lg:h-[550px] rounded-3xl overflow-hidden shadow-premium group">
-            <img 
-              src="https://ik.imagekit.io/fdhgiehjz/WhatsApp%20Image%202026-09-12%20at%209.25.22%20PM.jpeg" 
-              alt="Modern Corporate Office" 
-              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+          {/* Right: High-End Corporate Asset (Network Visualization) */}
+          <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }} className="relative w-full h-[400px] lg:h-[550px] rounded-3xl overflow-hidden shadow-premium group bg-white flex items-center justify-center border border-gray-100">
+            <svg viewBox="0 0 900 340" fill="none" className="w-full h-auto max-h-full transition-transform duration-700 group-hover:scale-105 px-2 sm:px-8">
+              {/* Network Lines */}
+              <g stroke="#8FA0C4" strokeWidth="1.5" strokeDasharray="3 3" opacity="0.6">
+                {/* Core branches */}
+                <line x1="450" y1="170" x2="300" y2="170" />
+                <line x1="450" y1="170" x2="600" y2="170" />
+                <line x1="450" y1="170" x2="450" y2="50" />
+                <line x1="450" y1="170" x2="450" y2="250" />
+
+                {/* Sub-branches */}
+                <line x1="300" y1="170" x2="140" y2="70" />
+                <line x1="300" y1="170" x2="140" y2="270" />
+
+                <line x1="600" y1="170" x2="760" y2="70" />
+                <line x1="600" y1="170" x2="760" y2="270" />
+
+                <line x1="450" y1="250" x2="330" y2="300" />
+                <line x1="450" y1="250" x2="570" y2="300" />
+              </g>
+
+              {/* Junction Nodes */}
+              <g fill="#8FA0C4">
+                <circle cx="300" cy="170" r="3" />
+                <circle cx="600" cy="170" r="3" />
+                <circle cx="450" cy="250" r="3" />
+              </g>
+
+              {/* Central RKPT Node */}
+              <g>
+                <circle cx="450" cy="170" r="14" fill="#c91c1c" opacity="0.1" />
+                <circle cx="450" cy="170" r="8" fill="#c91c1c" opacity="0.2" />
+                <circle cx="450" cy="170" r="4" fill="#c91c1c" />
+              </g>
+
+              {/* 1. USA */}
+              <foreignObject x="100" y="40" width="80" height="60" className="overflow-visible">
+                <div className="flex flex-col items-center justify-center">
+                  <img src="https://flagcdn.com/us.svg" alt="USA" className="w-8 h-[22px] object-cover rounded-[2px] shadow-sm border border-gray-200" />
+                  <span className="text-[9px] font-bold text-[#15325b] mt-1.5 uppercase tracking-wider bg-white/80 px-1 rounded">USA</span>
+                </div>
+              </foreignObject>
+
+              {/* 2. UK */}
+              <foreignObject x="100" y="240" width="80" height="60" className="overflow-visible">
+                <div className="flex flex-col items-center justify-center">
+                  <img src="https://flagcdn.com/gb.svg" alt="UK" className="w-8 h-[22px] object-cover rounded-[2px] shadow-sm border border-gray-200" />
+                  <span className="text-[9px] font-bold text-[#15325b] mt-1.5 uppercase tracking-wider bg-white/80 px-1 rounded">UK</span>
+                </div>
+              </foreignObject>
+
+              {/* 3. Ireland */}
+              <foreignObject x="410" y="20" width="80" height="60" className="overflow-visible">
+                <div className="flex flex-col items-center justify-center">
+                  <img src="https://flagcdn.com/ie.svg" alt="Ireland" className="w-8 h-[22px] object-cover rounded-[2px] shadow-sm border border-gray-200" />
+                  <span className="text-[9px] font-bold text-[#15325b] mt-1.5 uppercase tracking-wider bg-white/80 px-1 rounded">Ireland</span>
+                </div>
+              </foreignObject>
+
+              {/* 4. Portugal */}
+              <foreignObject x="290" y="270" width="80" height="60" className="overflow-visible">
+                <div className="flex flex-col items-center justify-center">
+                  <img src="https://flagcdn.com/pt.svg" alt="Portugal" className="w-8 h-[22px] object-cover rounded-[2px] shadow-sm border border-gray-200" />
+                  <span className="text-[9px] font-bold text-[#15325b] mt-1.5 uppercase tracking-wider bg-white/80 px-1 rounded">Portugal</span>
+                </div>
+              </foreignObject>
+
+              {/* 5. Switzerland */}
+              <foreignObject x="530" y="270" width="80" height="60" className="overflow-visible">
+                <div className="flex flex-col items-center justify-center">
+                  <img src="https://flagcdn.com/ch.svg" alt="Switzerland" className="w-8 h-[22px] object-cover rounded-[2px] shadow-sm border border-gray-200" />
+                  <span className="text-[9px] font-bold text-[#15325b] mt-1.5 uppercase tracking-wider bg-white/80 px-1 rounded">Swiss</span>
+                </div>
+              </foreignObject>
+
+              {/* 6. UAE */}
+              <foreignObject x="720" y="40" width="80" height="60" className="overflow-visible">
+                <div className="flex flex-col items-center justify-center">
+                  <img src="https://flagcdn.com/ae.svg" alt="UAE" className="w-8 h-[22px] object-cover rounded-[2px] shadow-sm border border-gray-200" />
+                  <span className="text-[9px] font-bold text-[#15325b] mt-1.5 uppercase tracking-wider bg-white/80 px-1 rounded">UAE</span>
+                </div>
+              </foreignObject>
+
+              {/* 7. India */}
+              <foreignObject x="720" y="240" width="80" height="60" className="overflow-visible">
+                <div className="flex flex-col items-center justify-center">
+                  <img src="https://flagcdn.com/in.svg" alt="India" className="w-8 h-[22px] object-cover rounded-[2px] shadow-sm border border-gray-200" />
+                  <span className="text-[9px] font-bold text-[#15325b] mt-1.5 uppercase tracking-wider bg-white/80 px-1 rounded">India</span>
+                </div>
+              </foreignObject>
+            </svg>
+            <div className="absolute inset-0 bg-gradient-to-t from-gray-50/50 to-transparent"></div>
           </motion.div>
         </div>
 

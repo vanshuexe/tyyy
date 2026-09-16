@@ -12,6 +12,7 @@ import {
   Building,
   Globe,
   FileCheck,
+  ArrowRight
 } from 'lucide-react';
 
 interface ContactSectionProps {
