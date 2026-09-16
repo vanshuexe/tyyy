@@ -1,5 +1,6 @@
 import React from 'react';
 import { Hero } from './Hero';
+import { AboutRKPTSection } from './AboutRKPTSection';
 import { InteractiveMap } from './InteractiveMap';
 import { ScrollReveal } from './ScrollReveal';
 import { TestimonialCarousel } from './TestimonialCarousel';
@@ -81,6 +82,8 @@ export const HomeView: React.FC<HomeViewProps> = ({ onNavigate, onOpenConsultati
         onOpenConsultation={() => onOpenConsultation()}
         onExploreEstimator={() => onNavigate('estimator')}
       />
+
+      <AboutRKPTSection onOpenConsultation={() => onOpenConsultation()} />
 
       {/* 2. Focus Jurisdictions Preview (3 Clean Cards) */}
       <section className="py-16 sm:py-20 bg-gray-50 border-b border-gray-200">
@@ -230,51 +233,48 @@ export const HomeView: React.FC<HomeViewProps> = ({ onNavigate, onOpenConsultati
       <section className="py-16 sm:py-20 bg-gray-50 border-b border-gray-200">
       <ScrollReveal>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-white rounded-3xl border border-gray-100 p-8 sm:p-12 shadow-premium relative overflow-hidden">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-              <div className="lg:col-span-8 space-y-4 text-left">
-                <span className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-widest text-[#3273a8]">
-                  <Compass className="w-4 h-4 text-[#c91c1c]" />
-                  Interactive European Planning
-                </span>
-                <h2 className="text-2xl sm:text-3xl font-display font-black text-[#15325b] uppercase tracking-tight">
-                  Calculate Your European Setup Blueprint in 60 Seconds
-                </h2>
-                <p className="text-sm text-gray-600 leading-relaxed max-w-2xl">
-                  Select your target jurisdiction (Portugal, Switzerland, or Ireland), choose statutory corporate structures, configure European banking and residency add-ons, and generate an instant timeline and deliverables blueprint.
-                </p>
-
-                <div className="pt-2 grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
-                  <div className="flex items-center gap-2 text-gray-700">
-                    <CheckCircle2 className="w-4 h-4 text-[#c91c1c] shrink-0" />
-                    <span className="font-semibold">Live Timeline Estimates</span>
-                  </div>
-                  <div className="flex items-center gap-2 text-gray-700">
-                    <CheckCircle2 className="w-4 h-4 text-[#c91c1c] shrink-0" />
-                    <span className="font-semibold">Statutory Scope Checklist</span>
-                  </div>
-                  <div className="flex items-center gap-2 text-gray-700">
-                    <CheckCircle2 className="w-4 h-4 text-[#c91c1c] shrink-0" />
-                    <span className="font-semibold">Direct Director Review</span>
-                  </div>
-                </div>
+          <div className="max-w-3xl space-y-6">
+            <div className="flex items-center gap-2 text-[#c91c1c] uppercase tracking-[0.15em] text-xs font-bold">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#c91c1c]"></span>
+              INTERACTIVE PLANNING
+            </div>
+            
+            <h2 className="text-3xl sm:text-4xl font-display font-black text-[#15325b] tracking-tight">
+              Outline your expansion blueprint
+            </h2>
+            
+            <p className="text-gray-600 font-light text-base md:text-lg leading-relaxed">
+              Select your target hub, your business type and your primary focus area. We'll put together a starting checklist of the services relevant to your plan — a real consultation confirms scope, timeline and cost.
+            </p>
+            
+            <div className="space-y-4 pt-4">
+              <div className="flex items-center gap-3">
+                <svg className="w-[22px] h-[22px] text-[#da291c] shrink-0" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm-1.177-7.86l5.303-5.303-1.414-1.414-3.889 3.889-1.768-1.768-1.414 1.414 3.182 3.182z"/>
+                </svg>
+                <span className="text-gray-600 font-medium">Draws only on our published service list</span>
               </div>
-
-              <div className="lg:col-span-4 flex flex-col sm:flex-row lg:flex-col gap-3 justify-center">
-                <button
-                  onClick={() => onNavigate('estimator')}
-                  className="btn-premium w-full py-4 px-6 rounded-xl bg-[#c91c1c] hover:bg-[#a01616] text-white font-bold uppercase tracking-wider text-xs flex items-center justify-center gap-2"
-                >
-                  <span>Launch Scope Planner</span>
-                  <ArrowRight className="w-4 h-4" />
-                </button>
-                <button
-                  onClick={() => onNavigate('process')}
-                  className="w-full py-3.5 px-6 rounded-md bg-white hover:bg-gray-100 text-[#15325b] border border-gray-300 font-bold uppercase tracking-wider text-xs flex items-center justify-center gap-2 transition-all"
-                >
-                  <span>View 5-Stage Roadmap</span>
-                </button>
+              <div className="flex items-center gap-3">
+                <svg className="w-[22px] h-[22px] text-[#da291c] shrink-0" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm-1.177-7.86l5.303-5.303-1.414-1.414-3.889 3.889-1.768-1.768-1.414 1.414 3.182 3.182z"/>
+                </svg>
+                <span className="text-gray-600 font-medium">No fees or timelines generated automatically</span>
               </div>
+              <div className="flex items-center gap-3">
+                <svg className="w-[22px] h-[22px] text-[#da291c] shrink-0" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm-1.177-7.86l5.303-5.303-1.414-1.414-3.889 3.889-1.768-1.768-1.414 1.414 3.182 3.182z"/>
+                </svg>
+                <span className="text-gray-600 font-medium">Reviewed and confirmed by our team directly</span>
+              </div>
+            </div>
+            
+            <div className="pt-6">
+              <button
+                onClick={() => onOpenConsultation()}
+                className="bg-[#da291c] hover:bg-[#a01616] text-white px-8 py-3.5 rounded-lg font-bold text-sm tracking-wide transition-colors shadow-sm"
+              >
+                BOOK A CONSULTATION
+              </button>
             </div>
           </div>
         </div>

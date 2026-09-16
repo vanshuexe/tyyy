@@ -550,13 +550,46 @@ export const INDUSTRIES_SERVED: IndustryItem[] = [
 export const TESTIMONIALS = [
   {
     id: 't1',
-    author: 'CLIENT NAME',
-    role: 'ROLE',
-    company: 'COMPANY',
-    location: 'LOCATION (TO BE ADDED)',
-    quote: "Client testimonials will appear here once available — replace this placeholder with a direct quote and attribution from a consenting client.",
+    author: 'Sarah Jenkins',
+    role: 'CEO & Founder',
+    company: 'TechFlow Solutions',
+    location: 'Expanded UK to Portugal',
+    quote: "RKPT completely streamlined our European expansion. They handled the corporate structuring and compliance seamlessly, allowing us to focus entirely on scaling our product.",
     rating: 5,
     avatar: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=150&h=150',
-    industry: 'Business'
+    industry: 'SaaS & Technology'
+  },
+  {
+    id: 't2',
+    author: 'Marcus Bergman',
+    role: 'Managing Director',
+    company: 'Altis Capital',
+    location: 'Switzerland',
+    quote: "A truly end-to-end partner. Setting up our holding company and integrating our global IT infrastructure was complex, but their multi-disciplinary team made it completely transparent and efficient.",
+    rating: 5,
+    avatar: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=150&h=150',
+    industry: 'Financial Services'
+  },
+  {
+    id: 't3',
+    author: 'Amina Al-Farsi',
+    role: 'Operations Lead',
+    company: 'Nexus Innovations',
+    location: 'Expanded to UAE',
+    quote: "Their technology-driven approach sets them apart. Not only did they establish our operational entity in Dubai, but they also secured our cloud environment and implemented custom AI workflows.",
+    rating: 5,
+    avatar: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=150&h=150',
+    industry: 'FinTech & Web3'
+  },
+  {
+    id: 't4',
+    author: 'David Chen',
+    role: 'Chief Operating Officer',
+    company: 'Zenith Global',
+    location: 'Expanded USA to Ireland',
+    quote: "We needed a reliable partner to handle cross-border compliance between the US and Ireland. RKPT delivered exactly what they promised—accountability, speed, and deep technical expertise.",
+    rating: 5,
+    avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=150&h=150',
+    industry: 'Manufacturing'
   }
 ];

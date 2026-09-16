@@ -21,7 +21,7 @@ export const TestimonialCarousel: React.FC = () => {
   useEffect(() => {
     const timer = setInterval(() => {
       nextTestimonial();
-    }, 8000);
+    }, 4500); // reduced from 8000ms to 4500ms for more dynamic automatic sliding
     return () => clearInterval(timer);
   }, [currentIndex]);
 
