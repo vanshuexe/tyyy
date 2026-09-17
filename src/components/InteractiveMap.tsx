@@ -14,14 +14,14 @@ export const InteractiveMap: React.FC = () => {
   const [hoveredHub, setHoveredHub] = useState<string | null>(null);
 
   return (
-    <section className="py-24 bg-[#0b1b36] relative overflow-hidden border-b border-[#1e4a87]/30">
+    <section className="py-20 md:py-28 bg-[#0b1b36] relative overflow-hidden border-b border-[#1e4a87]/30">
       {/* Background Stylized Elements */}
       <div className="absolute inset-0 opacity-10 pointer-events-none" style={{ backgroundImage: 'radial-gradient(#3273a8 1.5px, transparent 1.5px)', backgroundSize: '32px 32px' }}></div>
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-[#3273a8]/20 rounded-full blur-[120px] pointer-events-none"></div>
       
       <ScrollReveal>
 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        <div className="text-center max-w-3xl mx-auto mb-4">
           <span className="text-[#66a3d1] uppercase tracking-[0.2em] text-xs sm:text-sm font-bold mb-3 block">
             European Presence
           </span>
@@ -90,12 +90,12 @@ export const InteractiveMap: React.FC = () => {
                           <img src={country.flag} alt={country.name} className="w-8 h-6 object-cover rounded-sm shadow-sm border border-gray-200" />
                           <div>
                             <div className="font-bold text-[#0b1b36] text-sm leading-tight">{country.name}</div>
-                            <div className="text-[10px] text-[#3273a8] font-bold uppercase tracking-wider mt-0.5">{country.structures[0]}</div>
+                            <div className="text-sm text-[#3273a8] font-bold uppercase tracking-wider mt-0.5">{country.structures[0]}</div>
                           </div>
                         </div>
                         <div className="p-4 bg-white text-left">
                           <p className="text-xs text-gray-500 line-clamp-3 mb-3 leading-relaxed">{country.summary}</p>
-                          <div className="flex items-center gap-1.5 text-[#c91c1c] text-[10px] font-bold uppercase tracking-wider">
+                          <div className="flex items-center gap-1.5 text-[#c91c1c] text-sm font-bold uppercase tracking-wider">
                             <ShieldCheck className="w-4 h-4" /> RKPT Regional Office
                           </div>
                         </div>

@@ -22,10 +22,10 @@ export const ServiceDetailModal: React.FC<ServiceDetailModalProps> = ({
         <div className="sticky top-0 z-10 bg-[#0b1b36] text-white p-6 rounded-t-xl flex items-start justify-between border-b-4 border-[#c91c1c]">
           <div className="space-y-1">
             <div className="flex items-center gap-2">
-              <span className="px-2.5 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-[#15325b] text-blue-200 border border-[#3273a8]/40">
+              <span className="px-2.5 py-0.5 rounded text-sm font-bold uppercase tracking-wider bg-[#15325b] text-blue-200 border border-[#3273a8]/40">
                 Service Pillar {service.number}
               </span>
-              <span className="text-[10px] font-bold uppercase tracking-wider text-yellow-400">{service.badge}</span>
+              <span className="text-sm font-bold uppercase tracking-wider text-yellow-400">{service.badge}</span>
             </div>
             <h3 className="text-2xl font-extrabold font-display uppercase tracking-tight text-white">{service.title}</h3>
             <p className="text-xs text-[#3273a8] font-bold uppercase tracking-wider">{service.tagline}</p>
@@ -55,7 +55,7 @@ export const ServiceDetailModal: React.FC<ServiceDetailModalProps> = ({
           {/* Sub Categories with direct PDF bullets */}
           <div className="space-y-6">
             {service.subCategories.map((sub, idx) => (
-              <div key={idx} className="bg-gray-50 border border-gray-200 rounded-lg p-5 border-l-4 border-l-[#15325b]">
+              <div key={idx} className="bg-gray-50 border border-gray-200 rounded-2xl p-8 md:p-10 border-l-4 border-l-[#15325b]">
                 <h5 className="font-bold text-sm text-[#15325b] uppercase tracking-wide mb-3 flex items-center gap-2">
                   <Layers className="w-4 h-4 text-[#3273a8]" />
                   <span>{sub.title}</span>
@@ -73,7 +73,7 @@ export const ServiceDetailModal: React.FC<ServiceDetailModalProps> = ({
           </div>
 
           {/* Key Deliverables & Assurances */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-2">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 md:gap-10 pt-2">
             <div className="space-y-3 bg-gray-50 p-4 rounded-lg border border-gray-200">
               <h5 className="text-xs font-bold uppercase tracking-wider text-[#15325b] flex items-center gap-1.5">
                 <FileCheck className="w-4 h-4 text-[#c91c1c]" />

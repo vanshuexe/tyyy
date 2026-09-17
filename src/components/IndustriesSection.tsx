@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { motion } from 'motion/react';
 import { INDUSTRIES_SERVED } from '../data/companyData';
 import {
   Rocket,
@@ -44,7 +45,7 @@ export const IndustriesSection: React.FC<IndustriesSectionProps> = ({ onOpenCons
   };
 
   return (
-    <section id="industries" className="py-20 bg-white border-b border-gray-200">
+    <section id="industries" className="py-20 md:py-28 bg-white border-b border-gray-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-14">
@@ -60,10 +61,17 @@ export const IndustriesSection: React.FC<IndustriesSectionProps> = ({ onOpenCons
         </div>
 
         {/* 8 Industries Grid in KCID Card Style */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
-          {INDUSTRIES_SERVED.map((ind) => {
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-8 md:gap-10 mb-4">
+          {INDUSTRIES_SERVED.map((ind, idx) => {
             const isSelected = selectedIndustry.id === ind.id;
             return (
+              <motion.div
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: idx * 0.05 }}
+                key={ind.id}
+              >
               <button
                 key={ind.id}
                 type="button"
@@ -81,22 +89,23 @@ export const IndustriesSection: React.FC<IndustriesSectionProps> = ({ onOpenCons
                   {ind.name}
                 </h4>
               </button>
+              </motion.div>
             );
           })}
         </div>
 
         {/* Detail Spotlight on Selected Industry in KCID Style */}
-        <div className="bg-white border border-gray-100 rounded-xl overflow-hidden flex flex-col lg:flex-row shadow-sm">
-          <div className="w-full lg:w-1/3 h-48 lg:h-auto relative">
+        <div className="bg-white border border-gray-100 rounded-xl overflow-hidden shadow-sm flex flex-col">
+          {/* Top Banner Image (Responsive horizontal display) */}
+          <div className="w-full relative bg-gray-100 overflow-hidden">
             <img 
-              src="https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&q=80&w=800" 
-              alt="Industry Professional" 
-              className="w-full h-full object-cover"
+              src={selectedIndustry.image || "https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&q=80&w=800"} 
+              alt={selectedIndustry.name} 
+              className="w-full h-auto block"
             />
-            <div className="absolute inset-0 bg-[#0b1b36]/10 mix-blend-multiply"></div>
           </div>
           
-          <div className="flex-1 p-6 sm:p-10 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8">
+          <div className="flex-1 p-6 sm:p-10 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
             <div className="space-y-4 max-w-2xl">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-lg bg-gray-50 border border-gray-100 flex items-center justify-center shadow-xs">

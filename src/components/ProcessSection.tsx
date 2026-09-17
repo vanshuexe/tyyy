@@ -9,11 +9,11 @@ interface ProcessSectionProps {
 
 export const ProcessSection: React.FC<ProcessSectionProps> = ({ onOpenConsultation }) => {
   return (
-    <section id="process" className="py-20 bg-gray-50 border-b border-gray-200">
+    <section id="process" className="py-20 md:py-28 bg-gray-50 border-b border-gray-200">
       <ScrollReveal>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Header */}
-          <div className="max-w-3xl mb-16">
+          <div className="max-w-3xl mb-4">
             <span className="text-[#c91c1c] uppercase tracking-[0.15em] text-xs font-bold mb-3 block">
               FROM SETUP TO GROWTH
             </span>

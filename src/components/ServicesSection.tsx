@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { motion } from 'motion/react';
 import { ScrollReveal } from './ScrollReveal';
 import { SERVICES_DATA } from '../data/companyData';
 import { ServicePillar } from '../types';
@@ -52,12 +53,12 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onOpenConsulta
   });
 
   return (
-    <section id="services" className="py-20 bg-white border-b border-gray-200">
+    <section id="services" className="py-20 md:py-28 bg-white border-b border-gray-200">
       
         <ScrollReveal>
 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-12">
+        <div className="text-center max-w-3xl mx-auto mb-4">
           <span className="text-[#c91c1c] uppercase tracking-[0.2em] text-xs sm:text-sm font-bold mb-2 block">
             INTEGRATED CAPABILITIES
           </span>
@@ -92,7 +93,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onOpenConsulta
         </div>
 
         {/* 6 Services Grid in KCID Card Style with top accent */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
           {filteredServices.map((service, index) => {
             // Alternating KCID top borders
             const borderTop =
@@ -103,6 +104,13 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onOpenConsulta
                 : '';
 
             return (
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: (index % 3) * 0.1 }}
+                key={service.id}
+              >
               <div
                 key={service.id}
                 className={`bg-white rounded-2xl border border-gray-100 shadow-sm p-8 hover:shadow-md transition-all duration-300 flex flex-col justify-between group text-left relative ${borderTop}`}
@@ -117,7 +125,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onOpenConsulta
                       <span className="text-xs font-mono font-bold text-gray-400">
                         {service.number}
                       </span>
-                      <span className="text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded bg-gray-100 text-[#15325b]">
+                      <span className="text-sm font-bold uppercase tracking-wider px-2.5 py-0.5 rounded bg-gray-100 text-[#15325b]">
                         {service.badge}
                       </span>
                     </div>
@@ -145,7 +153,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onOpenConsulta
                       </div>
                     ))}
                     {service.subCategories[0]?.items.length > 4 && (
-                      <div className="text-[11px] text-[#3273a8] font-bold uppercase tracking-wider pl-5">
+                      <div className="text-sm text-[#3273a8] font-bold uppercase tracking-wider pl-5">
                         + {service.subCategories[0].items.length - 4} more specialized capabilities
                       </div>
                     )}
@@ -170,6 +178,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onOpenConsulta
                   </button>
                 </div>
               </div>
+              </motion.div>
             );
           })}
         </div>

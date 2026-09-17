@@ -76,11 +76,11 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ prefilledService
   };
 
   return (
-    <section id="contact" className="py-20 bg-white text-gray-900 border-b border-gray-200">
+    <section id="contact" className="py-20 md:py-28 bg-white text-gray-900 border-b border-gray-200">
       <ScrollReveal>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        <div className="text-center max-w-3xl mx-auto mb-4">
           <span className="text-[#c91c1c] uppercase tracking-[0.2em] text-xs sm:text-sm font-bold mb-2 block">
             READY TO EXPAND?
           </span>
@@ -93,7 +93,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ prefilledService
         </div>
 
         {/* 3 Regional European Offices in KCID Card Style with Crimson Accent */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10 mb-4">
           {COMPANY_INFO.contact.offices.map((office, idx) => (
             <div
               key={idx}
@@ -106,7 +106,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ prefilledService
                     {office.city}, {office.country}
                   </h4>
                 </div>
-                <span className="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded bg-[#024d87] text-white">
+                <span className="text-sm uppercase font-bold tracking-wider px-2 py-0.5 rounded bg-[#024d87] text-white">
                   HQ Node
                 </span>
               </div>
@@ -123,7 +123,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ prefilledService
         </div>
 
         {/* Form and Direct Coordinates Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-10 items-start">
           {/* Left Column: Direct Coordinates & Assurance in KCID Style */}
           <div className="lg:col-span-5 space-y-6">
             <div className="rounded-xl bg-gray-50 border border-gray-200 border-t-4 border-t-[#3273a8] p-6 sm:p-8 space-y-6 shadow-sm">
@@ -187,7 +187,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ prefilledService
                   <ShieldCheck className="w-4 h-4 text-[#c91c1c]" />
                   <span>Confidentiality &amp; GDPR Guarantee</span>
                 </div>
-                <p className="text-[11px] text-gray-500 leading-normal">
+                <p className="text-sm text-gray-500 leading-normal">
                   All shared shareholder details, business models, and financial forecasts are protected under strict EU attorney-client confidentiality and GDPR standards.
                 </p>
               </div>
@@ -197,7 +197,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ prefilledService
           {/* Right Column: Inquiry Submission Form in KCID Style */}
           <div className="lg:col-span-7 bg-white rounded-xl border border-gray-200 border-t-4 border-t-[#c91c1c] p-6 sm:p-8 shadow-xl">
             {submittedRef ? (
-              <div className="py-8 text-center space-y-4">
+              <div className="py-4 text-center space-y-4">
                 <div className="w-14 h-14 rounded-full bg-[#c91c1c] text-white flex items-center justify-center mx-auto shadow-md">
                   <CheckCircle2 className="w-8 h-8" />
                 </div>
@@ -242,7 +242,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ prefilledService
                 </div>
 
                 {/* Name & Email */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 md:gap-10">
                   <div>
                     <label className="block text-xs font-bold uppercase tracking-wider text-gray-700 mb-1">
                       Full Name *
@@ -273,7 +273,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ prefilledService
                 </div>
 
                 {/* Company Name & Phone */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 md:gap-10">
                   <div>
                     <label className="block text-xs font-bold uppercase tracking-wider text-gray-700 mb-1">
                       Company / Venture Name
@@ -303,7 +303,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ prefilledService
                 </div>
 
                 {/* Country & Timeline */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 md:gap-10">
                   <div>
                     <label className="block text-xs font-bold uppercase tracking-wider text-gray-700 mb-1">
                       Target Jurisdiction
@@ -315,7 +315,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ prefilledService
                     >
                       <option value="Portugal">🇵🇹 Portugal (LDA, NHR, Startup/Golden Visa)</option>
                       <option value="Switzerland">🇨🇭 Switzerland (GmbH/AG, Cantonal)</option>
-                      <option value="Ireland">🇮🇪 Ireland (LTD, CRO, 12.5% CIT)</option>
+                      <option value="Ireland">🇮🇪 Ireland (LTD, CRO)</option>
                       <option value="Multi-Country / Need Guidance">Multi-Country / Need Comparative Guidance</option>
                     </select>
                   </div>

@@ -13,7 +13,7 @@ export const ComplianceBadge: React.FC = () => {
         title="View Compliance Details"
       >
         <ShieldCheck className="w-4 h-4 text-green-700 group-hover:scale-110 transition-transform" />
-        <span className="text-[10px] sm:text-xs font-bold text-green-800 tracking-wide uppercase">Verified Compliant</span>
+        <span className="text-sm sm:text-xs font-bold text-green-800 tracking-wide uppercase">Verified Compliant</span>
       </button>
 
       <AnimatePresence>
@@ -48,7 +48,7 @@ export const ComplianceBadge: React.FC = () => {
               </div>
 
               <div className="p-6 space-y-6">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 md:gap-10">
                   <div className="bg-gray-50 p-4 rounded-xl border border-gray-100">
                     <div className="flex items-center gap-2 mb-2">
                       <Lock className="w-4 h-4 text-[#3273a8]" />
@@ -90,7 +90,7 @@ export const ComplianceBadge: React.FC = () => {
               </div>
 
               <div className="bg-gray-50 px-6 py-4 border-t border-gray-100 flex items-center justify-between">
-                <span className="text-[10px] text-gray-400 font-mono uppercase">Verified: {new Date().toLocaleDateString()}</span>
+                <span className="text-sm text-gray-400 font-mono uppercase">Verified: {new Date().toLocaleDateString()}</span>
                 <button onClick={() => setShowModal(false)} className="text-sm font-semibold text-[#1e4a87] hover:text-[#0b1b36] transition-colors cursor-pointer">
                   Close Verification
                 </button>

@@ -64,12 +64,12 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenConsultation }
   };
 
   return (
-    <section id="about" className="py-20 bg-gray-50 border-b border-gray-200">
+    <section id="about" className="py-20 md:py-28 bg-gray-50 border-b border-gray-200">
       <ScrollReveal>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-20">
         {/* Company Profile Header & Vision / Mission */}
         <div>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-10 items-center mb-4">
             <div className="text-left">
               <span className="text-[#3273a8] uppercase tracking-[0.2em] text-xs sm:text-sm font-bold mb-3 block">
                 Institutional Profile
@@ -91,7 +91,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenConsultation }
             </div>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-10">
             {/* Vision Card in Crisp Light Style with Crimson Top Accent */}
             <div className="p-8 rounded-xl bg-white border border-gray-200 border-t border-gray-100 shadow-sm text-gray-900 shadow-md flex flex-col justify-between">
               <div>
@@ -140,7 +140,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenConsultation }
 
         {/* Why Choose Us 6 Pillars */}
         <div>
-          <div className="text-center max-w-2xl mx-auto mb-10">
+          <div className="text-center max-w-2xl mx-auto mb-4">
             <span className="text-[#3273a8] uppercase tracking-[0.2em] text-xs font-bold mb-1 block">
               Core Strengths
             </span>
@@ -152,7 +152,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenConsultation }
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
             {WHY_CHOOSE_US.map((item, idx) => (
               <div
                 key={idx}
@@ -175,7 +175,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenConsultation }
 
         {/* Core Values 5 Grid */}
         <div>
-          <div className="text-center max-w-2xl mx-auto mb-10">
+          <div className="text-center max-w-2xl mx-auto mb-4">
             <span className="text-[#3273a8] uppercase tracking-[0.2em] text-xs font-bold mb-1 block">
               Ethical Standards
             </span>
@@ -187,7 +187,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenConsultation }
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 md:gap-10">
             {CORE_VALUES.map((val, idx) => (
               <div
                 key={idx}
@@ -197,7 +197,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenConsultation }
                   <div className="w-9 h-9 rounded-lg bg-gray-50 border border-gray-200 flex items-center justify-center mb-3">
                     {getValueIcon(val.icon)}
                   </div>
-                  <span className="text-[10px] uppercase font-bold text-[#3273a8] tracking-wider">
+                  <span className="text-sm uppercase font-bold text-[#3273a8] tracking-wider">
                     {val.tag}
                   </span>
                   <h4 className="font-bold text-sm uppercase text-[#15325b] mt-0.5">

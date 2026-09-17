@@ -1,11 +1,7 @@
 const fs = require('fs');
 const content = fs.readFileSync('src/components/ExpansionCalculator.tsx', 'utf8');
-try {
-  require('@babel/core').transformSync(content, {
-    presets: ['@babel/preset-react', '@babel/preset-typescript'],
-    filename: 'src/components/ExpansionCalculator.tsx'
-  });
-  console.log("Syntax is OK");
-} catch (e) {
-  console.error(e.message);
-}
+
+let openTags = (content.match(/<div(\s|>)/g) || []).length;
+let closeTags = (content.match(/<\/div>/g) || []).length;
+
+console.log('Open divs:', openTags, 'Close divs:', closeTags);

@@ -40,6 +40,7 @@ export interface IndustryItem {
   summary: string;
   typicalNeeds: string[];
   solutionApproach: string;
+  image?: string;
 }
 
 export interface ProcessStep {

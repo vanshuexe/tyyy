@@ -171,7 +171,7 @@ export const ExpansionCalculator: React.FC<ExpansionCalculatorProps> = ({
   return (
     <section
       id="estimator"
-      className="py-20 bg-white text-gray-900 border-b border-gray-200"
+      className="py-20 md:py-28 bg-white text-gray-900 border-b border-gray-200"
     >
       <ScrollReveal>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -206,7 +206,7 @@ export const ExpansionCalculator: React.FC<ExpansionCalculatorProps> = ({
           </div>
 
           {/* Planner Grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-10 items-start">
             {/* Left Configuration Panel in KCID Light Style */}
             <div className="lg:col-span-7 bg-gray-50 rounded-xl border border-gray-200 p-6 sm:p-8 space-y-6 border-t-4 border-t-[#3273a8] shadow-sm">
               {/* TARGET HUB */}
@@ -246,11 +246,12 @@ export const ExpansionCalculator: React.FC<ExpansionCalculatorProps> = ({
                       }))
                     }
                   >
+                    <option value="solo">Solo Founder</option>
                     <option value="startup">
-                      An individual / entrepreneur
+                      Startup (&lt; 10 employees)
                     </option>
-                    <option value="sme">Small / Medium Business</option>
-                    <option value="enterprise">Established Company</option>
+                    <option value="sme">SME (10-50 employees)</option>
+                    <option value="enterprise">Enterprise (50+ employees)</option>
                   </select>
                   <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500 pointer-events-none" />
                 </div>
@@ -292,13 +293,17 @@ export const ExpansionCalculator: React.FC<ExpansionCalculatorProps> = ({
 
               <button
                 onClick={() => onProceedWithScope("Generated Blueprint")}
-                className="w-full py-4 bg-white border-2 border-gray-100 hover:border-[#c91c1c] text-gray-500 hover:text-[#c91c1c] text-xs font-bold uppercase tracking-[0.2em] rounded-lg transition-colors mt-8"
+                className="w-full py-4 bg-white border-2 border-gray-100 hover:border-[#c91c1c] text-gray-500 hover:text-[#c91c1c] text-xs font-bold uppercase tracking-[0.2em] rounded-lg transition-colors mt-4"
               >
                 GENERATE MY BLUEPRINT
               </button>
 
-              {/* hidden content to keep right side working, although not visually required since we hide the rest */}
-              <div className="hidden">
+              {/* Additional Services */}
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-wider text-gray-700 mb-3">
+                  ADDITIONAL SCOPE & SERVICES
+                </label>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div
                   onClick={() =>
                     setState((p) => ({
@@ -325,7 +330,7 @@ export const ExpansionCalculator: React.FC<ExpansionCalculatorProps> = ({
                     <div className="font-bold text-[#15325b]">
                       Corporate Banking Setup
                     </div>
-                    <div className="text-[11px] text-gray-500 mt-0.5">
+                    <div className="text-sm text-gray-500 mt-0.5">
                       Tier-1 European IBAN &amp; digital EMI accounts
                     </div>
                   </div>
@@ -358,7 +363,7 @@ export const ExpansionCalculator: React.FC<ExpansionCalculatorProps> = ({
                     <div className="font-bold text-[#15325b]">
                       Registered Office Address
                     </div>
-                    <div className="text-[11px] text-gray-500 mt-0.5">
+                    <div className="text-sm text-gray-500 mt-0.5">
                       Prestigious {currentCountry.capital} business domicile
                     </div>
                   </div>
@@ -388,7 +393,7 @@ export const ExpansionCalculator: React.FC<ExpansionCalculatorProps> = ({
                     <div className="font-bold text-[#15325b]">
                       Accounting, VAT &amp; Payroll
                     </div>
-                    <div className="text-[11px] text-gray-500 mt-0.5">
+                    <div className="text-sm text-gray-500 mt-0.5">
                       Full-cycle statutory bookkeeping &amp; tax returns
                     </div>
                   </div>
@@ -421,7 +426,7 @@ export const ExpansionCalculator: React.FC<ExpansionCalculatorProps> = ({
                     <div className="font-bold text-[#15325b]">
                       Visa &amp; Residency Support
                     </div>
-                    <div className="text-[11px] text-gray-500 mt-0.5">
+                    <div className="text-sm text-gray-500 mt-0.5">
                       Director permits, Golden Visa, D8 or CSEP
                     </div>
                   </div>
@@ -451,7 +456,7 @@ export const ExpansionCalculator: React.FC<ExpansionCalculatorProps> = ({
                     <div className="font-bold text-[#15325b]">
                       IT &amp; Digital Solutions
                     </div>
-                    <div className="text-[11px] text-gray-500 mt-0.5">
+                    <div className="text-sm text-gray-500 mt-0.5">
                       GDPR corporate website, mobile app or ERP
                     </div>
                   </div>
@@ -481,52 +486,22 @@ export const ExpansionCalculator: React.FC<ExpansionCalculatorProps> = ({
                     <div className="font-bold text-[#15325b]">
                       Business Plan &amp; Market Entry
                     </div>
-                    <div className="text-[11px] text-gray-500 mt-0.5">
+                    <div className="text-sm text-gray-500 mt-0.5">
                       EU market feasibility &amp; financial modeling
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-
-            {/* Step 4: Company Scale */}
-            <div>
-              <label className="block text-xs font-bold uppercase tracking-wider text-gray-700 mb-2">
-                4. Operational Scale:
-              </label>
-              <div className="grid grid-cols-4 gap-2">
-                {[
-                  { id: "solo", label: "Solo Founder" },
-                  { id: "startup", label: "Startup (< 10)" },
-                  { id: "sme", label: "SME (10-50)" },
-                  { id: "enterprise", label: "Enterprise (50+)" },
-                ].map((s) => (
-                  <button
-                    key={s.id}
-                    type="button"
-                    onClick={() =>
-                      setState((p) => ({ ...p, businessSize: s.id as any }))
-                    }
-                    className={`py-2 px-2 rounded-md text-xs font-bold uppercase tracking-wider border text-center transition-all ${
-                      state.businessSize === s.id
-                        ? "bg-[#15325b] text-white border-[#15325b] shadow-xs"
-                        : "bg-white border-gray-200 text-gray-600 hover:border-[#3273a8]"
-                    }`}
-                  >
-                    {s.label}
-                  </button>
-                ))}
-              </div>
-            </div>
           </div>
         </div>
 
         {/* Right Live Summary Blueprint in Clean White KCID Style with Crimson Top Accent */}
-        <div className="lg:col-span-5 sticky top-24 space-y-6">
+        <div className="lg:col-span-5 lg:sticky lg:top-24 space-y-6 self-start">
           <div className="rounded-xl bg-white border border-gray-200 border-t-4 border-t-[#c91c1c] p-6 sm:p-8 shadow-xl space-y-6">
             <div className="flex items-center justify-between border-b border-gray-100 pb-4">
               <div>
-                <div className="text-[11px] uppercase font-bold text-[#3273a8] tracking-widest">
+                <div className="text-sm uppercase font-bold text-[#3273a8] tracking-widest">
                   Calculated Expansion Blueprint
                 </div>
                 <h3 className="text-xl font-bold font-display uppercase tracking-tight text-[#15325b] mt-0.5">
@@ -541,7 +516,7 @@ export const ExpansionCalculator: React.FC<ExpansionCalculatorProps> = ({
             </div>
 
             {/* Key Metrics */}
-            <div className="grid grid-cols-2 gap-4 bg-gray-50 p-4 rounded-lg border border-gray-200">
+            <div className="grid grid-cols-2 gap-8 md:gap-10 bg-gray-50 p-4 rounded-lg border border-gray-200">
               <div>
                 <span className="text-xs font-bold uppercase tracking-wider text-gray-500">
                   Estimated Timeline:
@@ -601,7 +576,7 @@ export const ExpansionCalculator: React.FC<ExpansionCalculatorProps> = ({
               <ArrowRight className="w-4 h-4" />
             </button>
 
-            <div className="flex items-center justify-between text-[11px] text-gray-500 pt-2 border-t border-gray-100">
+            <div className="flex items-center justify-between text-sm text-gray-500 pt-2 border-t border-gray-100">
               <span>Official registry fees &amp; notarization separate</span>
               <button
                 onClick={() =>
@@ -624,6 +599,7 @@ export const ExpansionCalculator: React.FC<ExpansionCalculatorProps> = ({
               </button>
             </div>
           </div>
+        </div>
         </div>
       </ScrollReveal>
     </section>

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
 import { Navbar } from './components/Navbar';
 import { HomeView } from './components/HomeView';
 import { PageHeader } from './components/PageHeader';
@@ -10,6 +11,8 @@ import { IndustriesSection } from './components/IndustriesSection';
 import { AboutSection } from './components/AboutSection';
 import { ContactSection } from './components/ContactSection';
 import { Footer } from './components/Footer';
+import { ChatBot } from './components/ChatBot';
+import { CountryMatrix } from './components/CountryMatrix';
 import { X, CheckCircle2, Send, ShieldCheck } from 'lucide-react';
 import { COMPANY_INFO } from './data/companyData';
 
@@ -17,6 +20,7 @@ export default function App() {
   const getPageFromHash = (): string => {
     const hash = window.location.hash.replace('#', '').toLowerCase();
     if (['jurisdictions', 'hubs'].includes(hash)) return 'jurisdictions';
+    if (hash === 'matrix') return 'matrix';
     if (['services'].includes(hash)) return 'services';
     if (['estimator', 'calculator'].includes(hash)) return 'estimator';
     if (['process', 'roadmap'].includes(hash)) return 'process';
@@ -31,6 +35,7 @@ export default function App() {
   const [selectedCountryForEstimator, setSelectedCountryForEstimator] = useState<
     'portugal' | 'switzerland' | 'ireland'
   >('portugal');
+  const [selectedHubId, setSelectedHubId] = useState<string | null>(null);
 
   // Fast modal form state
   const [modalForm, setModalForm] = useState({
@@ -54,7 +59,11 @@ export default function App() {
     return () => window.removeEventListener('hashchange', handleHashChange);
   }, []);
 
-  const handleNavigate = (pageId: string) => {
+  const handleNavigate = (pageId: string, extraData?: any) => {
+    if (pageId === "jurisdictions" && typeof extraData === "string") {
+      setSelectedHubId(extraData);
+    }
+
     setCurrentPage(pageId);
     if (pageId === 'home') {
       window.history.pushState(null, '', window.location.pathname);
@@ -109,11 +118,32 @@ export default function App() {
 
       {/* Main Content: Render dedicated view based on currentPage */}
       <main className="flex-1">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={currentPage}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.3 }}
+          >
         {currentPage === 'home' && (
           <HomeView
             onNavigate={handleNavigate}
             onOpenConsultation={handleOpenConsultation}
           />
+        )}
+
+
+        {currentPage === 'matrix' && (
+          <div>
+            <PageHeader
+              title="Global Comparison Matrix"
+              subtitle="Detailed operational insights across our primary jurisdictions."
+              category="Country Details"
+              onNavigateHome={() => handleNavigate('home')}
+            />
+            <CountryMatrix />
+          </div>
         )}
 
         {currentPage === 'jurisdictions' && (
@@ -126,6 +156,7 @@ export default function App() {
               onOpenConsultation={() => handleOpenConsultation('Jurisdiction Advisory')}
             />
             <CountryHubs
+              initialSelectedId={selectedHubId}
               onSelectCountry={handleSelectCountryFromHub}
               onOpenConsultation={(country) => handleOpenConsultation(`Jurisdiction Advisory: ${country}`)}
             />
@@ -199,6 +230,8 @@ export default function App() {
             <ContactSection prefilledService={prefilledService} />
           </div>
         )}
+          </motion.div>
+        </AnimatePresence>
       </main>
 
       {/* Corporate Footer with Multi-Page links */}
@@ -229,7 +262,7 @@ export default function App() {
             {/* Modal Content */}
             <div className="p-6">
               {modalSubmitted ? (
-                <div className="text-center py-6 space-y-4">
+                <div className="text-center py-2 space-y-4">
                   <div className="w-14 h-14 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto">
                     <CheckCircle2 className="w-8 h-8" />
                   </div>
@@ -321,7 +354,7 @@ export default function App() {
                     >
                       <option value="Portugal">🇵🇹 Portugal (LDA, NHR, Tech Visa)</option>
                       <option value="Switzerland">🇨🇭 Switzerland (GmbH, AG, Cantonal Holding)</option>
-                      <option value="Ireland">🇮🇪 Ireland (LTD, CRO, 12.5% CIT)</option>
+                      <option value="Ireland">🇮🇪 Ireland (LTD, CRO)</option>
                       <option value="Multi-Country">🇪🇺 Multi-Country European Group</option>
                       <option value="Other EU">Other European Union Territory</option>
                     </select>
@@ -359,6 +392,7 @@ export default function App() {
           </div>
         </div>
       )}
+      <ChatBot />
     </div>
   );
 }

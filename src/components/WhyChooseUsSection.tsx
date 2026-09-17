@@ -56,10 +56,10 @@ const whyChooseUsData = [
 
 export const WhyChooseUsSection: React.FC = () => {
   return (
-    <section className="py-20 bg-white border-b border-gray-200">
+    <section className="py-20 md:py-28 bg-white border-b border-gray-200">
       <ScrollReveal>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="mb-16 max-w-3xl">
+          <div className="mb-4 max-w-3xl">
             <span className="text-[#c91c1c] uppercase tracking-[0.15em] text-xs font-bold mb-3 block">
               WHY CHOOSE RKPT
             </span>
@@ -71,7 +71,7 @@ export const WhyChooseUsSection: React.FC = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10">
             {whyChooseUsData.map((item, index) => {
               const Icon = item.icon;
               return (

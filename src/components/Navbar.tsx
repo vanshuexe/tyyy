@@ -5,7 +5,7 @@ import { COMPANY_INFO, COUNTRIES_DATA } from '../data/companyData';
 
 interface NavbarProps {
   currentPage: string;
-  onNavigate: (pageId: string) => void;
+  onNavigate: (pageId: string, extraData?: any) => void;
   onOpenConsultation: (preselectedService?: string) => void;
 }
 
@@ -30,6 +30,7 @@ export const Navbar: React.FC<NavbarProps> = ({
     { id: 'jurisdictions', label: 'Hubs' },
     { id: 'services', label: 'Practice Areas' },
     { id: 'estimator', label: 'Scope Planner' },
+    { id: 'matrix', label: 'Country Details' },
     { id: 'process', label: 'Our Process' },
     { id: 'about', label: 'About RKPT' },
     { id: 'contact', label: 'Advisory Desks' },
@@ -40,7 +41,7 @@ export const Navbar: React.FC<NavbarProps> = ({
       {/* Top Advisory Bar */}
       <div className="bg-[#0b1b36] text-gray-300 text-xs py-2.5 px-3 sm:px-6 border-b border-[#1e4a87]/50 w-full">
         <div className="max-w-7xl mx-auto flex items-center justify-between gap-2 w-full">
-          <div className="flex items-center gap-3 sm:gap-5 text-[11px] sm:text-xs min-w-0">
+          <div className="flex items-center gap-3 sm:gap-5 text-sm sm:text-xs min-w-0">
             <span className="flex items-center gap-1.5 text-[#3273a8] font-bold uppercase tracking-widest shrink-0">
               <Globe className="w-3.5 h-3.5 text-[#c91c1c] shrink-0" />
               <span className="hidden xs:inline">European Gateway:</span>
@@ -58,7 +59,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 {COUNTRIES_DATA.map((c) => (
                   <button 
                     key={c.id} 
-                    onClick={() => onNavigate('jurisdictions')}
+                    onClick={() => onNavigate('jurisdictions', c.id)}
                     className="flex items-center gap-3 px-3.5 py-2 hover:bg-gray-50 hover:text-[#3273a8] text-left transition-colors w-full"
                   >
                     <img src={c.flag} alt={c.name} className="w-4 h-3 object-cover rounded-[2px] shadow-sm border border-gray-200 shrink-0" />
@@ -68,7 +69,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               </div>
             </div>
           </div>
-          <div className="flex items-center gap-3 sm:gap-4 text-[11px] sm:text-xs font-semibold shrink-0">
+          <div className="flex items-center gap-3 sm:gap-4 text-sm sm:text-xs font-semibold shrink-0">
             <a
               href={`mailto:${COMPANY_INFO.contact.email}`}
               className="hidden sm:flex items-center gap-1.5 text-gray-300 hover:text-white transition-colors tracking-wide"
@@ -142,7 +143,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           <div className="flex lg:hidden items-center gap-1.5 sm:gap-2 shrink-0">
             <button
               onClick={() => onOpenConsultation()}
-              className="btn-premium px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg bg-[#c91c1c] hover:bg-[#a01616] text-white text-[11px] sm:text-xs font-bold uppercase tracking-wider shrink-0 shadow-sm"
+              className="btn-premium px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg bg-[#c91c1c] hover:bg-[#a01616] text-white text-sm sm:text-xs font-bold uppercase tracking-wider shrink-0 shadow-sm"
             >
               Consult
             </button>
@@ -200,7 +201,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 <button
                   onClick={() => {
                     setMobileMenuOpen(false);
-                    onNavigate('jurisdictions');
+                    onNavigate('jurisdictions', 'portugal');
                   }}
                   className="p-2 rounded-lg bg-gray-50 border border-gray-200 hover:border-[#c91c1c] cursor-pointer"
                 >
@@ -209,7 +210,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 <button
                   onClick={() => {
                     setMobileMenuOpen(false);
-                    onNavigate('jurisdictions');
+                    onNavigate('jurisdictions', 'switzerland');
                   }}
                   className="p-2 rounded-lg bg-gray-50 border border-gray-200 hover:border-[#c91c1c] cursor-pointer"
                 >
@@ -218,7 +219,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 <button
                   onClick={() => {
                     setMobileMenuOpen(false);
-                    onNavigate('jurisdictions');
+                    onNavigate('jurisdictions', 'ireland');
                   }}
                   className="p-2 rounded-lg bg-gray-50 border border-gray-200 hover:border-[#c91c1c] cursor-pointer"
                 >

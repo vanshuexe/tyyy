@@ -8,10 +8,10 @@ interface AboutRKPTSectionProps {
 
 export const AboutRKPTSection: React.FC<AboutRKPTSectionProps> = ({ onOpenConsultation }) => {
   return (
-    <section className="py-20 bg-white border-b border-gray-200">
+    <section className="py-20 md:py-28 bg-white border-b border-gray-200">
       <ScrollReveal>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-10 items-center">
             {/* Left Content */}
             <div className="space-y-6 text-left">
               <div>
@@ -78,7 +78,7 @@ export const AboutRKPTSection: React.FC<AboutRKPTSectionProps> = ({ onOpenConsul
               <div className="absolute -bottom-8 -left-16 w-64 h-64 bg-[#c91c1c] rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-blob animation-delay-2000" />
               
               <div className="absolute inset-0 flex items-center justify-center p-12">
-                <div className="grid grid-cols-2 gap-6 w-full">
+                <div className="grid grid-cols-2 gap-8 md:gap-10 w-full">
                   <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col justify-center items-center text-center transform translate-y-8">
                     <Globe className="w-10 h-10 text-[#3273a8] mb-4" />
                     <h4 className="font-bold text-[#15325b] mb-2">Global Markets</h4>

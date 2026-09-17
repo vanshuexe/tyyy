@@ -26,10 +26,10 @@ export const TestimonialCarousel: React.FC = () => {
   }, [currentIndex]);
 
   return (
-    <section className="py-20 bg-gray-50 border-b border-gray-200 overflow-hidden relative">
+    <section className="py-20 md:py-28 bg-gray-50 border-b border-gray-200 overflow-hidden relative">
       <ScrollReveal>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col md:flex-row items-center justify-between mb-12 gap-6">
+        <div className="flex flex-col md:flex-row items-center justify-between mb-4 gap-6">
           <div className="text-center md:text-left">
             <span className="text-[#c91c1c] uppercase tracking-[0.15em] text-xs sm:text-sm font-bold mb-2 block">
               EXECUTIVE CLIENT SUCCESS
@@ -86,7 +86,7 @@ export const TestimonialCarousel: React.FC = () => {
               }}
               className="absolute w-full top-0 left-0"
             >
-              <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8 sm:p-10 relative overflow-hidden flex flex-col md:flex-row gap-8 md:gap-12 items-center">
+              <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8 sm:p-10 relative overflow-hidden flex flex-col md:flex-row gap-8 md:p-10 md:gap-6 items-center">
                 <Quote className="absolute -top-4 -left-4 w-32 h-32 text-gray-50/80 pointer-events-none transform -scale-x-100" />
                 
                 <div className="flex-1 relative z-10">
@@ -96,7 +96,7 @@ export const TestimonialCarousel: React.FC = () => {
                     ))}
                   </div>
                   
-                  <blockquote className="text-xl sm:text-2xl font-display font-medium text-[#0b1b36] leading-relaxed mb-8">
+                  <blockquote className="text-xl sm:text-2xl font-display font-medium text-[#0b1b36] leading-relaxed mb-4">
                     "{TESTIMONIALS[currentIndex].quote}"
                   </blockquote>
                   
@@ -121,7 +121,7 @@ export const TestimonialCarousel: React.FC = () => {
                 </div>
                 
                 <div className="hidden md:flex flex-col items-end justify-center border-l border-gray-100 pl-12 shrink-0">
-                  <div className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2">
+                  <div className="text-sm font-bold text-gray-400 uppercase tracking-widest mb-2">
                     Industry Domain
                   </div>
                   <div className="text-sm font-medium text-[#15325b] uppercase tracking-wide bg-gray-50 px-3 py-1.5 rounded-lg border border-gray-200">
@@ -134,7 +134,7 @@ export const TestimonialCarousel: React.FC = () => {
         </div>
         
         {/* Mobile Controls */}
-        <div className="flex items-center justify-center gap-3 mt-8 md:hidden">
+        <div className="flex items-center justify-center gap-3 mt-4 md:hidden">
           <button 
             onClick={prevTestimonial}
             className="w-10 h-10 rounded-full border border-gray-200 bg-white flex items-center justify-center text-gray-500 shadow-sm"

@@ -1,4 +1,6 @@
 import React from 'react';
+import { motion } from 'motion/react';
+
 import { Hero } from './Hero';
 import { AboutRKPTSection } from './AboutRKPTSection';
 import { InteractiveMap } from './InteractiveMap';
@@ -30,6 +32,17 @@ interface HomeViewProps {
 }
 
 export const HomeView: React.FC<HomeViewProps> = ({ onNavigate, onOpenConsultation }) => {
+
+const cardUIData: Record<string, { time: string, legal: string, focus: string, bottom: string, heading: string, sub: string }> = {
+  PT: { time: "WET • UTC+0", heading: "Portugal", sub: "EU Business & Company Formation Hub", legal: "LDA", focus: "Setup • Tax • Banking • Immigration", bottom: "LISBON • PORTO" },
+  GB: { time: "GMT • UTC+0", heading: "United Kingdom", sub: "UK Business & Technology Hub", legal: "UK LTD", focus: "Setup • Operations • Technology", bottom: "LONDON" },
+  IE: { time: "GMT • UTC+0", heading: "Ireland", sub: "EU Business & Technology Hub", legal: "LTD", focus: "CRO Setup • EU Market Access", bottom: "DUBLIN" },
+  CH: { time: "CET • UTC+1", heading: "Switzerland", sub: "Swiss Business Hub", legal: "GmbH / AG", focus: "Cantonal Compliance • Banking", bottom: "ZURICH • GENEVA" },
+  US: { time: "EST • UTC-5", heading: "USA", sub: "North American Business Hub", legal: "US Entity", focus: "Formation • Banking • Technology", bottom: "REMOTE-FIRST" },
+  AE: { time: "GST • UTC+4", heading: "Dubai / UAE", sub: "Middle East Business Hub", legal: "Free Zone / Mainland", focus: "Licensing • Banking • Operations", bottom: "DUBAI" },
+  IN: { time: "IST • UTC+5:30", heading: "India", sub: "Technology & Delivery Hub", legal: "PVT LTD", focus: "Development • IT • Outsourcing", bottom: "BANGALORE • DELHI" },
+};
+
   const practiceAreasPreview = [
     {
       id: 'corporate-structuring',
@@ -86,10 +99,10 @@ export const HomeView: React.FC<HomeViewProps> = ({ onNavigate, onOpenConsultati
       <AboutRKPTSection onOpenConsultation={() => onOpenConsultation()} />
 
       {/* 2. Focus Jurisdictions Preview (3 Clean Cards) */}
-      <section className="py-16 sm:py-20 bg-gray-50 border-b border-gray-200">
+      <section className="py-4 sm:py-20 md:py-28 bg-gray-50 border-b border-gray-200">
       <ScrollReveal>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-6 gap-4">
             <div>
               <span className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-widest text-[#3273a8] mb-2">
                 <Globe className="w-4 h-4" />
@@ -103,7 +116,7 @@ export const HomeView: React.FC<HomeViewProps> = ({ onNavigate, onOpenConsultati
               </p>
             </div>
             <button
-              onClick={() => onNavigate('jurisdictions')}
+              onClick={() => onNavigate('jurisdictions', country.id)}
               className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#c91c1c] hover:text-[#a01616] transition-colors shrink-0 group self-start md:self-auto"
             >
               <span>View Full Hubs Comparison Matrix</span>
@@ -111,69 +124,80 @@ export const HomeView: React.FC<HomeViewProps> = ({ onNavigate, onOpenConsultati
             </button>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
-            {COUNTRIES_DATA.map((c) => (
-              <div
-                key={c.id}
-                className="bg-white rounded-2xl border border-gray-100 p-6 shadow-premium hover:shadow-premium-hover transform hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group"
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 md:gap-6">
+                        {COUNTRIES_DATA.slice(0, 3).map((country, idx) => {
+              const ui = cardUIData[country.code] || { time: "UTC", heading: country.name, sub: country.regionalFocus, legal: "Entity", focus: "Business", bottom: country.capital.toUpperCase() };
+              return (
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: idx * 0.15 }}
+                key={country.id}
               >
-                <div>
-                  <div className="flex items-center justify-between border-b border-gray-100 pb-4 mb-5">
-                    <div className="flex items-center gap-3">
-                      <img src={c.flag} alt={`${c.name} flag`} className="w-8 h-6 object-cover rounded-sm border border-gray-200 shadow-sm" />
-                      <h3 className="font-display font-medium text-2xl text-[#0b1b36] uppercase tracking-tight">
-                        {c.name}
-                      </h3>
+              <div
+                onClick={() => onNavigate('jurisdictions', country.id)}
+                className="cursor-pointer rounded-2xl p-6 transition-all duration-200 border text-left relative overflow-hidden bg-white border-gray-200 hover:border-gray-300 hover:shadow-md group"
+              >
+                {/* Header Row: Badge & Timezone */}
+                <div className="flex items-center justify-between mb-6">
+                  <div className="flex items-center gap-2">
+                    <img src={`https://flagcdn.com/${country.code.toLowerCase()}.svg`} alt={`${country.name} flag`} className="w-5 h-3.5 object-cover rounded-[2px] shadow-sm border border-gray-100" />
+                    <div className="flex items-center justify-center w-8 h-8 rounded-full bg-gray-50 border border-gray-200 text-[#0b1b36] font-bold text-xs tracking-wider">
+                      {country.code}
                     </div>
-                    <span className="text-xs font-mono font-medium px-2 py-1 rounded bg-gray-50 border border-gray-200 text-[#3273a8]">
-                      CIT: {c.corporateTaxRate}
-                    </span>
                   </div>
 
-                  <p className="text-sm text-gray-500 leading-relaxed font-light line-clamp-3 mb-4">
-                    {c.summary}
-                  </p>
-
-                    <div className="space-y-3 text-xs text-gray-700 bg-[#fafafa] p-5 rounded-xl border border-gray-100 mb-6">
-                    <div className="flex justify-between">
-                      <span className="text-gray-400 font-medium">Legal Form:</span>
-                      <span className="font-medium text-[#0b1b36] uppercase">{c.structures[0]}</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-gray-400 font-medium">Timeline:</span>
-                      <span className="font-medium text-[#0b1b36]">{c.formationTime}</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-gray-400 font-medium">Focus:</span>
-                      <span className="font-medium text-[#0b1b36] truncate max-w-[140px]">{c.capital} Gateway</span>
-                    </div>
+                  <div className="text-xs text-gray-400 font-medium tracking-widest uppercase">
+                    {ui.time}
                   </div>
                 </div>
 
-                <div className="pt-2 border-t border-gray-100 flex items-center justify-between">
-                  <span className="text-[11px] font-bold text-gray-500 uppercase tracking-wider">
-                    {c.capital} Desk
+                {/* Country Name & Subheading */}
+                <div className="mb-6">
+                  <h3 className="text-[22px] font-display font-bold text-[#0b1b36] leading-tight mb-1">
+                    {ui.heading}
+                  </h3>
+                  <p className="text-xs text-[#c91c1c] font-medium tracking-wide">
+                    {ui.sub}
+                  </p>
+                </div>
+
+                {/* Table-like Data */}
+                <div className="space-y-4 mb-5 border-t border-b border-gray-100 py-4 mt-5">
+                  <div className="flex items-center justify-between text-xs">
+                    <span className="text-gray-400 font-light">Legal form</span>
+                    <span className="text-[#0b1b36] font-bold text-right text-xs">{ui.legal}</span>
+                  </div>
+                  <div className="flex items-start justify-between text-xs gap-4 mt-3">
+                    <span className="text-gray-400 font-light shrink-0">Focus</span>
+                    <span className="text-[#0b1b36] font-bold text-right text-xs">{ui.focus}</span>
+                  </div>
+                </div>
+
+                {/* Footer Row */}
+                <div className="flex items-center justify-between text-sm font-bold uppercase tracking-widest">
+                  <span className="text-gray-400">
+                    {ui.bottom}
                   </span>
-                  <button
-                    onClick={() => onNavigate('jurisdictions')}
-                    className="text-xs font-bold text-[#3273a8] hover:text-[#c91c1c] uppercase tracking-wider inline-flex items-center gap-1 transition-colors"
-                  >
-                    <span>Details</span>
-                    <ArrowRight className="w-3.5 h-3.5" />
-                  </button>
+                  <span className="text-[#c91c1c] flex items-center gap-1 group-hover:gap-1.5 transition-all">
+                    Details <ArrowRight className="w-3 h-3" />
+                  </span>
                 </div>
               </div>
-            ))}
+              </motion.div>
+            );
+            })}
           </div>
         </div>
             </ScrollReveal>
 </section>
 
       {/* 3. Core Practice Areas Preview (6 Concise Cards) */}
-      <section className="py-16 sm:py-20 bg-white border-b border-gray-200">
+      <section className="py-4 sm:py-20 md:py-28 bg-white border-b border-gray-200">
       <ScrollReveal>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-6 gap-4">
             <div>
               <span className="text-xs font-bold uppercase tracking-widest text-[#3273a8] block mb-1">
                 Integrated Capabilities
@@ -194,12 +218,18 @@ export const HomeView: React.FC<HomeViewProps> = ({ onNavigate, onOpenConsultati
             </button>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {practiceAreasPreview.map((practice) => {
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-6">
+            {practiceAreasPreview.map((practice, idx) => {
               const IconComp = practice.icon;
               return (
-                <div
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: idx * 0.1 }}
                   key={practice.id}
+                >
+                <div
                   onClick={() => onNavigate('services')}
                   className={`cursor-pointer bg-white rounded-2xl border border-gray-100 p-6 shadow-premium hover:shadow-premium-hover transform hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group`}
                 >
@@ -210,7 +240,7 @@ export const HomeView: React.FC<HomeViewProps> = ({ onNavigate, onOpenConsultati
                     <h3 className="font-display font-bold text-lg text-[#15325b] uppercase tracking-tight mb-2 group-hover:text-[#c91c1c] transition-colors">
                       {practice.title}
                     </h3>
-                    <p className="text-sm text-gray-500 leading-relaxed font-light mb-4">
+                    <p className="text-sm text-gray-500 leading-relaxed font-light mb-6">
                       {practice.desc}
                     </p>
                   </div>
@@ -219,6 +249,7 @@ export const HomeView: React.FC<HomeViewProps> = ({ onNavigate, onOpenConsultati
                     <ArrowRight className="w-3.5 h-3.5 ml-1 transition-transform group-hover:translate-x-1" />
                   </div>
                 </div>
+                </motion.div>
               );
             })}
           </div>
@@ -230,7 +261,7 @@ export const HomeView: React.FC<HomeViewProps> = ({ onNavigate, onOpenConsultati
       <TechnologySection onOpenConsultation={() => onNavigate('contact')} />
 
       {/* 4. Interactive Scope Planner Feature Callout */}
-      <section className="py-16 sm:py-20 bg-gray-50 border-b border-gray-200">
+      <section className="py-4 sm:py-20 md:py-28 bg-gray-50 border-b border-gray-200">
       <ScrollReveal>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl space-y-6">
@@ -282,13 +313,13 @@ export const HomeView: React.FC<HomeViewProps> = ({ onNavigate, onOpenConsultati
 </section>
 
       {/* 5. Institutional Trust & Credentials Bar */}
-      <section className="py-14 bg-white border-b border-gray-200">
+      <section className="py-20 md:py-28 bg-white border-b border-gray-200">
       <ScrollReveal>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-6 text-center">
             <div className="p-4 rounded-xl bg-gray-50 border border-gray-100">
               <div className="text-2xl sm:text-3xl font-display font-black text-[#15325b]">
-                3–5 Days
+                1 Week
               </div>
               <div className="text-xs uppercase font-bold text-gray-500 tracking-wider mt-1">
                 Portugal LDA Setup
@@ -332,9 +363,9 @@ export const HomeView: React.FC<HomeViewProps> = ({ onNavigate, onOpenConsultati
       <TestimonialCarousel />
 
       {/* 6. Quick Executive Callout */}
-      <section className="py-20 relative overflow-hidden bg-[#0b1b36] text-white">
+      <section className="py-20 md:py-28 relative overflow-hidden bg-[#0b1b36] text-white">
       <ScrollReveal>
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-8 relative z-10">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4 relative z-10">
           <div className="space-y-2 text-center md:text-left">
             <span className="inline-block px-3 py-1 rounded bg-[#3273a8]/20 border border-[#3273a8]/30 text-xs font-bold uppercase tracking-widest text-[#66a3d1]  mb-2">
               Ready To Expand?

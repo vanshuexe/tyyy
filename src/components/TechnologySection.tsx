@@ -69,10 +69,10 @@ interface TechnologySectionProps {
 
 export const TechnologySection: React.FC<TechnologySectionProps> = ({ onOpenConsultation }) => {
   return (
-    <section className="py-16 sm:py-20 bg-gray-50 border-b border-gray-200">
+    <section className="py-4 sm:py-20 md:py-28 bg-gray-50 border-b border-gray-200">
       <ScrollReveal>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-4 gap-4">
             <div>
               <span className="text-xs font-bold uppercase tracking-widest text-[#3273a8] block mb-1">
                 Technology Solutions
@@ -93,7 +93,7 @@ export const TechnologySection: React.FC<TechnologySectionProps> = ({ onOpenCons
             </button>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 md:gap-10">
             {technologyCapabilities.map((tech) => {
               const IconComp = tech.icon;
               return (
