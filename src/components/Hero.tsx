@@ -98,20 +98,21 @@ export const Hero: React.FC<HeroProps> = ({ onOpenConsultation, onExploreEstimat
           </motion.div>
 
           {/* Right: High-End Corporate Asset (Hero Banner Graphic) with 3D Tilt */}
-          <div style={{ perspective: '1500px' }} className="w-full relative z-10 flex items-center justify-center">
+          <div style={{ perspective: '1500px' }} className="w-full relative z-10 flex items-center justify-center mt-10 lg:mt-0">
             <motion.div
               onMouseMove={handleMouseMove}
               onMouseLeave={handleMouseLeave}
               onTap={() => setZoomedCard(null)}
               style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 1.08 }}
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 1.05 }}
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
-              className="relative w-full h-[400px] lg:h-[550px] rounded-3xl overflow-hidden shadow-2xl group bg-white border border-gray-100 cursor-pointer flex items-center justify-center"
+              className="relative w-full h-[320px] sm:h-[400px] lg:h-[550px] rounded-3xl overflow-hidden shadow-2xl group bg-white border border-gray-100 cursor-pointer flex items-center justify-center"
             >
-              <svg viewBox="0 0 900 340" fill="none" className="w-full h-auto max-h-full transition-transform duration-700 group-hover:scale-105 px-2 sm:px-8">
+              {/* Added preserveAspectRatio to make sure the SVG scales correctly inside its container on all screen sizes */}
+              <svg viewBox="0 0 900 340" preserveAspectRatio="xMidYMid meet" fill="none" className="w-full h-full p-4 sm:p-8 transition-transform duration-700 group-hover:scale-105">
                 {/* Network Lines */}
                 <g stroke="#8FA0C4" strokeWidth="1.5" strokeDasharray="3 3" style={{ opacity: zoomedCard && zoomedCard.startsWith('net-') ? 0.15 : 0.6, transition: 'opacity 0.4s' }}>
                   <line x1="450" y1="170" x2="300" y2="170" />
