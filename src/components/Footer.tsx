@@ -1,5 +1,4 @@
 import React from 'react';
-import { Logo } from './Logo';
 import { ComplianceBadge } from './ComplianceBadge';
 import { COMPANY_INFO } from '../data/companyData';
 import { ShieldCheck, Mail, Phone, MapPin, Globe, ArrowUp } from 'lucide-react';
@@ -31,9 +30,11 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
           <div className="lg:col-span-2 space-y-4">
             <button
               onClick={() => handleNav('home')}
-              className="focus:outline-none cursor-pointer text-left"
+              className="focus:outline-none cursor-pointer text-left group"
             >
-              <Logo variant="white" size="md" />
+              <span className="text-xl sm:text-2xl font-bold font-display text-white tracking-wider group-hover:text-[#c91c1c] transition-colors block">
+                RKPT TECH LTD
+              </span>
             </button>
             <div className="text-gray-400 text-xs sm:text-sm leading-relaxed max-w-sm pt-2">
               <span className="font-bold">BUSINESS. TECHNOLOGY. COMPLIANCE. GROWTH.</span>
@@ -248,13 +249,6 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               </li>
             </ul>
           </div>
-        </div>
-      </div>
-
-      {/* Disclaimer */}
-      <div className="border-t border-white/10 py-4">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-left text-xs text-gray-500 leading-relaxed font-light">
-          Information on this website is provided for general information and business-support purposes. Company-formation requirements, tax rules, immigration requirements, licensing conditions, banking requirements and regulatory obligations vary by jurisdiction, business activity and individual circumstances. Government authorities, banks and regulated institutions make their own decisions and may request additional documentation. Processing times are indicative only. Outcomes such as company registration, bank-account approval, tax registration, visa and immigration approval, and other third-party decisions rest solely with the relevant authority or institution. Where regulated legal, tax, accounting, immigration or other professional advice is required, RKPT TECH LTD may coordinate with appropriately qualified professionals. Read the full Legal Disclaimer.
         </div>
       </div>
 
