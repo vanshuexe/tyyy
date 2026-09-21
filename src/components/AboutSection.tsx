@@ -78,7 +78,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenConsultation }
                 About RKPT TECH LTD
               </h2>
               <p className="text-base text-gray-500 leading-relaxed font-light">
-                {COMPANY_INFO.integratedApproach}
+                {COMPANY_INFO.profileSummary}
               </p>
             </div>
             

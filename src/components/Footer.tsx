@@ -1,179 +1,94 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ComplianceBadge } from './ComplianceBadge';
-import { COMPANY_INFO } from '../data/companyData';
-import { ShieldCheck, Mail, Phone, MapPin, Globe, ArrowUp } from 'lucide-react';
+import { COMPANY_INFO, LEGAL_DISCLAIMER } from '../data/companyData';
+import { ArrowUp, ChevronDown, ChevronUp, ShieldCheck } from 'lucide-react';
 
 interface FooterProps {
   onNavigate?: (pageId: string) => void;
 }
 
 export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
+  const [showDisclaimer, setShowDisclaimer] = useState(false);
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const handleNav = (pageId: string, extraData?: any) => {
-    onNavigate(pageId, extraData);
-    if (onNavigate) {
-      onNavigate(pageId);
-    } else {
-      scrollToTop();
+  const scrollToAnchor = (anchorId: string) => {
+    const el = document.getElementById(anchorId);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+    } else if (onNavigate) {
+      onNavigate(anchorId);
     }
   };
 
   return (
     <footer className="bg-[#0b1b36] text-gray-400 text-xs border-t-4 border-[#c91c1c]">
       {/* Top Footer Section */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 md:gap-10">
           {/* Col 1 & 2: Brand & Profile */}
           <div className="lg:col-span-2 space-y-4">
-            <button
-              onClick={() => handleNav('home')}
-              className="focus:outline-none cursor-pointer text-left group"
-            >
-              <span className="text-xl sm:text-2xl font-bold font-display text-white tracking-wider group-hover:text-[#c91c1c] transition-colors block">
+            <div className="focus:outline-none text-left">
+              <span className="text-xl sm:text-2xl font-bold font-display text-white tracking-wider block">
                 RKPT TECH LTD
               </span>
-            </button>
-            <div className="text-gray-400 text-xs sm:text-sm leading-relaxed max-w-sm pt-2">
-              <span className="font-bold">BUSINESS. TECHNOLOGY. COMPLIANCE. GROWTH.</span>
             </div>
-            <p className="text-gray-500 text-sm leading-relaxed max-w-sm">
-              Information on this website is provided for general information and business-support purposes. Company-formation requirements, tax rules, immigration requirements, licensing conditions, banking requirements and regulatory obligations vary by jurisdiction, business activity and individual circumstances. Government authorities, banks and regulated institutions make their own decisions and may request additional documentation. Processing times are indicative and are not guarantees.
+            <div className="text-gray-300 text-xs sm:text-sm font-bold tracking-wider">
+              BUSINESS. TECHNOLOGY. COMPLIANCE. GROWTH.
+            </div>
+            <p className="text-gray-400 text-xs sm:text-sm leading-relaxed max-w-sm font-light">
+              Global business consulting and technology solutions firm helping entrepreneurs, startups and established companies establish, expand and operate businesses across international markets.
             </p>
-            <p className="text-gray-500 text-sm leading-relaxed max-w-sm">
-              RKPT TECH LTD does not guarantee company registration, bank-account approval, tax registration, visa approval, immigration approval or any other third-party decision. Where regulated legal, tax, accounting, immigration or other professional advice is required, RKPT TECH LTD may coordinate with appropriately qualified professionals.
-            </p>
+            <div className="pt-2 text-xs text-gray-400 space-y-1">
+              <div>Email: <a href={`mailto:${COMPANY_INFO.contact.email}`} className="text-white hover:text-[#c91c1c]">{COMPANY_INFO.contact.email}</a></div>
+              <div>Phone: <span className="text-white">{COMPANY_INFO.contact.phoneEu}</span></div>
+            </div>
           </div>
 
-          {/* Col 3: Focus Hubs */}
+          {/* Col 3: Global Hubs */}
           <div className="space-y-3">
             <h4 className="text-white font-bold text-xs uppercase tracking-wider border-b border-white/10 pb-2">
               Global Hubs
             </h4>
-            <ul className="space-y-2">
-              <li>
-                <button
-                  onClick={() => handleNav('jurisdictions')}
-                  className="hover:text-white text-gray-400 transition-colors text-left cursor-pointer"
-                >
-                  Portugal
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => handleNav('jurisdictions')}
-                  className="hover:text-white text-gray-400 transition-colors text-left cursor-pointer"
-                >
-                  UK
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => handleNav('jurisdictions')}
-                  className="hover:text-white text-gray-400 transition-colors text-left cursor-pointer"
-                >
-                  Ireland
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => handleNav('jurisdictions')}
-                  className="hover:text-white text-gray-400 transition-colors text-left cursor-pointer"
-                >
-                  Switzerland
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => handleNav('jurisdictions')}
-                  className="hover:text-white text-gray-400 transition-colors text-left cursor-pointer"
-                >
-                  USA
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => handleNav('jurisdictions')}
-                  className="hover:text-white text-gray-400 transition-colors text-left cursor-pointer"
-                >
-                  Dubai/UAE
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => handleNav('jurisdictions')}
-                  className="hover:text-white text-gray-400 transition-colors text-left cursor-pointer"
-                >
-                  India
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => handleNav('estimator')}
-                  className="text-[#5897c8] hover:text-white transition-colors font-bold uppercase tracking-wider text-sm block mt-1 text-left cursor-pointer"
-                >
-                  → Interactive Scope Planner
-                </button>
-              </li>
+            <ul className="space-y-2 text-xs">
+              {['Portugal', 'UK', 'Ireland', 'Switzerland', 'USA', 'Dubai / UAE', 'India'].map((hub) => (
+                <li key={hub}>
+                  <button
+                    onClick={() => scrollToAnchor('global-hubs')}
+                    className="hover:text-white text-gray-400 transition-colors text-left cursor-pointer"
+                  >
+                    {hub}
+                  </button>
+                </li>
+              ))}
             </ul>
           </div>
 
-          {/* Col 4: Services */}
+          {/* Col 4: Business Services */}
           <div className="space-y-3">
             <h4 className="text-white font-bold text-xs uppercase tracking-wider border-b border-white/10 pb-2">
               Business Services
             </h4>
-            <ul className="space-y-2 text-gray-400">
-              <li>
-                <button
-                  onClick={() => handleNav('services')}
-                  className="hover:text-white transition-colors text-left cursor-pointer"
-                >
-                  Company Formation
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => handleNav('services')}
-                  className="hover:text-white transition-colors text-left cursor-pointer"
-                >
-                  Legal &amp; Compliance
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => handleNav('services')}
-                  className="hover:text-white transition-colors text-left cursor-pointer"
-                >
-                  Accounting &amp; Tax
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => handleNav('services')}
-                  className="hover:text-white transition-colors text-left cursor-pointer"
-                >
-                  Banking &amp; Payments
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => handleNav('services')}
-                  className="hover:text-white transition-colors text-left cursor-pointer"
-                >
-                  Immigration &amp; Relocation
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => handleNav('services')}
-                  className="hover:text-white transition-colors text-left cursor-pointer"
-                >
-                  Business Advisory
-                </button>
-              </li>
+            <ul className="space-y-2 text-xs text-gray-400">
+              {[
+                'Company Formation',
+                'Legal & Compliance',
+                'Accounting & Tax',
+                'Business Banking & Payments',
+                'Immigration & Relocation',
+                'Business Advisory',
+              ].map((srv) => (
+                <li key={srv}>
+                  <button
+                    onClick={() => scrollToAnchor('business-services')}
+                    className="hover:text-white transition-colors text-left cursor-pointer"
+                  >
+                    {srv}
+                  </button>
+                </li>
+              ))}
             </ul>
           </div>
 
@@ -182,103 +97,73 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             <h4 className="text-white font-bold text-xs uppercase tracking-wider border-b border-white/10 pb-2">
               Technology
             </h4>
-            <ul className="space-y-2 text-gray-400">
-              <li>
-                <button
-                  onClick={() => handleNav('services')}
-                  className="hover:text-white transition-colors text-left cursor-pointer"
-                >
-                  IT Support
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => handleNav('services')}
-                  className="hover:text-white transition-colors text-left cursor-pointer"
-                >
-                  AI Integration
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => handleNav('services')}
-                  className="hover:text-white transition-colors text-left cursor-pointer"
-                >
-                  Software Development
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => handleNav('services')}
-                  className="hover:text-white transition-colors text-left cursor-pointer"
-                >
-                  Website &amp; Digital Solutions
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => handleNav('services')}
-                  className="hover:text-white transition-colors text-left cursor-pointer"
-                >
-                  ERP &amp; CRM
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => handleNav('services')}
-                  className="hover:text-white transition-colors text-left cursor-pointer"
-                >
-                  Cloud Solutions
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => handleNav('services')}
-                  className="hover:text-white transition-colors text-left cursor-pointer"
-                >
-                  Business Automation
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => handleNav('services')}
-                  className="hover:text-white transition-colors text-left cursor-pointer"
-                >
-                  Cybersecurity
-                </button>
-              </li>
+            <ul className="space-y-2 text-xs text-gray-400">
+              {[
+                'IT Support',
+                'AI Integration',
+                'Software Development',
+                'Website & Digital Solutions',
+                'ERP & CRM Solutions',
+                'Cloud Solutions',
+                'Business Automation',
+                'Cybersecurity',
+              ].map((tech) => (
+                <li key={tech}>
+                  <button
+                    onClick={() => scrollToAnchor('technology')}
+                    className="hover:text-white transition-colors text-left cursor-pointer"
+                  >
+                    {tech}
+                  </button>
+                </li>
+              ))}
             </ul>
           </div>
         </div>
+
+        {/* Legal Disclaimer Toggle Section */}
+        <div className="mt-10 pt-6 border-t border-white/10">
+          <button
+            onClick={() => setShowDisclaimer(!showDisclaimer)}
+            className="flex items-center gap-2 text-xs text-gray-400 hover:text-white font-semibold uppercase tracking-wider transition-colors cursor-pointer"
+          >
+            <ShieldCheck className="w-3.5 h-3.5 text-[#c91c1c]" />
+            <span>Legal / Service Disclaimer</span>
+            {showDisclaimer ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
+          </button>
+
+          {showDisclaimer && (
+            <div className="mt-4 p-5 rounded-xl bg-black/20 border border-white/10 text-gray-400 text-xs leading-relaxed space-y-3">
+              <p>{LEGAL_DISCLAIMER}</p>
+            </div>
+          )}
+        </div>
       </div>
 
-      {/* Bottom Compliance & Copyright */}
-      <div className="border-t border-white/10 py-2">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center justify-center gap-4 text-sm text-gray-500">
-          <div className="flex flex-wrap justify-center gap-4 text-gray-400 font-medium">
-            <a href="#" className="hover:text-white transition-colors">About</a>
-            <a href="#services" className="hover:text-white transition-colors">Services</a>
-            <a href="#hubs" className="hover:text-white transition-colors">Global Hubs</a>
-            <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
-            <a href="#" className="hover:text-white transition-colors">Cookie Policy</a>
-            <a href="#" className="hover:text-white transition-colors">Terms</a>
-            <a href="#" className="hover:text-white transition-colors">Legal Disclaimer</a>
-            <a href="#" className="hover:text-white transition-colors">Contact</a>
+      {/* Bottom Links & Copyright */}
+      <div className="border-t border-white/10 py-6">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-400">
+          <div className="flex flex-wrap justify-center sm:justify-start gap-4 font-medium">
+            <button onClick={() => scrollToAnchor('about')} className="hover:text-white transition-colors cursor-pointer">About</button>
+            <button onClick={() => scrollToAnchor('business-services')} className="hover:text-white transition-colors cursor-pointer">Services</button>
+            <button onClick={() => scrollToAnchor('global-hubs')} className="hover:text-white transition-colors cursor-pointer">Global Hubs</button>
+            <button onClick={() => setShowDisclaimer(true)} className="hover:text-white transition-colors cursor-pointer">Privacy Policy</button>
+            <button onClick={() => setShowDisclaimer(true)} className="hover:text-white transition-colors cursor-pointer">Cookie Policy</button>
+            <button onClick={() => setShowDisclaimer(true)} className="hover:text-white transition-colors cursor-pointer">Terms</button>
+            <button onClick={() => setShowDisclaimer(!showDisclaimer)} className="hover:text-white transition-colors cursor-pointer">Legal Disclaimer</button>
+            <button onClick={() => scrollToAnchor('contact')} className="hover:text-white transition-colors cursor-pointer">Contact</button>
           </div>
-          <div className="flex flex-col sm:flex-row items-center justify-between w-full mt-2">
-            <div>
-              © RKPT TECH LTD. All rights reserved.
-            </div>
-            <div className="flex items-center gap-4 mt-4 sm:mt-0">
-              <ComplianceBadge />
-              <button
-                onClick={scrollToTop}
-                className="p-1.5 rounded bg-white/10 hover:bg-white hover:text-[#0b1b36] text-gray-300 transition-colors ml-2"
-                title="Back to top"
-              >
-                <ArrowUp className="w-3.5 h-3.5" />
-              </button>
-            </div>
+
+          <div className="flex items-center gap-4">
+            <span>© RKPT TECH LTD. All rights reserved.</span>
+            <ComplianceBadge />
+            <button
+              onClick={scrollToTop}
+              className="p-1.5 rounded bg-white/10 hover:bg-white hover:text-[#0b1b36] text-gray-300 transition-colors ml-2 cursor-pointer"
+              title="Back to top"
+            >
+              <ArrowUp className="w-3.5 h-3.5" />
+            </button>
           </div>
         </div>
       </div>

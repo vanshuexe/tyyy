@@ -7,14 +7,14 @@ import { CountryHubs } from './components/CountryHubs';
 import { ServicesSection } from './components/ServicesSection';
 import { ExpansionCalculator } from './components/ExpansionCalculator';
 import { ProcessSection } from './components/ProcessSection';
-import { IndustriesSection } from './components/IndustriesSection';
-import { AboutSection } from './components/AboutSection';
+import { WhoWeServeSection } from './components/WhoWeServeSection';
+import { AboutRKPTSection } from './components/AboutRKPTSection';
 import { ContactSection } from './components/ContactSection';
 import { Footer } from './components/Footer';
 import { ChatBot } from './components/ChatBot';
 import { CountryMatrix } from './components/CountryMatrix';
-import { X, CheckCircle2, Send, ShieldCheck } from 'lucide-react';
-import { COMPANY_INFO } from './data/companyData';
+import { X, CheckCircle2, Send, ShieldCheck, Calendar, Phone } from 'lucide-react';
+import { COMPANY_INFO, COUNTRIES_DATA } from './data/companyData';
 
 export default function App() {
   const getPageFromHash = (): string => {
@@ -32,9 +32,6 @@ export default function App() {
   const [currentPage, setCurrentPage] = useState<string>(getPageFromHash());
   const [isConsultationModalOpen, setIsConsultationModalOpen] = useState(false);
   const [prefilledService, setPrefilledService] = useState<string | undefined>(undefined);
-  const [selectedCountryForEstimator, setSelectedCountryForEstimator] = useState<
-    'portugal' | 'switzerland' | 'ireland'
-  >('portugal');
   const [selectedHubId, setSelectedHubId] = useState<string | null>(null);
 
   // Fast modal form state
@@ -53,14 +50,13 @@ export default function App() {
     const handleHashChange = () => {
       const page = getPageFromHash();
       setCurrentPage(page);
-      window.scrollTo({ top: 0, behavior: 'smooth' });
     };
     window.addEventListener('hashchange', handleHashChange);
     return () => window.removeEventListener('hashchange', handleHashChange);
   }, []);
 
   const handleNavigate = (pageId: string, extraData?: any) => {
-    if (pageId === "jurisdictions" && typeof extraData === "string") {
+    if (pageId === 'jurisdictions' && typeof extraData === 'string') {
       setSelectedHubId(extraData);
     }
 
@@ -78,45 +74,32 @@ export default function App() {
       setPrefilledService(serviceTitle);
       setModalForm((prev) => ({
         ...prev,
-        scopeDetails: prev.scopeDetails ? `${prev.scopeDetails}\nInterested in: ${serviceTitle}` : `Interested in: ${serviceTitle}`,
+        scopeDetails: prev.scopeDetails
+          ? `${prev.scopeDetails}\nInterested in: ${serviceTitle}`
+          : `Interested in: ${serviceTitle}`,
       }));
     }
     setModalSubmitted(false);
     setIsConsultationModalOpen(true);
   };
 
-  const handleSelectCountryFromHub = (countryId: 'portugal' | 'switzerland' | 'ireland') => {
-    setSelectedCountryForEstimator(countryId);
-    handleNavigate('estimator');
-  };
-
-  const handleProceedWithCalculatedScope = (scopeSummary: string) => {
-    setPrefilledService(scopeSummary);
-    setModalForm((prev) => ({
-      ...prev,
-      scopeDetails: `Scope Blueprint: ${scopeSummary}`,
-    }));
-    setModalSubmitted(false);
-    setIsConsultationModalOpen(true);
-  };
-
   const handleModalSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const ref = `RKPT-${Math.floor(100000 + Math.random() * 900000)}`;
+    const ref = `RKPT-REF-${Math.floor(100000 + Math.random() * 900000)}`;
     setModalRefId(ref);
     setModalSubmitted(true);
   };
 
   return (
     <div className="min-h-screen bg-white flex flex-col selection:bg-[#c91c1c] selection:text-white font-sans w-full max-w-full overflow-x-hidden">
-      {/* Executive Navbar with Multi-Page navigation */}
+      {/* Sticky Navbar */}
       <Navbar
         currentPage={currentPage}
         onNavigate={handleNavigate}
         onOpenConsultation={handleOpenConsultation}
       />
 
-      {/* Main Content: Render dedicated view based on currentPage */}
+      {/* Main Content */}
       <main className="flex-1">
         <AnimatePresence mode="wait">
           <motion.div
@@ -126,121 +109,116 @@ export default function App() {
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.3 }}
           >
-        {currentPage === 'home' && (
-          <HomeView
-            onNavigate={handleNavigate}
-            onOpenConsultation={handleOpenConsultation}
-          />
-        )}
+            {currentPage === 'home' && (
+              <HomeView
+                onNavigate={handleNavigate}
+                onOpenConsultation={handleOpenConsultation}
+              />
+            )}
 
+            {currentPage === 'matrix' && (
+              <div>
+                <PageHeader
+                  title="Global Comparison Matrix"
+                  subtitle="Detailed operational insights across our primary jurisdictions."
+                  category="Country Details"
+                  onNavigateHome={() => handleNavigate('home')}
+                />
+                <CountryMatrix />
+              </div>
+            )}
 
-        {currentPage === 'matrix' && (
-          <div>
-            <PageHeader
-              title="Global Comparison Matrix"
-              subtitle="Detailed operational insights across our primary jurisdictions."
-              category="Country Details"
-              onNavigateHome={() => handleNavigate('home')}
-            />
-            <CountryMatrix />
-          </div>
-        )}
+            {currentPage === 'jurisdictions' && (
+              <div>
+                <PageHeader
+                  title="Seven Strategic Global Hubs"
+                  subtitle="Comparative legal, fiscal, and corporate infrastructure across Portugal, UK, Ireland, Switzerland, USA, Dubai/UAE, and India."
+                  category="Jurisdictions"
+                  onNavigateHome={() => handleNavigate('home')}
+                  onOpenConsultation={() => handleOpenConsultation('Jurisdiction Advisory')}
+                />
+                <CountryHubs
+                  initialSelectedId={selectedHubId}
+                  onOpenConsultation={(country) =>
+                    handleOpenConsultation(`Jurisdiction Advisory: ${country}`)
+                  }
+                />
+              </div>
+            )}
 
-        {currentPage === 'jurisdictions' && (
-          <div>
-            <PageHeader
-              title="European Focus Hubs: Portugal • Switzerland • Ireland"
-              subtitle="Comparative legal, tax, and corporate infrastructure across Europe’s premier business destinations."
-              category="Jurisdictions"
-              onNavigateHome={() => handleNavigate('home')}
-              onOpenConsultation={() => handleOpenConsultation('Jurisdiction Advisory')}
-            />
-            <CountryHubs
-              initialSelectedId={selectedHubId}
-              onSelectCountry={handleSelectCountryFromHub}
-              onOpenConsultation={(country) => handleOpenConsultation(`Jurisdiction Advisory: ${country}`)}
-            />
-          </div>
-        )}
+            {currentPage === 'services' && (
+              <div>
+                <PageHeader
+                  title="Corporate Practice Areas & Deliverables"
+                  subtitle="Integrated global setup, tax compliance, corporate banking, immigration, and digital infrastructure."
+                  category="Practice Areas"
+                  onNavigateHome={() => handleNavigate('home')}
+                  onOpenConsultation={() => handleOpenConsultation('Practice Areas Advisory')}
+                />
+                <ServicesSection onOpenConsultation={handleOpenConsultation} />
+                <WhoWeServeSection />
+              </div>
+            )}
 
-        {currentPage === 'services' && (
-          <div>
-            <PageHeader
-              title="Corporate Practice Areas &amp; Deliverables"
-              subtitle="Integrated European setup, tax compliance, corporate banking, immigration, and digital infrastructure."
-              category="Practice Areas"
-              onNavigateHome={() => handleNavigate('home')}
-              onOpenConsultation={() => handleOpenConsultation('Practice Areas Advisory')}
-            />
-            <ServicesSection onOpenConsultation={handleOpenConsultation} />
-            <IndustriesSection onOpenConsultation={(ind) => handleOpenConsultation(ind)} />
-          </div>
-        )}
+            {currentPage === 'process' && (
+              <div>
+                <PageHeader
+                  title="Our 10-Step Engagement Journey"
+                  subtitle="Structured milestone execution: discovery, incorporation, banking, fiscal compliance, technology setup, and ongoing operations."
+                  category="Our Process"
+                  onNavigateHome={() => handleNavigate('home')}
+                  onOpenConsultation={() => handleOpenConsultation('Roadmap Consultation')}
+                />
+                <ProcessSection onOpenConsultation={() => handleOpenConsultation('Strategic Planning Phase')} />
+              </div>
+            )}
 
-        {currentPage === 'estimator' && (
-          <div>
-            <PageHeader
-              title="European Setup Scope &amp; Feasibility Estimator"
-              subtitle="Interactive corporate configuration: select country, entity type, banking tier, and generate an instant deliverables blueprint."
-              category="Scope Planner"
-              onNavigateHome={() => handleNavigate('home')}
-              onOpenConsultation={() => handleOpenConsultation('Estimator Scope Review')}
-            />
-            <ExpansionCalculator
-              initialCountry={selectedCountryForEstimator}
-              onProceedWithScope={handleProceedWithCalculatedScope}
-            />
-          </div>
-        )}
+            {currentPage === 'about' && (
+              <div>
+                <PageHeader
+                  title="About RKPT TECH LTD"
+                  subtitle="Global business consulting and technology solutions firm helping entrepreneurs, startups and established companies grow internationally."
+                  category="About RKPT"
+                  onNavigateHome={() => handleNavigate('home')}
+                  onOpenConsultation={() => handleOpenConsultation('Institutional Inquiry')}
+                />
+                <AboutRKPTSection onOpenConsultation={() => handleOpenConsultation()} />
+              </div>
+            )}
 
-        {currentPage === 'process' && (
-          <div>
-            <PageHeader
-              title="Our 5-Stage European Expansion Framework"
-              subtitle="Structured milestone execution: discovery, incorporation, banking, fiscal compliance, and active launch."
-              category="Our Process"
-              onNavigateHome={() => handleNavigate('home')}
-              onOpenConsultation={() => handleOpenConsultation('Roadmap Consultation')}
-            />
-            <ProcessSection onOpenConsultation={() => handleOpenConsultation('Strategic Planning Phase')} />
-          </div>
-        )}
-
-        {currentPage === 'about' && (
-          <div>
-            <PageHeader
-              title="Institutional Profile &amp; Governance"
-              subtitle="RKPT TECH LTD corporate vision, mission, core operational pillars, and GDPR regulatory compliance."
-              category="About RKPT"
-              onNavigateHome={() => handleNavigate('home')}
-              onOpenConsultation={() => handleOpenConsultation('Institutional Inquiry')}
-            />
-            <AboutSection onOpenConsultation={() => handleOpenConsultation()} />
-          </div>
-        )}
-
-        {currentPage === 'contact' && (
-          <div>
-            <PageHeader
-              title="European Advisory Desks &amp; Contact Channels"
-              subtitle="Direct legal liaison and physical advisory offices in Lisbon, Zurich, Dublin, London, New York, and Dubai."
-              category="Advisory Desks"
-              onNavigateHome={() => handleNavigate('home')}
-            />
-            <ContactSection prefilledService={prefilledService} />
-          </div>
-        )}
+            {currentPage === 'contact' && (
+              <div>
+                <PageHeader
+                  title="Start Your Consultation"
+                  subtitle="Direct advisory desks and contact channels across our global hubs."
+                  category="Contact & Consultation"
+                  onNavigateHome={() => handleNavigate('home')}
+                />
+                <ContactSection prefilledService={prefilledService} />
+              </div>
+            )}
           </motion.div>
         </AnimatePresence>
       </main>
 
-      {/* Corporate Footer with Multi-Page links */}
+      {/* Corporate Footer */}
       <Footer onNavigate={handleNavigate} />
 
-      {/* Fast Consultation Modal with KCID styling */}
+      {/* Persistent Floating Consultation CTA on Mobile */}
+      <div className="fixed bottom-5 right-5 z-40 sm:hidden">
+        <button
+          onClick={() => handleOpenConsultation()}
+          className="flex items-center gap-2 bg-[#c91c1c] text-white px-4 py-3 rounded-full shadow-2xl font-bold text-xs uppercase tracking-wider active:scale-95 transition-transform"
+        >
+          <Calendar className="w-4 h-4" />
+          <span>Book Consultation</span>
+        </button>
+      </div>
+
+      {/* Fast Consultation Modal */}
       {isConsultationModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-xs animate-fadeIn">
-          <div className="relative w-full max-w-lg bg-white rounded-xl shadow-2xl border border-[#15325b]/20 overflow-hidden text-left border-t-4 border-t-[#c91c1c]">
+          <div className="relative w-full max-w-lg bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden text-left border-t-4 border-t-[#c91c1c]">
             {/* Modal Header */}
             <div className="bg-[#0b1b36] text-white p-5 flex items-center justify-between border-b border-[#15325b]">
               <div>
@@ -248,12 +226,12 @@ export default function App() {
                   RKPT TECH LTD Advisory Desk
                 </div>
                 <h3 className="text-xl font-extrabold font-display uppercase tracking-tight text-white mt-0.5">
-                  Schedule European Consultation
+                  Schedule Consultation
                 </h3>
               </div>
               <button
                 onClick={() => setIsConsultationModalOpen(false)}
-                className="p-1.5 rounded-md text-gray-400 hover:text-white hover:bg-[#15325b] transition-colors cursor-pointer"
+                className="p-1.5 rounded-lg text-gray-400 hover:text-white hover:bg-[#15325b] transition-colors cursor-pointer"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -262,23 +240,23 @@ export default function App() {
             {/* Modal Content */}
             <div className="p-6">
               {modalSubmitted ? (
-                <div className="text-center py-2 space-y-4">
+                <div className="text-center py-4 space-y-4">
                   <div className="w-14 h-14 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto">
                     <CheckCircle2 className="w-8 h-8" />
                   </div>
-                  <h4 className="text-xl font-bold font-display uppercase tracking-tight text-[#15325b]">
+                  <h4 className="text-xl font-bold font-display text-[#0b1b36]">
                     Consultation Request Registered
                   </h4>
-                  <p className="text-xs text-gray-600 max-w-xs mx-auto">
-                    Our European Directorate has received your inquiry. A senior advisor will review your corporate parameters and respond within 24 business hours.
+                  <p className="text-xs text-gray-600 max-w-xs mx-auto leading-relaxed">
+                    Our advisory desk has received your inquiry. A senior partner will review your requirements and respond within 24 business hours.
                   </p>
-                  <div className="p-3 bg-gray-50 rounded-lg border border-gray-200 text-xs font-mono font-bold text-[#15325b] inline-block">
+                  <div className="p-3 bg-gray-50 rounded-xl border border-gray-200 text-xs font-mono font-bold text-[#0b1b36] inline-block">
                     Reference ID: <span className="text-[#c91c1c]">{modalRefId}</span>
                   </div>
-                  <div className="pt-3">
+                  <div className="pt-2">
                     <button
                       onClick={() => setIsConsultationModalOpen(false)}
-                      className="px-6 py-2.5 rounded bg-[#15325b] hover:bg-[#0b1b36] text-white text-xs font-bold uppercase tracking-wider transition-colors cursor-pointer"
+                      className="px-6 py-2.5 rounded-xl bg-[#0b1b36] hover:bg-[#15325b] text-white text-xs font-bold uppercase tracking-wider transition-colors cursor-pointer"
                     >
                       Close Window
                     </button>
@@ -296,21 +274,21 @@ export default function App() {
                         required
                         value={modalForm.name}
                         onChange={(e) => setModalForm({ ...modalForm, name: e.target.value })}
-                        placeholder="e.g. Alexander Weber"
-                        className="w-full px-3 py-2 border border-gray-300 rounded focus:border-[#c91c1c] focus:outline-none"
+                        placeholder="Marcus Vance"
+                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:border-[#c91c1c] focus:outline-none"
                       />
                     </div>
                     <div>
                       <label className="block font-bold text-gray-700 uppercase tracking-wider text-[10px] mb-1">
-                        Corporate Email *
+                        Email *
                       </label>
                       <input
                         type="email"
                         required
                         value={modalForm.email}
                         onChange={(e) => setModalForm({ ...modalForm, email: e.target.value })}
-                        placeholder="e.g. a.weber@enterprise.com"
-                        className="w-full px-3 py-2 border border-gray-300 rounded focus:border-[#c91c1c] focus:outline-none"
+                        placeholder="m.vance@company.com"
+                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:border-[#c91c1c] focus:outline-none"
                       />
                     </div>
                   </div>
@@ -318,15 +296,15 @@ export default function App() {
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div>
                       <label className="block font-bold text-gray-700 uppercase tracking-wider text-[10px] mb-1">
-                        Telephone / WhatsApp *
+                        Phone / WhatsApp *
                       </label>
                       <input
                         type="tel"
                         required
                         value={modalForm.phone}
                         onChange={(e) => setModalForm({ ...modalForm, phone: e.target.value })}
-                        placeholder="+351 91 000 0000"
-                        className="w-full px-3 py-2 border border-gray-300 rounded focus:border-[#c91c1c] focus:outline-none font-mono"
+                        placeholder="+44 20 7946 0912"
+                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:border-[#c91c1c] focus:outline-none font-mono"
                       />
                     </div>
                     <div>
@@ -337,50 +315,53 @@ export default function App() {
                         type="text"
                         value={modalForm.company}
                         onChange={(e) => setModalForm({ ...modalForm, company: e.target.value })}
-                        placeholder="e.g. Apex Global Tech Ltd"
-                        className="w-full px-3 py-2 border border-gray-300 rounded focus:border-[#c91c1c] focus:outline-none"
+                        placeholder="Apex Global Ltd"
+                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:border-[#c91c1c] focus:outline-none"
                       />
                     </div>
                   </div>
 
                   <div>
                     <label className="block font-bold text-gray-700 uppercase tracking-wider text-[10px] mb-1">
-                      Target Jurisdiction *
+                      Target Jurisdiction / Hub *
                     </label>
                     <select
                       value={modalForm.jurisdiction}
                       onChange={(e) => setModalForm({ ...modalForm, jurisdiction: e.target.value })}
-                      className="w-full px-3 py-2 border border-gray-300 rounded focus:border-[#c91c1c] focus:outline-none bg-white"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:border-[#c91c1c] focus:outline-none bg-white"
                     >
-                      <option value="Portugal">🇵🇹 Portugal (LDA, NHR, Tech Visa)</option>
-                      <option value="Switzerland">🇨🇭 Switzerland (GmbH, AG, Cantonal Holding)</option>
-                      <option value="Ireland">🇮🇪 Ireland (LTD, CRO)</option>
-                      <option value="Multi-Country">🇪🇺 Multi-Country European Group</option>
-                      <option value="Other EU">Other European Union Territory</option>
+                      <option value="Portugal">Portugal (EU Business & Formation Hub)</option>
+                      <option value="UK">United Kingdom (UK Business & Tech Hub)</option>
+                      <option value="Ireland">Ireland (EU Business & Technology Hub)</option>
+                      <option value="Switzerland">Switzerland (Swiss Business Hub)</option>
+                      <option value="USA">USA (North American Business Hub)</option>
+                      <option value="Dubai / UAE">Dubai / UAE (Middle East Business Hub)</option>
+                      <option value="India">India (Technology & Delivery Hub)</option>
+                      <option value="Multi-Hub">Multi-Country / Cross-Border Group</option>
                     </select>
                   </div>
 
                   <div>
                     <label className="block font-bold text-gray-700 uppercase tracking-wider text-[10px] mb-1">
-                      Expansion Scope &amp; Practice Details
+                      Expansion Scope & Requirements
                     </label>
                     <textarea
                       rows={3}
                       value={modalForm.scopeDetails}
                       onChange={(e) => setModalForm({ ...modalForm, scopeDetails: e.target.value })}
                       placeholder="Specify your business activity, desired incorporation timeline, banking requirements, or relocation goals..."
-                      className="w-full px-3 py-2 border border-gray-300 rounded focus:border-[#c91c1c] focus:outline-none"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:border-[#c91c1c] focus:outline-none"
                     />
                   </div>
 
                   <div className="pt-2 flex items-center justify-between border-t border-gray-100">
                     <div className="flex items-center gap-1.5 text-[11px] text-gray-500">
                       <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
-                      <span>EU NDA &amp; GDPR Protected</span>
+                      <span>EU NDA & GDPR Protected</span>
                     </div>
                     <button
                       type="submit"
-                      className="px-6 py-2.5 rounded bg-[#c91c1c] hover:bg-[#a01616] text-white font-bold uppercase tracking-wider shadow-md flex items-center gap-2 cursor-pointer transition-colors"
+                      className="px-6 py-2.5 rounded-xl bg-[#c91c1c] hover:bg-[#a01616] text-white font-bold uppercase tracking-wider shadow-md flex items-center gap-2 cursor-pointer transition-colors"
                     >
                       <span>Submit Request</span>
                       <Send className="w-3.5 h-3.5" />

@@ -78,6 +78,18 @@ export interface EstimatorState {
   businessSize: 'solo' | 'startup' | 'sme' | 'enterprise';
 }
 
+export interface TechnologyServiceItem {
+  id: string;
+  number: string;
+  title: string;
+  tagline: string;
+  description: string;
+  icon: string;
+  approachTitle?: string;
+  approach?: string[];
+  items: string[];
+}
+
 export interface ConsultationRequest {
   id: string;
   fullName: string;

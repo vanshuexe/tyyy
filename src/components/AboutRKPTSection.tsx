@@ -1,105 +1,135 @@
 import React from 'react';
 import { ScrollReveal } from './ScrollReveal';
-import { ArrowRight, CheckCircle, Target, Globe, ShieldCheck, Cpu } from 'lucide-react';
+import { ArrowRight, CheckCircle2, ShieldCheck, HeartHandshake, Award, Zap, Eye } from 'lucide-react';
 
 interface AboutRKPTSectionProps {
   onOpenConsultation: () => void;
 }
 
 export const AboutRKPTSection: React.FC<AboutRKPTSectionProps> = ({ onOpenConsultation }) => {
+  const missionPoints = [
+    'Simplify cross-border business setup and operations.',
+    'Deliver accurate, compliant and customized consulting services.',
+    'Empower businesses through innovative IT and digital solutions.',
+    'Build long-term partnerships based on trust, performance and results.',
+  ];
+
+  const coreValues = [
+    {
+      title: 'Integrity & Compliance',
+      desc: 'Structured around applicable local and EU requirements.',
+      icon: ShieldCheck,
+    },
+    {
+      title: 'Client-Centric Approach',
+      desc: 'Solutions tailored to individual and corporate goals.',
+      icon: HeartHandshake,
+    },
+    {
+      title: 'Expertise & Precision',
+      desc: 'Rigorous legal, tax, and technological execution.',
+      icon: Award,
+    },
+    {
+      title: 'Innovation',
+      desc: 'Practical IT, AI, and workflow automation solutions.',
+      icon: Zap,
+    },
+    {
+      title: 'Transparency',
+      desc: 'Clear processes, clear communication, and transparent service scope.',
+      icon: Eye,
+    },
+  ];
+
   return (
-    <section className="py-20 md:py-28 bg-white border-b border-gray-200">
+    <section id="about" className="py-16 sm:py-24 bg-white border-b border-gray-200 scroll-mt-20">
       <ScrollReveal>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-10 items-center">
-            {/* Left Content */}
-            <div className="space-y-6 text-left">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+            {/* Left Column: About, Vision, Mission */}
+            <div className="space-y-6">
               <div>
-                <span className="text-[#c91c1c] uppercase tracking-[0.15em] text-xs font-bold mb-3 block">
-                  ABOUT RKPT TECH LTD
+                <span className="text-[#c91c1c] uppercase tracking-widest text-xs font-bold mb-2 block">
+                  ABOUT RKPT
                 </span>
-                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-black text-[#15325b] tracking-tight mb-6 leading-tight">
-                  One partner for business and technology
+                <h2 className="text-3xl sm:text-4xl font-display font-black text-[#0b1b36] tracking-tight mb-4">
+                  About RKPT TECH LTD
                 </h2>
+                <p className="text-sm sm:text-base text-gray-600 font-light leading-relaxed">
+                  RKPT TECH LTD is a global business consulting and technology solutions firm specializing in helping entrepreneurs, startups and established companies establish, expand and operate businesses across international markets. Our integrated approach combines business, financial, administrative, compliance and IT solutions so clients can focus on growth while we help manage complexity, compliance and operational efficiency.
+                </p>
               </div>
-              
-              <div className="space-y-4 text-gray-600 font-light text-base md:text-lg leading-relaxed">
-                <p>
-                  RKPT TECH LTD is a global business consulting and technology solutions firm specializing in helping entrepreneurs, startups and established companies establish, expand and operate businesses across international markets.
+
+              {/* Vision */}
+              <div className="bg-slate-50 border-l-4 border-[#0b1b36] p-5 rounded-r-2xl">
+                <span className="text-xs font-bold uppercase tracking-wider text-[#0b1b36] block mb-1">
+                  Our Vision
+                </span>
+                <p className="text-xs sm:text-sm text-gray-700 leading-relaxed font-medium">
+                  To become a trusted global partner for businesses entering and expanding into international markets by delivering transparent, compliant and technology-driven solutions that enable sustainable growth.
                 </p>
-                <p>
-                  Our integrated approach combines business, financial, administrative, compliance and IT solutions so clients can focus on growth while we help manage complexity, compliance and operational efficiency.
-                </p>
+              </div>
+
+              {/* Mission */}
+              <div className="space-y-3">
+                <span className="text-xs font-bold uppercase tracking-wider text-[#c91c1c] block">
+                  Our Mission
+                </span>
+                <div className="space-y-2">
+                  {missionPoints.map((point, idx) => (
+                    <div key={idx} className="flex items-start gap-2.5">
+                      <CheckCircle2 className="w-4 h-4 text-[#c91c1c] shrink-0 mt-0.5" />
+                      <p className="text-xs sm:text-sm text-gray-700 font-normal">
+                        {point}
+                      </p>
+                    </div>
+                  ))}
+                </div>
               </div>
 
               <div className="pt-2">
-                <p className="text-gray-600 font-light text-base md:text-lg leading-relaxed">
-                  <strong className="font-bold text-[#15325b]">Vision.</strong> To become a trusted global partner for businesses entering and expanding into international markets by delivering transparent, compliant and technology-driven solutions that enable sustainable growth.
-                </p>
-              </div>
-
-              <div className="pt-6 space-y-4">
-                <div className="flex items-start gap-3">
-                  <span className="text-[#c91c1c] font-medium text-lg leading-6">—</span>
-                  <p className="text-gray-700 font-medium text-base">
-                    Simplify cross-border business setup and operations.
-                  </p>
-                </div>
-                <div className="flex items-start gap-3">
-                  <span className="text-[#c91c1c] font-medium text-lg leading-6">—</span>
-                  <p className="text-gray-700 font-medium text-base">
-                    Deliver accurate, compliant and customized consulting services.
-                  </p>
-                </div>
-                <div className="flex items-start gap-3">
-                  <span className="text-[#c91c1c] font-medium text-lg leading-6">—</span>
-                  <p className="text-gray-700 font-medium text-base">
-                    Empower businesses through innovative IT and digital solutions.
-                  </p>
-                </div>
-              </div>
-
-              <div className="pt-6">
                 <button
                   onClick={onOpenConsultation}
-                  className="btn-premium w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-xl bg-[#c91c1c] hover:bg-[#a01616] text-white font-bold text-sm tracking-wide uppercase transition-colors"
+                  className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-[#c91c1c] hover:bg-[#a01616] text-white font-bold text-xs uppercase tracking-wider transition-colors shadow-sm cursor-pointer"
                 >
-                  <span>Book A Consultation</span>
+                  <span>BOOK A CONSULTATION</span>
                   <ArrowRight className="w-4 h-4" />
                 </button>
               </div>
             </div>
 
-            {/* Right Visual / Accent element */}
-            <div className="hidden lg:block relative h-full min-h-[500px] w-full rounded-3xl overflow-hidden bg-gray-50 border border-gray-100 shadow-premium">
-              {/* Decorative geometric patterns representing integration of tech & business */}
-              <div className="absolute inset-0 bg-gradient-to-br from-white via-gray-50 to-gray-200" />
-              <div className="absolute top-1/4 -right-16 w-64 h-64 bg-[#3273a8] rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-blob" />
-              <div className="absolute -bottom-8 -left-16 w-64 h-64 bg-[#c91c1c] rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-blob animation-delay-2000" />
-              
-              <div className="absolute inset-0 flex items-center justify-center p-12">
-                <div className="grid grid-cols-2 gap-8 md:gap-10 w-full">
-                  <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col justify-center items-center text-center transform translate-y-8">
-                    <Globe className="w-10 h-10 text-[#3273a8] mb-4" />
-                    <h4 className="font-bold text-[#15325b] mb-2">Global Markets</h4>
-                    <p className="text-xs text-gray-500 font-light">Cross-border setup & compliance</p>
-                  </div>
-                  <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col justify-center items-center text-center transform -translate-y-4">
-                    <Target className="w-10 h-10 text-[#c91c1c] mb-4" />
-                    <h4 className="font-bold text-[#15325b] mb-2">Strategic Growth</h4>
-                    <p className="text-xs text-gray-500 font-light">Consulting & business scaling</p>
-                  </div>
-                  <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col justify-center items-center text-center transform translate-y-4">
-                    <Cpu className="w-10 h-10 text-[#15325b] mb-4" />
-                    <h4 className="font-bold text-[#15325b] mb-2">IT & Digital</h4>
-                    <p className="text-xs text-gray-500 font-light">Custom software & AI integration</p>
-                  </div>
-                  <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col justify-center items-center text-center transform -translate-y-8">
-                    <ShieldCheck className="w-10 h-10 text-[#3273a8] mb-4" />
-                    <h4 className="font-bold text-[#15325b] mb-2">Operational Trust</h4>
-                    <p className="text-xs text-gray-500 font-light">Accurate compliance & licensing</p>
-                  </div>
-                </div>
+            {/* Right Column: Core Values */}
+            <div className="bg-slate-50/70 rounded-3xl p-6 sm:p-8 border border-slate-200/90">
+              <span className="text-[#c91c1c] uppercase tracking-widest text-xs font-bold mb-1 block">
+                FOUNDATIONAL STANDARDS
+              </span>
+              <h3 className="text-2xl font-display font-black text-[#0b1b36] tracking-tight mb-6">
+                Core Values
+              </h3>
+
+              <div className="space-y-4">
+                {coreValues.map((val) => {
+                  const Icon = val.icon;
+                  return (
+                    <div
+                      key={val.title}
+                      className="bg-white rounded-2xl p-4 sm:p-5 border border-gray-200/80 hover:border-[#c91c1c] transition-colors shadow-xs"
+                    >
+                      <div className="flex items-center gap-3 mb-1.5">
+                        <div className="w-8 h-8 rounded-lg bg-red-50 flex items-center justify-center text-[#c91c1c]">
+                          <Icon className="w-4 h-4" />
+                        </div>
+                        <h4 className="font-bold text-[#0b1b36] text-sm sm:text-base">
+                          {val.title}
+                        </h4>
+                      </div>
+                      <p className="text-xs text-gray-600 font-light leading-relaxed pl-11">
+                        {val.desc}
+                      </p>
+                    </div>
+                  );
+                })}
               </div>
             </div>
           </div>
