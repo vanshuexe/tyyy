@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { ServicePillar } from '../types';
 import { X, CheckCircle2, ArrowRight, ShieldCheck, FileCheck, Layers } from 'lucide-react';
 
@@ -13,11 +13,34 @@ export const ServiceDetailModal: React.FC<ServiceDetailModalProps> = ({
   onClose,
   onBookService,
 }) => {
+  useEffect(() => {
+    if (service) {
+      const originalOverflow = document.body.style.overflow;
+      const originalHtmlOverflow = document.documentElement.style.overflow;
+      document.body.style.overflow = 'hidden';
+      document.documentElement.style.overflow = 'hidden';
+      return () => {
+        document.body.style.overflow = originalOverflow;
+        document.documentElement.style.overflow = originalHtmlOverflow;
+      };
+    }
+  }, [service]);
+
   if (!service) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm animate-fadeIn">
-      <div className="relative w-full max-w-3xl max-h-[90vh] overflow-y-auto bg-white rounded-xl shadow-2xl border border-gray-200">
+    <div 
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm animate-fadeIn overscroll-contain overflow-y-auto"
+      onClick={(e) => {
+        if (e.target === e.currentTarget) onClose();
+      }}
+      onWheel={(e) => e.stopPropagation()}
+    >
+      <div 
+        className="relative w-full max-w-3xl max-h-[90vh] overflow-y-auto bg-white rounded-xl shadow-2xl border border-gray-200 overscroll-contain"
+        onClick={(e) => e.stopPropagation()}
+        onWheel={(e) => e.stopPropagation()}
+      >
         {/* Modal Header with KCID Crimson Border Accent */}
         <div className="sticky top-0 z-10 bg-[#0b1b36] text-white p-6 rounded-t-xl flex items-start justify-between border-b-4 border-[#c91c1c]">
           <div className="space-y-1">

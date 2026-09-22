@@ -5,11 +5,13 @@ import { COUNTRIES_DATA } from '../data/companyData';
 import { ScrollReveal } from './ScrollReveal';
 
 interface GlobalHubSelectorProps {
+  selectedHubId?: string;
   onSelectHub: (hubId: string) => void;
   onOpenConsultation: (hubName?: string) => void;
 }
 
 export const GlobalHubSelector: React.FC<GlobalHubSelectorProps> = ({
+  selectedHubId,
   onSelectHub,
   onOpenConsultation,
 }) => {
@@ -41,59 +43,78 @@ export const GlobalHubSelector: React.FC<GlobalHubSelectorProps> = ({
 
           {/* 7 Hub Cards Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
-            {COUNTRIES_DATA.map((hub, idx) => (
-              <motion.div
-                key={hub.id}
-                initial={{ opacity: 0, y: 18 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: idx * 0.06 }}
-                className="flex"
-              >
-                <div
-                  onClick={() => onSelectHub(hub.id)}
-                  className="w-full bg-white rounded-2xl p-5 border border-gray-200/90 hover:border-[#c91c1c] hover:shadow-lg hover:shadow-slate-200/60 transition-all duration-300 flex flex-col justify-between group cursor-pointer text-left"
+            {COUNTRIES_DATA.map((hub, idx) => {
+              const isSelected = selectedHubId?.toLowerCase() === hub.id.toLowerCase();
+              return (
+                <motion.div
+                  key={hub.id}
+                  initial={{ opacity: 0, y: 18 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: idx * 0.06 }}
+                  className="flex"
                 >
-                  <div>
-                    {/* Flag & Code Header */}
-                    <div className="flex items-center justify-between mb-4">
-                      <div className="flex items-center gap-2.5">
-                        <img
-                          src={hub.flag}
-                          alt={`${hub.name} flag`}
-                          className="w-7 h-5 object-cover rounded-sm shadow-xs border border-gray-200"
-                        />
-                        <span className="text-xs font-bold tracking-wider text-[#0b1b36] bg-gray-100 px-2 py-0.5 rounded">
-                          {hub.code}
-                        </span>
+                  <div
+                    onClick={() => onSelectHub(hub.id)}
+                    className={`w-full bg-white rounded-2xl p-5 border transition-all duration-300 flex flex-col justify-between group cursor-pointer text-left ${
+                      isSelected
+                        ? 'border-[#c91c1c] ring-2 ring-[#c91c1c]/25 shadow-lg shadow-red-50'
+                        : 'border-gray-200/90 hover:border-[#c91c1c] hover:shadow-lg hover:shadow-slate-200/60'
+                    }`}
+                  >
+                    <div>
+                      {/* Flag & Code Header */}
+                      <div className="flex items-center justify-between mb-4">
+                        <div className="flex items-center gap-2.5">
+                          <img
+                            src={hub.flag}
+                            alt={`${hub.name} flag`}
+                            className="w-7 h-5 object-cover rounded-sm shadow-xs border border-gray-200"
+                          />
+                          <span className={`text-xs font-bold tracking-wider px-2 py-0.5 rounded ${
+                            isSelected ? 'bg-[#0b1b36] text-white' : 'text-[#0b1b36] bg-gray-100'
+                          }`}>
+                            {hub.code}
+                          </span>
+                        </div>
+                        {isSelected ? (
+                          <span className="text-[10px] font-bold text-[#c91c1c] uppercase tracking-wider bg-red-50 px-2 py-0.5 rounded-full border border-red-100">
+                            Selected
+                          </span>
+                        ) : (
+                          <span className="text-[11px] font-semibold text-gray-400 uppercase tracking-wider">
+                            {hub.capital}
+                          </span>
+                        )}
                       </div>
-                      <span className="text-[11px] font-semibold text-gray-400 uppercase tracking-wider">
-                        {hub.capital}
-                      </span>
+
+                      {/* Title & Tagline */}
+                      <h3 className={`text-xl font-display font-bold transition-colors mb-1 ${
+                        isSelected ? 'text-[#c91c1c]' : 'text-[#0b1b36] group-hover:text-[#c91c1c]'
+                      }`}>
+                        {hub.name}
+                      </h3>
+                      <p className="text-xs font-semibold text-[#c91c1c] tracking-wide mb-3">
+                        {hub.regionalFocus}
+                      </p>
+
+                      {/* Summary / Focus */}
+                      <p className="text-xs text-gray-600 leading-relaxed font-light mb-4">
+                        {hub.summary}
+                      </p>
                     </div>
 
-                    {/* Title & Tagline */}
-                    <h3 className="text-xl font-display font-bold text-[#0b1b36] group-hover:text-[#c91c1c] transition-colors mb-1">
-                      {hub.name}
-                    </h3>
-                    <p className="text-xs font-semibold text-[#c91c1c] tracking-wide mb-3">
-                      {hub.regionalFocus}
-                    </p>
-
-                    {/* Summary / Focus */}
-                    <p className="text-xs text-gray-600 leading-relaxed font-light mb-4">
-                      {hub.summary}
-                    </p>
+                    {/* Card Footer Button */}
+                    <div className="pt-3 border-t border-gray-100 flex items-center justify-between text-xs font-bold text-[#0b1b36] group-hover:text-[#c91c1c] transition-colors">
+                      <span className="uppercase tracking-wider">
+                        {isSelected ? 'View Detailed Setup' : 'Select Hub'}
+                      </span>
+                      <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
+                    </div>
                   </div>
-
-                  {/* Card Footer Button */}
-                  <div className="pt-3 border-t border-gray-100 flex items-center justify-between text-xs font-bold text-[#0b1b36] group-hover:text-[#c91c1c] transition-colors">
-                    <span className="uppercase tracking-wider">Inquire Hub</span>
-                    <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
-                  </div>
-                </div>
-              </motion.div>
-            ))}
+                </motion.div>
+              );
+            })}
           </div>
         </div>
       </ScrollReveal>

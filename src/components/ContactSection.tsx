@@ -16,22 +16,24 @@ interface ContactSectionProps {
   prefilledService?: string;
 }
 
+const DUMMY_CONTACT_DETAILS = {
+  fullName: 'Alex Morgan',
+  companyName: 'Nexus Global Ventures',
+  email: 'alex.morgan@example.com',
+  phone: '+1 (555) 019-2834',
+  currentCountry: 'United Kingdom',
+  targetHub: 'Portugal',
+  entityType: 'Business',
+  serviceRequired: 'Company Formation',
+  industry: 'Technology & SaaS',
+  description: 'Inquiry regarding cross-border corporate formation, tax structuring, and corporate banking setup.',
+  contactMethod: 'Email',
+  preferredDateTime: 'Tuesday morning (CET)',
+  consent: true,
+};
+
 export const ContactSection: React.FC<ContactSectionProps> = ({ prefilledService }) => {
-  const [formData, setFormData] = useState({
-    fullName: '',
-    companyName: '',
-    email: '',
-    phone: '',
-    currentCountry: '',
-    targetHub: 'Portugal',
-    entityType: 'Business',
-    serviceRequired: 'Company Formation',
-    industry: '',
-    description: '',
-    contactMethod: 'Email',
-    preferredDateTime: '',
-    consent: false,
-  });
+  const [formData, setFormData] = useState(DUMMY_CONTACT_DETAILS);
 
   const [submittedRef, setSubmittedRef] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -217,6 +219,49 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ prefilledService
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-6 text-left">
+                  {/* Dummy Details Notice Banner */}
+                  <div className="bg-amber-50/90 border border-amber-200/90 rounded-2xl p-3.5 sm:p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs text-amber-900 shadow-xs">
+                    <div className="flex items-center gap-2">
+                      <span className="w-2.5 h-2.5 rounded-full bg-amber-500 shrink-0" />
+                      <span className="font-semibold">
+                        Consultation screen pre-filled with dummy details for preview and evaluation.
+                      </span>
+                    </div>
+                    <div className="flex items-center gap-3 self-end sm:self-center">
+                      <button
+                        type="button"
+                        onClick={() => setFormData(DUMMY_CONTACT_DETAILS)}
+                        className="text-[11px] font-bold text-[#c91c1c] hover:underline uppercase tracking-wider cursor-pointer"
+                      >
+                        Reset Dummy
+                      </button>
+                      <span className="text-gray-300">|</span>
+                      <button
+                        type="button"
+                        onClick={() =>
+                          setFormData({
+                            fullName: '',
+                            companyName: '',
+                            email: '',
+                            phone: '',
+                            currentCountry: '',
+                            targetHub: 'Portugal',
+                            entityType: 'Business',
+                            serviceRequired: 'Company Formation',
+                            industry: '',
+                            description: '',
+                            contactMethod: 'Email',
+                            preferredDateTime: '',
+                            consent: false,
+                          })
+                        }
+                        className="text-[11px] font-bold text-gray-600 hover:text-gray-900 uppercase tracking-wider cursor-pointer"
+                      >
+                        Clear Form
+                      </button>
+                    </div>
+                  </div>
+
                   {/* Row 1: Full Name & Company Name */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                     <div>
@@ -226,7 +271,9 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ prefilledService
                       <input
                         required
                         type="text"
-                        placeholder="Marcus Vance"
+                        autoComplete="off"
+                        data-lpignore="true"
+                        placeholder="Alex Morgan (Dummy Name)"
                         value={formData.fullName}
                         onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
                         className="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 text-gray-900 text-sm focus:outline-none focus:bg-white focus:border-[#c91c1c]"
@@ -238,7 +285,9 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ prefilledService
                       </label>
                       <input
                         type="text"
-                        placeholder="Apex Global Ventures"
+                        autoComplete="off"
+                        data-lpignore="true"
+                        placeholder="Nexus Global Ventures (Dummy Company)"
                         value={formData.companyName}
                         onChange={(e) => setFormData({ ...formData, companyName: e.target.value })}
                         className="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 text-gray-900 text-sm focus:outline-none focus:bg-white focus:border-[#c91c1c]"
@@ -255,7 +304,9 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ prefilledService
                       <input
                         required
                         type="email"
-                        placeholder="marcus@apex.com"
+                        autoComplete="off"
+                        data-lpignore="true"
+                        placeholder="alex.morgan@example.com (Dummy Email)"
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                         className="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 text-gray-900 text-sm focus:outline-none focus:bg-white focus:border-[#c91c1c]"
@@ -268,7 +319,9 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ prefilledService
                       <input
                         required
                         type="tel"
-                        placeholder="+44 20 7946 0912"
+                        autoComplete="off"
+                        data-lpignore="true"
+                        placeholder="+1 (555) 019-2834 (Dummy Phone)"
                         value={formData.phone}
                         onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                         className="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 text-gray-900 text-sm focus:outline-none focus:bg-white focus:border-[#c91c1c]"

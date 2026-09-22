@@ -11,18 +11,41 @@ import { AboutRKPTSection } from './AboutRKPTSection';
 import { ContactSection } from './ContactSection';
 
 interface HomeViewProps {
+  selectedHubId?: string;
+  onSelectHub?: (hubId: string) => void;
   onNavigate?: (pageId: string, extraData?: any) => void;
   onOpenConsultation: (preselectedService?: string) => void;
 }
 
-export const HomeView: React.FC<HomeViewProps> = ({ onNavigate, onOpenConsultation }) => {
+export const HomeView: React.FC<HomeViewProps> = ({
+  selectedHubId: propSelectedHubId,
+  onSelectHub: propOnSelectHub,
+  onNavigate,
+  onOpenConsultation,
+}) => {
+  const [internalSelectedHubId, setInternalSelectedHubId] = React.useState<string>('portugal');
+  const activeHubId = propSelectedHubId || internalSelectedHubId;
+
   const handleSelectHub = (countryId: string) => {
-    const el = document.getElementById('global-setup');
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
-    } else if (onNavigate) {
-      onNavigate('jurisdictions', countryId);
+    setInternalSelectedHubId(countryId);
+    if (propOnSelectHub) {
+      propOnSelectHub(countryId);
     }
+    // Scroll reliably with sticky navbar offset
+    setTimeout(() => {
+      const el = document.getElementById('country-hub-detail') || document.getElementById('global-setup');
+      if (el) {
+        const navOffset = 90;
+        const elementPosition = el.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - navOffset;
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth',
+        });
+      } else if (onNavigate) {
+        onNavigate('jurisdictions', countryId);
+      }
+    }, 50);
   };
 
   return (
@@ -32,12 +55,22 @@ export const HomeView: React.FC<HomeViewProps> = ({ onNavigate, onOpenConsultati
         onOpenConsultation={() => onOpenConsultation()}
         onExploreEstimator={() => {
           const el = document.getElementById('global-hubs');
-          if (el) el.scrollIntoView({ behavior: 'smooth' });
+          if (el) {
+            const navOffset = 90;
+            const elementPosition = el.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.pageYOffset - navOffset;
+            window.scrollTo({
+              top: offsetPosition,
+              behavior: 'smooth',
+            });
+          }
         }}
+        onSelectHub={handleSelectHub}
       />
 
       {/* 2. Global Hub Selector (Section 03) */}
       <GlobalHubSelector
+        selectedHubId={activeHubId}
         onSelectHub={handleSelectHub}
         onOpenConsultation={(hub) => onOpenConsultation(`Jurisdiction Advisory: ${hub}`)}
       />
@@ -59,6 +92,7 @@ export const HomeView: React.FC<HomeViewProps> = ({ onNavigate, onOpenConsultati
 
       {/* 8. Global Business Setup (Country Hubs - Section 10) */}
       <CountryHubs
+        initialSelectedId={activeHubId}
         onSelectCountry={handleSelectHub}
         onOpenConsultation={(country) => onOpenConsultation(`Global Business Setup: ${country}`)}
       />

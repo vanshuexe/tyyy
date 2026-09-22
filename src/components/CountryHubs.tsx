@@ -119,25 +119,52 @@ interface CountryHubsProps {
 
 export const CountryHubs: React.FC<CountryHubsProps> = ({
   initialSelectedId,
+  onSelectCountry,
   onOpenConsultation,
 }) => {
-  const [selectedHub, setSelectedHub] = useState<HubDetail>(
-    HUBS_LIST.find((h) => h.id === initialSelectedId) || HUBS_LIST[0]
-  );
+  const [selectedHub, setSelectedHub] = useState<HubDetail>(() => {
+    if (initialSelectedId) {
+      const match = HUBS_LIST.find((h) => h.id.toLowerCase() === initialSelectedId.toLowerCase());
+      if (match) return match;
+    }
+    return HUBS_LIST[0];
+  });
 
   useEffect(() => {
     if (initialSelectedId) {
-      const found = HUBS_LIST.find((h) => h.id === initialSelectedId);
-      if (found) setSelectedHub(found);
+      const found = HUBS_LIST.find((h) => h.id.toLowerCase() === initialSelectedId.toLowerCase());
+      if (found) {
+        setSelectedHub(found);
+      }
     }
   }, [initialSelectedId]);
 
+  const handleHubClick = (hub: HubDetail) => {
+    setSelectedHub(hub);
+    if (onSelectCountry) {
+      onSelectCountry(hub.id);
+    }
+    // Smooth scroll to the detailed card
+    setTimeout(() => {
+      const el = document.getElementById('country-hub-detail');
+      if (el) {
+        const navOffset = 90;
+        const elementPosition = el.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - navOffset;
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth',
+        });
+      }
+    }, 40);
+  };
+
   return (
-    <section id="global-setup" className="py-16 sm:py-24 bg-white border-b border-gray-200 scroll-mt-20">
+    <section id="global-setup" className="py-16 sm:py-24 bg-white border-b border-gray-200 scroll-mt-24">
       <ScrollReveal>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Section Header */}
-          <div className="max-w-3xl mb-10 sm:mb-14">
+          <div className="max-w-3xl mb-8 sm:mb-10">
             <span className="text-[#c91c1c] uppercase tracking-widest text-xs font-bold mb-2 block">
               INTERNATIONAL JURISDICTIONS
             </span>
@@ -150,16 +177,16 @@ export const CountryHubs: React.FC<CountryHubsProps> = ({
           </div>
 
           {/* Hub Selector Pills */}
-          <div className="flex items-center gap-2 overflow-x-auto pb-4 mb-8 scrollbar-none">
+          <div className="flex items-center gap-2 overflow-x-auto pb-4 mb-6 scrollbar-none">
             {HUBS_LIST.map((hub) => {
               const isSelected = selectedHub.id === hub.id;
               return (
                 <button
                   key={hub.id}
-                  onClick={() => setSelectedHub(hub)}
+                  onClick={() => handleHubClick(hub)}
                   className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider whitespace-nowrap transition-all cursor-pointer ${
                     isSelected
-                      ? 'bg-[#0b1b36] text-white shadow-md'
+                      ? 'bg-[#0b1b36] text-white shadow-md ring-2 ring-[#c91c1c]'
                       : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                   }`}
                 >
@@ -175,7 +202,26 @@ export const CountryHubs: React.FC<CountryHubsProps> = ({
           </div>
 
           {/* Detailed Selected Hub Card */}
-          <div className="bg-slate-50/70 border border-slate-200/90 rounded-3xl p-6 sm:p-10 transition-all duration-300">
+          <div
+            id="country-hub-detail"
+            className="bg-slate-50/70 border border-slate-200/90 rounded-3xl p-6 sm:p-10 transition-all duration-300 scroll-mt-28 shadow-xs"
+          >
+            {/* Prominent Active Selection Status Banner */}
+            <div className="flex items-center justify-between flex-wrap gap-2 mb-6 pb-4 border-b border-gray-200">
+              <div className="flex items-center gap-2.5">
+                <span className="flex h-2.5 w-2.5 relative">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+                </span>
+                <span className="text-xs font-bold uppercase tracking-wider text-[#0b1b36]">
+                  Active Selected Hub: <span className="text-[#c91c1c] font-black">{selectedHub.name} ({selectedHub.code})</span>
+                </span>
+              </div>
+              <span className="text-[11px] font-semibold text-gray-500 uppercase tracking-wide">
+                7 Available Strategic Jurisdictions
+              </span>
+            </div>
+
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
               {/* Col 1: Overview */}
               <div className="lg:col-span-1 border-b lg:border-b-0 lg:border-r border-gray-200 pb-6 lg:pb-0 lg:pr-8">
@@ -190,7 +236,7 @@ export const CountryHubs: React.FC<CountryHubsProps> = ({
                       {selectedHub.name}
                     </h3>
                     <span className="text-xs font-bold text-[#c91c1c] uppercase tracking-wide">
-                      {selectedHub.code}
+                      {selectedHub.code} • Strategic Hub
                     </span>
                   </div>
                 </div>

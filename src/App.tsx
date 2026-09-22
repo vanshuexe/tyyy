@@ -32,19 +32,54 @@ export default function App() {
   const [currentPage, setCurrentPage] = useState<string>(getPageFromHash());
   const [isConsultationModalOpen, setIsConsultationModalOpen] = useState(false);
   const [prefilledService, setPrefilledService] = useState<string | undefined>(undefined);
-  const [selectedHubId, setSelectedHubId] = useState<string | null>(null);
+  const [selectedHubId, setSelectedHubId] = useState<string>('portugal');
 
-  // Fast modal form state
-  const [modalForm, setModalForm] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    company: '',
+  // Dummy details for the consultation modal
+  const DUMMY_MODAL_FORM = {
+    name: 'Alex Morgan',
+    email: 'alex.morgan@example.com',
+    phone: '+1 (555) 019-2834',
+    company: 'Nexus Global Ltd',
     jurisdiction: 'Portugal',
-    scopeDetails: '',
-  });
+    scopeDetails: 'Inquiry regarding cross-border corporate formation and international banking setup.',
+  };
+
+  // Fast modal form state initialized with clean dummy details
+  const [modalForm, setModalForm] = useState(DUMMY_MODAL_FORM);
   const [modalSubmitted, setModalSubmitted] = useState(false);
   const [modalRefId, setModalRefId] = useState('');
+
+  // Lock body scroll whenever consultation modal is open
+  useEffect(() => {
+    if (isConsultationModalOpen) {
+      const scrollBarWidth = window.innerWidth - document.documentElement.clientWidth;
+      const originalBodyOverflow = document.body.style.overflow;
+      const originalHtmlOverflow = document.documentElement.style.overflow;
+      const originalPaddingRight = document.body.style.paddingRight;
+
+      document.body.style.overflow = 'hidden';
+      document.documentElement.style.overflow = 'hidden';
+      if (scrollBarWidth > 0) {
+        document.body.style.paddingRight = `${scrollBarWidth}px`;
+      }
+
+      const preventBackgroundTouch = (e: TouchEvent) => {
+        const target = e.target as HTMLElement;
+        if (!target.closest('.modal-scrollable-container')) {
+          e.preventDefault();
+        }
+      };
+
+      document.addEventListener('touchmove', preventBackgroundTouch, { passive: false });
+
+      return () => {
+        document.body.style.overflow = originalBodyOverflow;
+        document.documentElement.style.overflow = originalHtmlOverflow;
+        document.body.style.paddingRight = originalPaddingRight;
+        document.removeEventListener('touchmove', preventBackgroundTouch);
+      };
+    }
+  }, [isConsultationModalOpen]);
 
   useEffect(() => {
     const handleHashChange = () => {
@@ -54,6 +89,26 @@ export default function App() {
     window.addEventListener('hashchange', handleHashChange);
     return () => window.removeEventListener('hashchange', handleHashChange);
   }, []);
+
+  const handleSelectHubGlobally = (hubId: string) => {
+    setSelectedHubId(hubId);
+    if (currentPage !== 'home' && currentPage !== 'jurisdictions') {
+      setCurrentPage('home');
+      window.history.pushState(null, '', window.location.pathname);
+    }
+    setTimeout(() => {
+      const el = document.getElementById('country-hub-detail') || document.getElementById('global-setup');
+      if (el) {
+        const navOffset = 90;
+        const elementPosition = el.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - navOffset;
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth',
+        });
+      }
+    }, 60);
+  };
 
   const handleNavigate = (pageId: string, extraData?: any) => {
     if (pageId === 'jurisdictions' && typeof extraData === 'string') {
@@ -95,6 +150,8 @@ export default function App() {
       {/* Sticky Navbar */}
       <Navbar
         currentPage={currentPage}
+        selectedHubId={selectedHubId}
+        onSelectHub={handleSelectHubGlobally}
         onNavigate={handleNavigate}
         onOpenConsultation={handleOpenConsultation}
       />
@@ -111,6 +168,8 @@ export default function App() {
           >
             {currentPage === 'home' && (
               <HomeView
+                selectedHubId={selectedHubId}
+                onSelectHub={handleSelectHubGlobally}
                 onNavigate={handleNavigate}
                 onOpenConsultation={handleOpenConsultation}
               />
@@ -139,6 +198,7 @@ export default function App() {
                 />
                 <CountryHubs
                   initialSelectedId={selectedHubId}
+                  onSelectCountry={(countryId) => handleSelectHubGlobally(countryId)}
                   onOpenConsultation={(country) =>
                     handleOpenConsultation(`Jurisdiction Advisory: ${country}`)
                   }
@@ -217,10 +277,20 @@ export default function App() {
 
       {/* Fast Consultation Modal */}
       {isConsultationModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-xs animate-fadeIn">
-          <div className="relative w-full max-w-lg bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden text-left border-t-4 border-t-[#c91c1c]">
+        <div 
+          className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/75 backdrop-blur-xs animate-fadeIn overscroll-contain overflow-y-auto"
+          onClick={(e) => {
+            if (e.target === e.currentTarget) setIsConsultationModalOpen(false);
+          }}
+          onWheel={(e) => e.stopPropagation()}
+        >
+          <div 
+            className="modal-scrollable-container relative w-full max-w-lg bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden text-left border-t-4 border-t-[#c91c1c] max-h-[92vh] flex flex-col overscroll-contain"
+            onClick={(e) => e.stopPropagation()}
+            onWheel={(e) => e.stopPropagation()}
+          >
             {/* Modal Header */}
-            <div className="bg-[#0b1b36] text-white p-5 flex items-center justify-between border-b border-[#15325b]">
+            <div className="bg-[#0b1b36] text-white p-5 flex items-center justify-between border-b border-[#15325b] shrink-0">
               <div>
                 <div className="text-[10px] font-bold uppercase tracking-widest text-[#3273a8]">
                   RKPT TECH LTD Advisory Desk
@@ -238,7 +308,7 @@ export default function App() {
             </div>
 
             {/* Modal Content */}
-            <div className="p-6">
+            <div className="p-5 sm:p-6 overflow-y-auto max-h-[calc(92vh-80px)] overscroll-contain">
               {modalSubmitted ? (
                 <div className="text-center py-4 space-y-4">
                   <div className="w-14 h-14 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto">
@@ -264,6 +334,21 @@ export default function App() {
                 </div>
               ) : (
                 <form onSubmit={handleModalSubmit} className="space-y-4 text-xs">
+                  {/* Dummy Details Notice Banner */}
+                  <div className="bg-amber-50/90 border border-amber-200/90 rounded-xl px-3 py-2 flex items-center justify-between text-xs text-amber-900 shadow-xs">
+                    <div className="flex items-center gap-1.5 font-medium">
+                      <span className="w-2 h-2 rounded-full bg-amber-500 shrink-0" />
+                      <span>Pre-filled with dummy details for preview</span>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() => setModalForm(DUMMY_MODAL_FORM)}
+                      className="text-[10px] font-bold text-[#c91c1c] uppercase tracking-wider hover:underline cursor-pointer"
+                    >
+                      Reset Dummy
+                    </button>
+                  </div>
+
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div>
                       <label className="block font-bold text-gray-700 uppercase tracking-wider text-[10px] mb-1">
@@ -272,9 +357,11 @@ export default function App() {
                       <input
                         type="text"
                         required
+                        autoComplete="off"
+                        data-lpignore="true"
                         value={modalForm.name}
                         onChange={(e) => setModalForm({ ...modalForm, name: e.target.value })}
-                        placeholder="Marcus Vance"
+                        placeholder="Alex Morgan (Dummy Name)"
                         className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:border-[#c91c1c] focus:outline-none"
                       />
                     </div>
@@ -285,9 +372,11 @@ export default function App() {
                       <input
                         type="email"
                         required
+                        autoComplete="off"
+                        data-lpignore="true"
                         value={modalForm.email}
                         onChange={(e) => setModalForm({ ...modalForm, email: e.target.value })}
-                        placeholder="m.vance@company.com"
+                        placeholder="alex.morgan@example.com (Dummy Email)"
                         className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:border-[#c91c1c] focus:outline-none"
                       />
                     </div>
@@ -301,9 +390,11 @@ export default function App() {
                       <input
                         type="tel"
                         required
+                        autoComplete="off"
+                        data-lpignore="true"
                         value={modalForm.phone}
                         onChange={(e) => setModalForm({ ...modalForm, phone: e.target.value })}
-                        placeholder="+44 20 7946 0912"
+                        placeholder="+1 (555) 019-2834 (Dummy Phone)"
                         className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:border-[#c91c1c] focus:outline-none font-mono"
                       />
                     </div>
@@ -313,9 +404,11 @@ export default function App() {
                       </label>
                       <input
                         type="text"
+                        autoComplete="off"
+                        data-lpignore="true"
                         value={modalForm.company}
                         onChange={(e) => setModalForm({ ...modalForm, company: e.target.value })}
-                        placeholder="Apex Global Ltd"
+                        placeholder="Nexus Global Ltd (Dummy Company)"
                         className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:border-[#c91c1c] focus:outline-none"
                       />
                     </div>

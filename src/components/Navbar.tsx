@@ -5,12 +5,16 @@ import { COMPANY_INFO, COUNTRIES_DATA } from '../data/companyData';
 
 interface NavbarProps {
   currentPage?: string;
+  selectedHubId?: string;
+  onSelectHub?: (hubId: string) => void;
   onNavigate?: (pageId: string, extraData?: any) => void;
   onOpenConsultation: (preselectedService?: string) => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
   currentPage = 'home',
+  selectedHubId,
+  onSelectHub,
   onNavigate,
   onOpenConsultation,
 }) => {
@@ -26,6 +30,17 @@ export const Navbar: React.FC<NavbarProps> = ({
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      const originalOverflow = document.body.style.overflow;
+      document.body.style.overflow = 'hidden';
+      return () => {
+        document.body.style.overflow = originalOverflow;
+      };
+    }
+  }, [mobileMenuOpen]);
+
   const navLinks = [
     { id: 'home', label: 'Home', href: '#home' },
     { id: 'business-services', label: 'Business Services', href: '#business-services' },
@@ -40,7 +55,13 @@ export const Navbar: React.FC<NavbarProps> = ({
     setMobileMenuOpen(false);
     const targetElement = document.querySelector(href);
     if (targetElement) {
-      targetElement.scrollIntoView({ behavior: 'smooth' });
+      const navOffset = 90;
+      const elementPosition = targetElement.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - navOffset;
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth',
+      });
     } else if (onNavigate) {
       onNavigate(id);
     }
@@ -49,12 +70,24 @@ export const Navbar: React.FC<NavbarProps> = ({
   const handleSelectHub = (hubId: string) => {
     setHubDropdownOpen(false);
     setMobileMenuOpen(false);
-    const el = document.getElementById('global-setup') || document.getElementById('global-hubs');
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
-    }
-    if (onNavigate) {
-      onNavigate('jurisdictions', hubId);
+    if (onSelectHub) {
+      onSelectHub(hubId);
+    } else {
+      setTimeout(() => {
+        const el = document.getElementById('country-hub-detail') || document.getElementById('global-setup') || document.getElementById('global-hubs');
+        if (el) {
+          const navOffset = 90;
+          const elementPosition = el.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.pageYOffset - navOffset;
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth',
+          });
+        }
+      }, 50);
+      if (onNavigate) {
+        onNavigate('jurisdictions', hubId);
+      }
     }
   };
 

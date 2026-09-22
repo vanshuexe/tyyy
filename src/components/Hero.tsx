@@ -6,9 +6,10 @@ import { GlobalNetworkBanner } from './GlobalNetworkBanner';
 interface HeroProps {
   onOpenConsultation: () => void;
   onExploreEstimator: () => void;
+  onSelectHub?: (hubId: string) => void;
 }
 
-export const Hero: React.FC<HeroProps> = ({ onOpenConsultation, onExploreEstimator }) => {
+export const Hero: React.FC<HeroProps> = ({ onOpenConsultation, onExploreEstimator, onSelectHub }) => {
   return (
     <section className="relative overflow-hidden bg-[#fafafa] text-gray-900 pt-12 pb-16 sm:pt-20 sm:pb-20 lg:pt-28 lg:pb-32 border-b border-gray-200">
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -65,7 +66,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenConsultation, onExploreEstimat
 
           {/* Right: High-Tech Global Network Map Banner matching user's requested specification */}
           <div className="w-full relative z-10 flex items-center justify-center mt-2 lg:mt-0">
-            <GlobalNetworkBanner onOpenConsultation={onOpenConsultation} />
+            <GlobalNetworkBanner onOpenConsultation={onOpenConsultation} onSelectHub={onSelectHub} />
           </div>
         </div>
 

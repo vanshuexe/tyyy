@@ -11,11 +11,13 @@ import {
 
 interface GlobalNetworkBannerProps {
   onOpenConsultation: () => void;
+  onSelectHub?: (hubId: string) => void;
   className?: string;
 }
 
 export const GlobalNetworkBanner: React.FC<GlobalNetworkBannerProps> = ({
   onOpenConsultation,
+  onSelectHub,
   className = '',
 }) => {
   const [activeHubId, setActiveHubId] = useState<string | null>(null);
@@ -357,6 +359,22 @@ export const GlobalNetworkBanner: React.FC<GlobalNetworkBannerProps> = ({
             </div>
 
             <div className="flex items-center gap-2 self-end sm:self-center shrink-0">
+              {onSelectHub && (
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    onSelectHub(selectedHub.id);
+                  }}
+                  className={`px-3 py-2 rounded-xl text-xs font-bold uppercase tracking-wider border shadow-xs transition-colors cursor-pointer ${
+                    isDarkMode
+                      ? 'bg-white/10 hover:bg-white/20 border-white/20 text-white'
+                      : 'bg-white hover:bg-gray-100 border-gray-200 text-[#0b1b36]'
+                  }`}
+                >
+                  <span>View Setup</span>
+                </button>
+              )}
               <button
                 type="button"
                 onClick={(e) => {

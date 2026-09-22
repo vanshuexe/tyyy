@@ -70,6 +70,23 @@ export const ChatBot: React.FC<ChatBotProps> = ({
     if (isOpen) {
       scrollToBottom();
       setUnreadCount(0);
+
+      // On mobile screens, lock body overflow so background page cannot scroll behind chat
+      let originalBodyOverflow = '';
+      let originalHtmlOverflow = '';
+      if (window.innerWidth < 640) {
+        originalBodyOverflow = document.body.style.overflow;
+        originalHtmlOverflow = document.documentElement.style.overflow;
+        document.body.style.overflow = 'hidden';
+        document.documentElement.style.overflow = 'hidden';
+      }
+
+      return () => {
+        if (window.innerWidth < 640) {
+          document.body.style.overflow = originalBodyOverflow;
+          document.documentElement.style.overflow = originalHtmlOverflow;
+        }
+      };
     }
   }, [messages, isOpen, isTyping]);
 
@@ -220,7 +237,9 @@ export const ChatBot: React.FC<ChatBotProps> = ({
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 24, scale: 0.95 }}
             transition={{ duration: 0.2 }}
-            className="fixed bottom-4 sm:bottom-6 right-4 sm:right-6 w-[calc(100vw-32px)] sm:w-[440px] h-[580px] max-h-[85vh] bg-white rounded-2xl shadow-2xl border border-gray-200 flex flex-col overflow-hidden z-50 flex-shrink-0"
+            className="fixed bottom-4 sm:bottom-6 right-4 sm:right-6 w-[calc(100vw-32px)] sm:w-[440px] h-[580px] max-h-[85vh] bg-white rounded-2xl shadow-2xl border border-gray-200 flex flex-col overflow-hidden z-50 flex-shrink-0 overscroll-contain"
+            onWheel={(e) => e.stopPropagation()}
+            onTouchMove={(e) => e.stopPropagation()}
           >
             {/* Premium Header */}
             <div className="bg-[#15325b] text-white px-4 py-3.5 flex items-center justify-between border-b border-[#1c4072] shrink-0">
@@ -269,7 +288,10 @@ export const ChatBot: React.FC<ChatBotProps> = ({
             </div>
 
             {/* Messages Scroll Area */}
-            <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-gray-50/70">
+            <div 
+              className="flex-1 overflow-y-auto p-4 space-y-4 bg-gray-50/70 overscroll-contain"
+              onWheel={(e) => e.stopPropagation()}
+            >
               {messages.map((msg) => (
                 <div
                   key={msg.id}
