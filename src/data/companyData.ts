@@ -10,7 +10,7 @@ export const COMPANY_INFO = {
   coreProposition:
     "We don't just help you register a company. We help you build the infrastructure required to operate, protect and grow it.",
   supportingText:
-    'RKPT TECH LTD helps individuals, entrepreneurs, startups and established companies establish, operate and expand across international markets. We combine business setup, compliance, financial and immigration support with IT, AI, software and cybersecurity solutions.',
+    'RKPT TECH helps individuals, entrepreneurs, startups and established businesses enter, establish and scale in global markets with greater speed, confidence and control. We integrate business formation, regulatory compliance, financial and immigration support with IT, AI, software and cybersecurity solutions, providing an end-to-end platform for international expansion. From entering a new market to building and scaling cross-border operations, RKPT TECH provides the expertise, infrastructure and technology needed to turn international opportunities into sustainable global businesses.',
   trustLine: 'One Global Partner. Seven Business Hubs.',
   profileSummary:
     'RKPT TECH LTD is a global business consulting and technology solutions firm specializing in helping entrepreneurs, startups and established companies establish, expand and operate businesses across international markets. Our integrated approach combines business, financial, administrative, compliance and IT solutions so clients can focus on growth while we help manage complexity, compliance and operational efficiency.',

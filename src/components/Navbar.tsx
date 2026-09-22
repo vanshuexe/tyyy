@@ -135,27 +135,30 @@ export const Navbar: React.FC<NavbarProps> = ({
             : 'bg-white border-b border-gray-200 py-3 sm:py-4'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-2 sm:gap-4 w-full">
-          {/* Logo */}
-          <button
-            onClick={() => handleLinkClick('#home', 'home')}
-            className="focus:outline-none cursor-pointer text-left shrink-0"
-          >
-            <Logo size="md" variant="light" />
-          </button>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-4 w-full">
+          {/* Logo & Navigation grouped cleanly */}
+          <div className="flex items-center gap-6 xl:gap-8 min-w-0">
+            {/* Logo */}
+            <button
+              onClick={() => handleLinkClick('#home', 'home')}
+              className="focus:outline-none cursor-pointer text-left shrink-0"
+            >
+              <Logo size="md" variant="light" />
+            </button>
 
-          {/* Desktop Nav: Home | Business Services | Technology | Global Hubs | Industries | About | Contact */}
-          <nav className="hidden lg:flex items-center gap-3 xl:gap-5 2xl:gap-6 shrink-0">
-            {navLinks.map((link) => (
-              <button
-                key={link.id}
-                onClick={() => handleLinkClick(link.href, link.id)}
-                className="whitespace-nowrap text-xs xl:text-[13px] font-bold uppercase tracking-wider text-[#0b1b36] hover:text-[#c91c1c] transition-colors cursor-pointer py-1"
-              >
-                {link.label}
-              </button>
-            ))}
-          </nav>
+            {/* Desktop Nav: Home | Business Services | Technology | Global Hubs | Industries | About | Contact */}
+            <nav className="hidden lg:flex items-center gap-4 xl:gap-6 shrink-0">
+              {navLinks.map((link) => (
+                <button
+                  key={link.id}
+                  onClick={() => handleLinkClick(link.href, link.id)}
+                  className="whitespace-nowrap text-xs xl:text-[13px] font-bold uppercase tracking-wider text-[#0b1b36] hover:text-[#c91c1c] transition-colors cursor-pointer py-1"
+                >
+                  {link.label}
+                </button>
+              ))}
+            </nav>
+          </div>
 
           {/* Right Action: BOOK A CONSULTATION */}
           <div className="hidden sm:flex items-center gap-3 shrink-0">

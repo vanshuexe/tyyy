@@ -373,7 +373,7 @@ export default function App() {
           </div>
         </div>
       )}
-      <ChatBot />
+      <ChatBot onOpenConsultation={handleOpenConsultation} onNavigate={handleNavigate} />
     </div>
   );
 }
