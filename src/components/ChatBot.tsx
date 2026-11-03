@@ -19,6 +19,7 @@ import {
   BOT_SUGGESTIONS,
   AIResponseAction,
 } from '../data/aiBotKnowledge';
+import { saveChatInquiryToSupabase } from '../lib/supabase';
 
 interface Message {
   id: string;
@@ -119,6 +120,13 @@ export const ChatBot: React.FC<ChatBotProps> = ({
 
       setMessages((prev) => [...prev, botMsg]);
       setIsTyping(false);
+
+      // Async persist to Supabase chat_inquiries table
+      saveChatInquiryToSupabase({
+        user_message: queryText,
+        bot_response: response.text.slice(0, 500),
+        category: response.actions?.[0]?.type || 'general_query',
+      }).catch(() => {});
     }, 600);
   };
 

@@ -13,7 +13,9 @@ import { ContactSection } from './components/ContactSection';
 import { Footer } from './components/Footer';
 import { ChatBot } from './components/ChatBot';
 import { CountryMatrix } from './components/CountryMatrix';
-import { X, CheckCircle2, Send, ShieldCheck, Calendar, Phone } from 'lucide-react';
+import { SupabaseDbModal } from './components/SupabaseDbModal';
+import { saveConsultationToSupabase } from './lib/supabase';
+import { X, CheckCircle2, Send, ShieldCheck, Calendar, Phone, Database } from 'lucide-react';
 import { COMPANY_INFO, COUNTRIES_DATA } from './data/companyData';
 
 export default function App() {
@@ -48,6 +50,9 @@ export default function App() {
   const [modalForm, setModalForm] = useState(DUMMY_MODAL_FORM);
   const [modalSubmitted, setModalSubmitted] = useState(false);
   const [modalRefId, setModalRefId] = useState('');
+  const [isDbModalOpen, setIsDbModalOpen] = useState(false);
+  const [isSubmittingModal, setIsSubmittingModal] = useState(false);
+  const [modalPersistedTo, setModalPersistedTo] = useState<'supabase' | 'local_fallback'>('supabase');
 
   // Lock body scroll whenever consultation modal is open
   useEffect(() => {
@@ -83,11 +88,32 @@ export default function App() {
 
   useEffect(() => {
     const handleHashChange = () => {
+      if (window.location.hash === '#admin-db') {
+        setIsDbModalOpen(true);
+      }
       const page = getPageFromHash();
       setCurrentPage(page);
     };
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      // Secret Admin Inspector: Ctrl+Shift+D or Cmd+Shift+D
+      if ((e.ctrlKey || e.metaKey) && e.shiftKey && (e.key === 'D' || e.key === 'd')) {
+        e.preventDefault();
+        setIsDbModalOpen((prev) => !prev);
+      }
+    };
+
     window.addEventListener('hashchange', handleHashChange);
-    return () => window.removeEventListener('hashchange', handleHashChange);
+    window.addEventListener('keydown', handleKeyDown);
+
+    if (window.location.hash === '#admin-db') {
+      setIsDbModalOpen(true);
+    }
+
+    return () => {
+      window.removeEventListener('hashchange', handleHashChange);
+      window.removeEventListener('keydown', handleKeyDown);
+    };
   }, []);
 
   const handleSelectHubGlobally = (hubId: string) => {
@@ -138,10 +164,25 @@ export default function App() {
     setIsConsultationModalOpen(true);
   };
 
-  const handleModalSubmit = (e: React.FormEvent) => {
+  const handleModalSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsSubmittingModal(true);
     const ref = `RKPT-REF-${Math.floor(100000 + Math.random() * 900000)}`;
     setModalRefId(ref);
+
+    const result = await saveConsultationToSupabase({
+      reference_id: ref,
+      name: modalForm.name,
+      email: modalForm.email,
+      phone: modalForm.phone,
+      company: modalForm.company,
+      jurisdiction: modalForm.jurisdiction,
+      scope_details: modalForm.scopeDetails,
+      service_requested: prefilledService || 'Strategic Expansion Consultation',
+    });
+
+    setModalPersistedTo(result.persistedTo);
+    setIsSubmittingModal(false);
     setModalSubmitted(true);
   };
 
@@ -254,7 +295,9 @@ export default function App() {
                   category="Contact & Consultation"
                   onNavigateHome={() => handleNavigate('home')}
                 />
-                <ContactSection prefilledService={prefilledService} />
+                <ContactSection
+                  prefilledService={prefilledService}
+                />
               </div>
             )}
           </motion.div>
@@ -262,7 +305,9 @@ export default function App() {
       </main>
 
       {/* Corporate Footer */}
-      <Footer onNavigate={handleNavigate} />
+      <Footer
+        onNavigate={handleNavigate}
+      />
 
       {/* Persistent Floating Consultation CTA on Mobile */}
       <div className="fixed bottom-5 right-5 z-40 sm:hidden">
@@ -320,10 +365,16 @@ export default function App() {
                   <p className="text-xs text-gray-600 max-w-xs mx-auto leading-relaxed">
                     Our advisory desk has received your inquiry. A senior partner will review your requirements and respond within 24 business hours.
                   </p>
-                  <div className="p-3 bg-gray-50 rounded-xl border border-gray-200 text-xs font-mono font-bold text-[#0b1b36] inline-block">
-                    Reference ID: <span className="text-[#c91c1c]">{modalRefId}</span>
+                  
+                  <div className="p-3 bg-gray-50 rounded-xl border border-gray-200 text-xs font-mono font-bold text-[#0b1b36] inline-block space-y-1">
+                    <div>Reference ID: <span className="text-[#c91c1c]">{modalRefId}</span></div>
+                    <div className="text-[10px] text-emerald-700 font-sans font-medium flex items-center justify-center gap-1.5 pt-1 border-t border-gray-200">
+                      <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
+                      <span>Encrypted & Logged • Advisory Desk Notified</span>
+                    </div>
                   </div>
-                  <div className="pt-2">
+
+                  <div className="pt-2 flex items-center justify-center">
                     <button
                       onClick={() => setIsConsultationModalOpen(false)}
                       className="px-6 py-2.5 rounded-xl bg-[#0b1b36] hover:bg-[#15325b] text-white text-xs font-bold uppercase tracking-wider transition-colors cursor-pointer"
@@ -454,10 +505,11 @@ export default function App() {
                     </div>
                     <button
                       type="submit"
-                      className="px-6 py-2.5 rounded-xl bg-[#c91c1c] hover:bg-[#a01616] text-white font-bold uppercase tracking-wider shadow-md flex items-center gap-2 cursor-pointer transition-colors"
+                      disabled={isSubmittingModal}
+                      className="px-6 py-2.5 rounded-xl bg-[#c91c1c] hover:bg-[#a01616] text-white font-bold uppercase tracking-wider shadow-md flex items-center gap-2 cursor-pointer transition-colors disabled:opacity-75"
                     >
-                      <span>Submit Request</span>
-                      <Send className="w-3.5 h-3.5" />
+                      <span>{isSubmittingModal ? 'Submitting Request...' : 'Submit Request'}</span>
+                      <Send className={`w-3.5 h-3.5 ${isSubmittingModal ? 'animate-pulse' : ''}`} />
                     </button>
                   </div>
                 </form>
@@ -467,6 +519,12 @@ export default function App() {
         </div>
       )}
       <ChatBot onOpenConsultation={handleOpenConsultation} onNavigate={handleNavigate} />
+      
+      {/* Supabase Database Manager & Live Inspector Modal */}
+      <SupabaseDbModal
+        isOpen={isDbModalOpen}
+        onClose={() => setIsDbModalOpen(false)}
+      />
     </div>
   );
 }

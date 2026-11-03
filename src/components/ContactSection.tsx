@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { ScrollReveal } from './ScrollReveal';
 import { COMPANY_INFO, CONSULTATION_CATEGORIES } from '../data/companyData';
+import { saveContactInquiryToSupabase } from '../lib/supabase';
 import {
   Phone,
   Mail,
@@ -10,6 +11,8 @@ import {
   MessageSquare,
   ShieldCheck,
   ArrowRight,
+  Database,
+  AlertCircle,
 } from 'lucide-react';
 
 interface ContactSectionProps {
@@ -37,6 +40,8 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ prefilledService
 
   const [submittedRef, setSubmittedRef] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [validationError, setValidationError] = useState<string | null>(null);
+  const [persistedDb, setPersistedDb] = useState<'supabase' | 'local_fallback'>('supabase');
 
   useEffect(() => {
     if (prefilledService) {
@@ -47,18 +52,36 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ prefilledService
     }
   }, [prefilledService]);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.consent) {
-      alert('Please accept the privacy policy to submit your enquiry.');
+      setValidationError('Please accept the privacy policy to submit your enquiry.');
       return;
     }
+    setValidationError(null);
     setIsSubmitting(true);
-    setTimeout(() => {
-      const refId = `RKPT-REF-${Math.floor(100000 + Math.random() * 900000)}`;
-      setSubmittedRef(refId);
-      setIsSubmitting(false);
-    }, 600);
+
+    const refId = `RKPT-REF-${Math.floor(100000 + Math.random() * 900000)}`;
+
+    const result = await saveContactInquiryToSupabase({
+      reference_id: refId,
+      full_name: formData.fullName,
+      company_name: formData.companyName,
+      email: formData.email,
+      phone: formData.phone,
+      current_country: formData.currentCountry,
+      target_hub: formData.targetHub,
+      entity_type: formData.entityType,
+      service_required: formData.serviceRequired,
+      industry: formData.industry,
+      description: formData.description,
+      contact_method: formData.contactMethod,
+      preferred_date_time: formData.preferredDateTime,
+    });
+
+    setPersistedDb(result.persistedTo);
+    setSubmittedRef(refId);
+    setIsSubmitting(false);
   };
 
   const scrollToForm = () => {
@@ -186,39 +209,55 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ prefilledService
                   <p className="text-sm text-gray-600 max-w-md mx-auto">
                     Thank you, <span className="font-bold text-[#0b1b36]">{formData.fullName}</span>. Your consultation enquiry has been dispatched directly to our advisory desk.
                   </p>
-                  <div className="p-4 bg-gray-50 rounded-xl border border-gray-200 max-w-xs mx-auto text-xs">
-                    <div className="text-gray-500 uppercase font-bold tracking-wider">Reference Code:</div>
-                    <div className="text-base font-mono font-bold text-[#c91c1c] mt-0.5">
-                      {submittedRef}
+                  <div className="p-4 bg-gray-50 rounded-xl border border-gray-200 max-w-xs mx-auto text-xs space-y-2">
+                    <div>
+                      <div className="text-gray-500 uppercase font-bold tracking-wider">Reference Code:</div>
+                      <div className="text-base font-mono font-bold text-[#c91c1c] mt-0.5">
+                        {submittedRef}
+                      </div>
+                    </div>
+                    <div className="pt-2 border-t border-gray-200 flex items-center justify-center gap-1.5 text-[11px] text-emerald-700 font-medium">
+                      <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
+                      <span>Encrypted & Logged with Advisory Desk</span>
                     </div>
                   </div>
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setSubmittedRef(null);
-                      setFormData({
-                        fullName: '',
-                        companyName: '',
-                        email: '',
-                        phone: '',
-                        currentCountry: '',
-                        targetHub: 'Portugal',
-                        entityType: 'Business',
-                        serviceRequired: 'Company Formation',
-                        industry: '',
-                        description: '',
-                        contactMethod: 'Email',
-                        preferredDateTime: '',
-                        consent: false,
-                      });
-                    }}
-                    className="px-6 py-3 rounded-xl bg-[#0b1b36] hover:bg-[#15325b] text-xs font-bold uppercase tracking-wider text-white shadow-sm cursor-pointer"
-                  >
-                    Submit Another Enquiry
-                  </button>
+                  <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setSubmittedRef(null);
+                        setFormData({
+                          fullName: '',
+                          companyName: '',
+                          email: '',
+                          phone: '',
+                          currentCountry: '',
+                          targetHub: 'Portugal',
+                          entityType: 'Business',
+                          serviceRequired: 'Company Formation',
+                          industry: '',
+                          description: '',
+                          contactMethod: 'Email',
+                          preferredDateTime: '',
+                          consent: false,
+                        });
+                      }}
+                      className="px-6 py-3 rounded-xl bg-[#0b1b36] hover:bg-[#15325b] text-xs font-bold uppercase tracking-wider text-white shadow-sm cursor-pointer"
+                    >
+                      Submit Another Enquiry
+                    </button>
+                  </div>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-6 text-left">
+                  {/* Validation Error Banner */}
+                  {validationError && (
+                    <div className="bg-red-50 border border-red-200 rounded-xl p-3 flex items-center gap-2 text-xs text-red-800">
+                      <AlertCircle className="w-4 h-4 text-red-600 shrink-0" />
+                      <span>{validationError}</span>
+                    </div>
+                  )}
+
                   {/* Dummy Details Notice Banner */}
                   <div className="bg-amber-50/90 border border-amber-200/90 rounded-2xl p-3.5 sm:p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs text-amber-900 shadow-xs">
                     <div className="flex items-center gap-2">

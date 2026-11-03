@@ -138,7 +138,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             </div>
           </div>
 
-          <div className="flex items-center gap-3 sm:gap-4 text-xs font-semibold shrink-0">
+          <div className="flex items-center gap-2.5 sm:gap-4 text-xs font-semibold shrink-0">
             <a
               href={`mailto:${COMPANY_INFO.contact.email}`}
               className="hidden sm:flex items-center gap-1.5 text-gray-300 hover:text-white transition-colors tracking-wide"

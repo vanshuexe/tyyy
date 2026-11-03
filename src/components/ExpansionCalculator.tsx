@@ -2,6 +2,7 @@ import React, { useState, useMemo } from "react";
 import { ScrollReveal } from "./ScrollReveal";
 import { COUNTRIES_DATA } from "../data/companyData";
 import { EstimatorState } from "../types";
+import { saveExpansionQuoteToSupabase } from "../lib/supabase";
 import {
   Check,
   ChevronDown,
@@ -164,6 +165,17 @@ export const ExpansionCalculator: React.FC<ExpansionCalculatorProps> = ({
     ]
       .filter(Boolean)
       .join(", ")} | Scale: ${state.businessSize.toUpperCase()}`;
+
+    // Automatically register expansion blueprint in Supabase quotes table
+    const quoteRef = `RKPT-QUOTE-${Math.floor(100000 + Math.random() * 900000)}`;
+    saveExpansionQuoteToSupabase({
+      reference_id: quoteRef,
+      country: currentCountry.name,
+      structure: state.structure,
+      business_size: state.businessSize,
+      services_selected: calculation.deliverables,
+      notes: summary,
+    });
 
     onProceedWithScope(summary);
   };
